@@ -1,0 +1,8 @@
+analysis,friedman_chi2,friedman_p,kendall_w,page_two_sided_p,direction
+A6_equal_steps_trend,26.4,7.86e-06,0.88,8.01e-10,decreasing
+trend_pooled,28.92,2.33e-06,0.964,9.78e-13,decreasing
+trend_alt,28.08,3.49e-06,0.936,1.41e-11,decreasing
+trend_p0,30.0,1.38e-06,1.0,3.15e-14,decreasing
+trend_p0sec,30.0,1.38e-06,1.0,3.15e-14,decreasing
+trend_shifted,30.0,1.38e-06,1.0,3.15e-14,decreasing
+SECONDARY best-validation checkpoint (H1),30.0,1.38e-06,1.0,3.15e-14,decreasing

@@ -1,0 +1,15 @@
+# 2026-11-11T19:16:49Z python3 scripts/run_calibration.py
+[main] H=105 (T90=73.0, never=8), B_ref=64 (mean 44.9, analytic 21.9), reach90 within H=0.960, 48.7 s
+[L8_d04] H=48 (T90=33.0, never=0), B_ref=34 (mean 24.2, analytic 11.6), reach90 within H=0.995, 16.7 s
+[L8_d08] H=59 (T90=41.0, never=2), B_ref=43 (mean 31.8, analytic 15.7), reach90 within H=0.975, 20.9 s
+[L12_d04] H=150 (T90=105.0, never=9), B_ref=87 (mean 59.1, analytic 26.8), reach90 within H=0.955, 46.0 s
+[L12_d08] H=186 (T90=130.0, never=11), B_ref=113 (mean 86.8, analytic 41.4), reach90 within H=0.945, 64.6 s
+[main_p0] H=48 (T90=33.0, never=0), B_ref=41 (mean 31.1, analytic 14.5), reach90 within H=1.000, 19.9 s
+selected levels: {'abundant': 1.0, 'moderate': 0.5, 'scarce': 0.3, 'critical': 0.2}
+   initial critical = 0.1 (coop RF 0.043, oracle>=1 share 0.330)
+   moved critical up to 0.2 (oracle>=1 share 0.990)
+alternate configuration: L12_d04 (default's oracle>=1 share at Critical = 1.000)
+
+real	1m53.769s
+user	3m33.844s
+sys	0m0.291s

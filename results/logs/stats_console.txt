@@ -1,0 +1,50 @@
+/home/claude/the_last_rescue/scripts/run_stats.py:86: RuntimeWarning: Mean of empty slice
+  "n": int(np.sum(~np.isnan(v))), "mean": np.nanmean(v), "ci_lo": lo, "ci_hi": hi,
+/usr/local/lib/python3.13/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/home/claude/the_last_rescue/scripts/run_stats.py:87: RuntimeWarning: All-NaN slice encountered
+  "sd": np.nanstd(v, ddof=1), "min": np.nanmin(v), "max": np.nanmax(v)})
+{
+ "H0": {
+  "n": 10,
+  "n_nonzero": 10,
+  "median_diff": 0.5246666666666666,
+  "mean_diff": 0.5098333333333334,
+  "statistic": 55.0,
+  "p": 0.0009765625,
+  "r_rb": 1.0,
+  "W_plus": 55.0,
+  "W_minus": 0.0,
+  "method": "exact",
+  "delta_1": 1.0,
+  "n_above": 10,
+  "n_below": 0,
+  "passed": true,
+  "random_rf": 0.06283333333333331
+ },
+ "H5": {
+  "mean_did": -0.24799999999999994,
+  "ci_lo": -0.32249999999999995,
+  "ci_hi": -0.17082916666666673,
+  "median_did": -0.2191666666666665,
+  "seeds_positive": 0,
+  "r_rb": -1.0,
+  "p": 0.001953125,
+  "method": "exact"
+ },
+ "A8": {
+  "n_obs": 38,
+  "n_excluded_undefined_ear": 2,
+  "r2_joint": 0.9780948103740513,
+  "r2_levels_only": 0.9273491486465233,
+  "vif": {
+   "ear": 1.3974105200460514,
+   "rsr_other": 1.2992538191304068,
+   "tdi": 1.7488851611544298,
+   "pss": 7.834177790248027,
+   "gini_consumption": 1.4431422762966657,
+   "cr": 8.255264589065579
+  },
+  "note": "Observational association across seeds; not causal evidence."
+ }
+}

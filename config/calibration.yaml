@@ -1,0 +1,45 @@
+# Calibration procedure (spec §4) - ALL RULES PRE-STATED BEFORE ANY CALIBRATION RUN.
+# The SHA-256 of this file is recorded in results/calibration/rules_hash.txt before the first run.
+# Only calibration instances (seed range 1,000,000+) are used. No validation/test instance is evaluated here.
+
+instances: 200                 # calibration instances per configuration (split "calibration", indices 0..199)
+unlimited_budget: 1000000      # "unlimited" per-agent budget for steps 1-2
+h_max_factor: 40               # step 1 cap: H_max = 40 * L
+rescue_fraction_target: 0.9    # step 1: time at which >= ceil(0.9 V) victims are rescued
+time_slack: 0.7                # H = ceil(T90 / 0.7): the cooperative policy needs <= 70% of H in 90% of instances
+quantile: 0.9                  # T90 and B_ref are 90th percentiles ...
+quantile_method: higher        # ... using numpy method "higher" (an actually observed value; integer; conservative)
+rho_grid: [1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1]
+
+selection:                     # step 4, applied to the MAIN configuration's cooperative-baseline mean RF
+  abundant: 1.0
+  moderate_target: 0.70        # argmin |RF_coop(rho) - 0.70| over rho < 1.0
+  scarce_target: 0.40          # argmin |RF_coop(rho) - 0.40| over rho < moderate
+  critical_band: [0.10, 0.15]  # argmin distance of RF_coop(rho) to the band over rho < scarce (0 inside the band)
+  tie_break: larger_rho        # equal distances -> the larger (less extreme) rho
+  critical_min_oracle_feasible: 0.95   # oracle rescues >= 1 victim in >= 95% of instances at Critical;
+                                       # otherwise move Critical up one grid step (still < scarce), repeatedly;
+                                       # if no rho < scarce satisfies it, report the violation (do not hide it)
+
+configurations:                # step 5 sensitivity grid (main first)
+  main:     {grid_size: 10, victim_density: 0.06, p_heavy: 0.5}
+  L8_d04:   {grid_size: 8,  victim_density: 0.04, p_heavy: 0.5}
+  L8_d08:   {grid_size: 8,  victim_density: 0.08, p_heavy: 0.5}
+  L12_d04:  {grid_size: 12, victim_density: 0.04, p_heavy: 0.5}
+  L12_d08:  {grid_size: 12, victim_density: 0.08, p_heavy: 0.5}
+  main_p0:  {grid_size: 10, victim_density: 0.06, p_heavy: 0.0}   # step 6: cooperation-optional world (A3)
+
+# Every configuration gets its own H and B_ref by the same procedure; the four rho VALUES selected on "main" are used in
+# every configuration (rho = fraction of that configuration's just-enough budget).
+alternate_configuration:
+  default: L12_d04             # used for the one alternate IQL sweep (spec §4 step 5)
+  fallback: L12_d08            # only if L12_d04 violates the Critical oracle-feasibility constraint at the main rho levels
+
+instance_sets:                 # generated AFTER the rho levels are fixed (frozen seed lists; no policy is evaluated on them)
+  train: 1000
+  validation: 50
+  test: 100
+  shifted_test: 100            # shifted distribution: wall_fraction 0.25, victim_density 0.09, same H and B_ref as main
+  regenerate_if_infeasible_at: critical   # spec §1.4: per-agent budgets of the Critical level, main H
+  # A3 (p_heavy = 0) reuses the main seed lists unchanged (pairing); its feasibility at its own Critical budget is reported,
+  # not filtered. The alternate configuration gets its own lists with the same rule and its own budgets.

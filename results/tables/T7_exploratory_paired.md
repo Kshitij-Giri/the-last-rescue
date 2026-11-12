@@ -1,0 +1,31 @@
+### T7. EXPLORATORY paired contrasts (A2, A6, pooled, shifted test); unadjusted p
+
+| analysis                                 | level    |   n |   mean_a |   mean_b | diff                    |   r_rb |   p_unadjusted |
+|:-----------------------------------------|:---------|----:|---------:|---------:|:------------------------|-------:|---------------:|
+| A2 RF intact - ablated (random)          | Abundant |  10 |    0.573 |    0.389 | 0.184 [0.143, 0.220]    |   1    |         0.002  |
+| A2 CR intact - ablated (random)          | Abundant |  10 |    0.18  |    0.09  | 0.090 [0.072, 0.106]    |   1    |         0.002  |
+| A2 RF intact - ablated (wait)            | Abundant |  10 |    0.573 |    0.292 | 0.281 [0.244, 0.316]    |   1    |         0.002  |
+| A2 CR intact - ablated (wait)            | Abundant |  10 |    0.18  |    0.103 | 0.077 [0.057, 0.095]    |   1    |         0.002  |
+| A2 RF intact - ablated (random)          | Moderate |  10 |    0.344 |    0.238 | 0.106 [0.092, 0.120]    |   1    |         0.002  |
+| A2 CR intact - ablated (random)          | Moderate |  10 |    0.174 |    0.08  | 0.094 [0.081, 0.109]    |   1    |         0.002  |
+| A2 RF intact - ablated (wait)            | Moderate |  10 |    0.344 |    0.19  | 0.154 [0.135, 0.173]    |   1    |         0.002  |
+| A2 CR intact - ablated (wait)            | Moderate |  10 |    0.174 |    0.101 | 0.073 [0.062, 0.083]    |   1    |         0.002  |
+| A2 RF intact - ablated (random)          | Scarce   |  10 |    0.18  |    0.122 | 0.058 [0.051, 0.064]    |   1    |         0.002  |
+| A2 CR intact - ablated (random)          | Scarce   |  10 |    0.083 |    0.034 | 0.049 [0.031, 0.066]    |   1    |         0.0039 |
+| A2 RF intact - ablated (wait)            | Scarce   |  10 |    0.18  |    0.095 | 0.084 [0.075, 0.093]    |   1    |         0.002  |
+| A2 CR intact - ablated (wait)            | Scarce   |  10 |    0.083 |    0.039 | 0.044 [0.028, 0.059]    |   1    |         0.0039 |
+| A2 RF intact - ablated (random)          | Critical |  10 |    0.087 |    0.066 | 0.022 [0.017, 0.026]    |   1    |         0.002  |
+| A2 CR intact - ablated (random)          | Critical |  10 |    0.023 |    0.009 | 0.014 [0.006, 0.024]    |   1    |         0.0078 |
+| A2 RF intact - ablated (wait)            | Critical |  10 |    0.087 |    0.049 | 0.038 [0.032, 0.043]    |   1    |         0.002  |
+| A2 CR intact - ablated (wait)            | Critical |  10 |    0.023 |    0.011 | 0.012 [0.006, 0.019]    |   1    |         0.0078 |
+| A6 RF equal-steps - equal-episodes       | Moderate |  10 |    0.422 |    0.344 | 0.078 [0.036, 0.116]    |   0.89 |         0.0098 |
+| A6 RF equal-steps - equal-episodes       | Scarce   |  10 |    0.145 |    0.18  | -0.034 [-0.066, -0.003] |  -0.64 |         0.0781 |
+| A6 RF equal-steps - equal-episodes       | Critical |  10 |    0.104 |    0.087 | 0.016 [-0.009, 0.043]   |   0.31 |         0.4316 |
+| Pooled - per-agent RF                    | Abundant |  10 |    0.667 |    0.573 | 0.095 [0.014, 0.187]    |   0.53 |         0.1602 |
+| Pooled - per-agent RF                    | Moderate |  10 |    0.405 |    0.344 | 0.061 [0.032, 0.090]    |   0.93 |         0.0059 |
+| Pooled - per-agent RF                    | Scarce   |  10 |    0.195 |    0.18  | 0.015 [-0.004, 0.038]   |   0.38 |         0.3223 |
+| Pooled - per-agent RF                    | Critical |  10 |    0.129 |    0.087 | 0.042 [0.023, 0.066]    |   1    |         0.002  |
+| Shifted test - same-distribution test RF | Abundant |  10 |    0.429 |    0.573 | -0.144 [-0.164, -0.124] |  -1    |         0.002  |
+| Shifted test - same-distribution test RF | Moderate |  10 |    0.256 |    0.344 | -0.088 [-0.107, -0.071] |  -1    |         0.002  |
+| Shifted test - same-distribution test RF | Scarce   |  10 |    0.139 |    0.18  | -0.041 [-0.050, -0.032] |  -1    |         0.002  |
+| Shifted test - same-distribution test RF | Critical |  10 |    0.079 |    0.087 | -0.008 [-0.012, -0.004] |  -0.93 |         0.0059 |

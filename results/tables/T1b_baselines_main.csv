@@ -1,0 +1,17 @@
+level,policy,rf,rescued_heavy_share,cr
+Abundant,random,0.063,0.003,0.001
+Abundant,greedy,0.465,0.0,0.0
+Abundant,cooperative,0.985,0.97,0.46
+Abundant,oracle,1.0,1.0,0.77
+Moderate,oracle,0.96,0.92,0.726
+Moderate,cooperative,0.707,0.54,0.322
+Moderate,greedy,0.227,0.0,0.0
+Moderate,random,0.024,0.001,0.001
+Scarce,random,0.01,0.0,0.0
+Scarce,greedy,0.123,0.0,0.0
+Scarce,cooperative,0.413,0.287,0.234
+Scarce,oracle,0.617,0.327,0.431
+Critical,oracle,0.403,0.247,0.438
+Critical,cooperative,0.233,0.167,0.17
+Critical,greedy,0.075,0.0,0.0
+Critical,random,0.005,0.0,0.0

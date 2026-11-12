@@ -1,0 +1,13 @@
+level,seed,seconds,env_steps
+Abundant,0,32.8,281945
+Abundant,1,33.4,280429
+Abundant,2,33.9,281743
+Moderate,0,24.8,217462
+Moderate,1,24.8,215931
+Moderate,2,25.1,217352
+Scarce,0,18.6,171230
+Scarce,1,17.7,162274
+Scarce,2,18.3,166448
+Critical,0,15.1,134219
+Critical,1,14.8,140499
+Critical,2,13.9,126338

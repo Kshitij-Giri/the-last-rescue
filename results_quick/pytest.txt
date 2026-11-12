@@ -1,0 +1,11 @@
+........................................................................ [ 27%]
+........................................................................ [ 54%]
+........................................................................ [ 81%]
+................................................                         [100%]
+=============================== warnings summary ===============================
+tests/test_run_all_quick.py::test_quick_pipeline_tiny
+  /usr/local/lib/python3.13/site-packages/scipy/stats/_stats_py.py:8776: RuntimeWarning: invalid value encountered in scalar divide
+    statistic = (12.0 / (k*count*(k+1)) * ssbn - 3*count*(k+1)) / c
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+264 passed, 1 warning in 26.73s

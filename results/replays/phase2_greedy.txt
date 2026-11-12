@@ -1,0 +1,398 @@
+=== greedy baseline; validation instance 0; placeholder b0=40, H=200 ===
+instance seed=3000000 L=10 V=6 heavy=3 n_agents=3 mode=per_agent b0=40 H=200
+Legend: # wall  ~ hazard  . free  B base  h/l unseen heavy/light  H/L seen waiting heavy/light  x rescued  1..n agents  * several agents on a cell
+
+--- t=0  budgets=[40, 40, 40]
+...~.....#
+.~#..l..l#
+....#..#..
+...h.l..~.
+..........
+#...##...#
+#.~...h#.#
+..~....#..
+....#..h.~
+.~.#..~..*
+actions: A1=SEARCH  A2=SEARCH  A3=SEARCH
+rewards: -0.007  -0.007  -0.007
+event: t=0, type=first_sighting, victim=5, agents=[0, 1, 2]
+
+--- t=1  budgets=[38, 38, 38]
+...~.....#
+.~#..l..l#
+....#..#..
+...h.l..~.
+..........
+#...##...#
+#.~...h#.#
+..~....#..
+....#..H.~
+.~.#..~..*
+actions: A1=LEFT  A2=LEFT  A3=LEFT
+rewards: -0.020  -0.020  -0.020
+
+--- t=2  budgets=[37, 37, 37]
+...~.....#
+.~#..l..l#
+....#..#..
+...h.l..~.
+..........
+#...##...#
+#.~...h#.#
+..~....#..
+....#..H.~
+.~.#..~.*B
+actions: A1=UP  A2=UP  A3=UP
+rewards: -0.020  -0.020  -0.020
+
+--- t=3  budgets=[36, 36, 36]
+...~.....#
+.~#..l..l#
+....#..#..
+...h.l..~.
+..........
+#...##...#
+#.~...h#.#
+..~....#..
+....#..H*~
+.~.#..~..B
+actions: A1=LEFT  A2=LEFT  A3=LEFT
+rewards: -0.020  -0.020  -0.020
+
+--- t=4  budgets=[35, 35, 35]
+...~.....#
+.~#..l..l#
+....#..#..
+...h.l..~.
+..........
+#...##...#
+#.~...h#.#
+..~....#..
+....#..*.~
+.~.#..~..B
+actions: A1=RESCUE  A2=RESCUE  A3=RESCUE
+rewards: -0.060  -0.060  -0.060
+event: t=4, type=failed_rescue, agent=0, victim=5, cell=87
+event: t=4, type=failed_rescue, agent=1, victim=5, cell=87
+event: t=4, type=failed_rescue, agent=2, victim=5, cell=87
+
+--- t=5  budgets=[32, 32, 32]
+...~.....#
+.~#..l..l#
+....#..#..
+...h.l..~.
+..........
+#...##...#
+#.~...h#.#
+..~....#..
+....#..*.~
+.~.#..~..B
+actions: A1=LEFT  A2=LEFT  A3=LEFT
+rewards: -0.020  -0.020  -0.020
+
+--- t=6  budgets=[31, 31, 31]
+...~.....#
+.~#..l..l#
+....#..#..
+...h.l..~.
+..........
+#...##...#
+#.~...h#.#
+..~....#..
+....#.*H.~
+.~.#..~..B
+actions: A1=UP  A2=UP  A3=UP
+rewards: +0.013  +0.013  +0.013
+event: t=6, type=first_sighting, victim=4, agents=[0, 1, 2]
+
+--- t=7  budgets=[30, 30, 30]
+...~.....#
+.~#..l..l#
+....#..#..
+...h.l..~.
+..........
+#...##...#
+#.~...H#.#
+..~...*#..
+....#..H.~
+.~.#..~..B
+actions: A1=UP  A2=UP  A3=UP
+rewards: -0.020  -0.020  -0.020
+
+--- t=8  budgets=[29, 29, 29]
+...~.....#
+.~#..l..l#
+....#..#..
+...h.l..~.
+..........
+#...##...#
+#.~...*#.#
+..~....#..
+....#..H.~
+.~.#..~..B
+actions: A1=RESCUE  A2=RESCUE  A3=RESCUE
+rewards: -0.060  -0.060  -0.060
+event: t=8, type=failed_rescue, agent=0, victim=4, cell=66
+event: t=8, type=failed_rescue, agent=1, victim=4, cell=66
+event: t=8, type=failed_rescue, agent=2, victim=4, cell=66
+
+--- t=9  budgets=[26, 26, 26]
+...~.....#
+.~#..l..l#
+....#..#..
+...h.l..~.
+..........
+#...##...#
+#.~...*#.#
+..~....#..
+....#..H.~
+.~.#..~..B
+actions: A1=UP  A2=UP  A3=UP
+rewards: -0.020  -0.020  -0.020
+
+--- t=10  budgets=[25, 25, 25]
+...~.....#
+.~#..l..l#
+....#..#..
+...h.l..~.
+..........
+#...##*..#
+#.~...H#.#
+..~....#..
+....#..H.~
+.~.#..~..B
+actions: A1=SEARCH  A2=SEARCH  A3=SEARCH
+rewards: -0.007  -0.007  -0.007
+event: t=10, type=first_sighting, victim=3, agents=[0, 1, 2]
+
+--- t=11  budgets=[23, 23, 23]
+...~.....#
+.~#..l..l#
+....#..#..
+...h.L..~.
+..........
+#...##*..#
+#.~...H#.#
+..~....#..
+....#..H.~
+.~.#..~..B
+actions: A1=UP  A2=UP  A3=UP
+rewards: -0.020  -0.020  -0.020
+
+--- t=12  budgets=[22, 22, 22]
+...~.....#
+.~#..l..l#
+....#..#..
+...h.L..~.
+......*...
+#...##...#
+#.~...H#.#
+..~....#..
+....#..H.~
+.~.#..~..B
+actions: A1=UP  A2=UP  A3=UP
+rewards: -0.020  -0.020  -0.020
+
+--- t=13  budgets=[21, 21, 21]
+...~.....#
+.~#..l..l#
+....#..#..
+...h.L*.~.
+..........
+#...##...#
+#.~...H#.#
+..~....#..
+....#..H.~
+.~.#..~..B
+actions: A1=LEFT  A2=LEFT  A3=LEFT
+rewards: -0.020  -0.020  -0.020
+
+--- t=14  budgets=[20, 20, 20]
+...~.....#
+.~#..l..l#
+....#..#..
+...h.*..~.
+..........
+#...##...#
+#.~...H#.#
+..~....#..
+....#..H.~
+.~.#..~..B
+actions: A1=RESCUE  A2=RESCUE  A3=RESCUE
+rewards: +1.273  +1.273  +1.273
+event: t=14, type=duplicate_rescue, victim=3, cell=35, agents=[0, 1, 2], n_wasted=2
+event: t=14, type=rescue, victim=3, heavy=False, cell=35, rescuers=[0, 1, 2], assisters=[]
+
+--- t=15  budgets=[17, 17, 17]
+...~.....#
+.~#..l..l#
+....#..#..
+...h.*..~.
+..........
+#...##...#
+#.~...H#.#
+..~....#..
+....#..H.~
+.~.#..~..B
+actions: A1=UP  A2=UP  A3=UP
+rewards: +0.013  +0.013  +0.013
+event: t=15, type=first_sighting, victim=0, agents=[0, 1, 2]
+
+--- t=16  budgets=[16, 16, 16]
+...~.....#
+.~#..L..l#
+....#*.#..
+...h.x..~.
+..........
+#...##...#
+#.~...H#.#
+..~....#..
+....#..H.~
+.~.#..~..B
+actions: A1=UP  A2=UP  A3=UP
+rewards: -0.020  -0.020  -0.020
+
+--- t=17  budgets=[15, 15, 15]
+...~.....#
+.~#..*..l#
+....#..#..
+...h.x..~.
+..........
+#...##...#
+#.~...H#.#
+..~....#..
+....#..H.~
+.~.#..~..B
+actions: A1=RESCUE  A2=RESCUE  A3=RESCUE
+rewards: +1.273  +1.273  +1.273
+event: t=17, type=duplicate_rescue, victim=0, cell=15, agents=[0, 1, 2], n_wasted=2
+event: t=17, type=rescue, victim=0, heavy=False, cell=15, rescuers=[0, 1, 2], assisters=[]
+
+--- t=18  budgets=[12, 12, 12]
+...~.....#
+.~#..*..l#
+....#..#..
+...h.x..~.
+..........
+#...##...#
+#.~...H#.#
+..~....#..
+....#..H.~
+.~.#..~..B
+actions: A1=LEFT  A2=LEFT  A3=LEFT
+rewards: -0.020  -0.020  -0.020
+
+--- t=19  budgets=[11, 11, 11]
+...~.....#
+.~#.*x..l#
+....#..#..
+...h.x..~.
+..........
+#...##...#
+#.~...H#.#
+..~....#..
+....#..H.~
+.~.#..~..B
+actions: A1=RIGHT  A2=RIGHT  A3=RIGHT
+rewards: -0.020  -0.020  -0.020
+
+--- t=20  budgets=[10, 10, 10]
+...~.....#
+.~#..*..l#
+....#..#..
+...h.x..~.
+..........
+#...##...#
+#.~...H#.#
+..~....#..
+....#..H.~
+.~.#..~..B
+actions: A1=RIGHT  A2=RIGHT  A3=RIGHT
+rewards: -0.020  -0.020  -0.020
+
+--- t=21  budgets=[9, 9, 9]
+...~.....#
+.~#..x*.l#
+....#..#..
+...h.x..~.
+..........
+#...##...#
+#.~...H#.#
+..~....#..
+....#..H.~
+.~.#..~..B
+actions: A1=RIGHT  A2=RIGHT  A3=RIGHT
+rewards: +0.013  +0.013  +0.013
+event: t=21, type=first_sighting, victim=1, agents=[0, 1, 2]
+
+--- t=22  budgets=[8, 8, 8]
+...~.....#
+.~#..x.*L#
+....#..#..
+...h.x..~.
+..........
+#...##...#
+#.~...H#.#
+..~....#..
+....#..H.~
+.~.#..~..B
+actions: A1=RIGHT  A2=RIGHT  A3=RIGHT
+rewards: -0.020  -0.020  -0.020
+
+--- t=23  budgets=[7, 7, 7]
+...~.....#
+.~#..x..*#
+....#..#..
+...h.x..~.
+..........
+#...##...#
+#.~...H#.#
+..~....#..
+....#..H.~
+.~.#..~..B
+actions: A1=RESCUE  A2=RESCUE  A3=RESCUE
+rewards: +1.273  +1.273  +1.273
+event: t=23, type=duplicate_rescue, victim=1, cell=18, agents=[0, 1, 2], n_wasted=2
+event: t=23, type=rescue, victim=1, heavy=False, cell=18, rescuers=[0, 1, 2], assisters=[]
+
+--- t=24  budgets=[4, 4, 4]
+...~.....#
+.~#..x..*#
+....#..#..
+...h.x..~.
+..........
+#...##...#
+#.~...H#.#
+..~....#..
+....#..H.~
+.~.#..~..B
+actions: A1=DOWN  A2=DOWN  A3=DOWN
+rewards: -0.020  -0.020  -0.020
+
+--- t=25  budgets=[3, 3, 3]
+...~.....#
+.~#..x..x#
+....#..#*.
+...h.x..~.
+..........
+#...##...#
+#.~...H#.#
+..~....#..
+....#..H.~
+.~.#..~..B
+actions: A1=RIGHT  A2=RIGHT  A3=RIGHT
+rewards: -0.020  -0.020  -0.020
+
+--- t=26  budgets=[2, 2, 2]
+...~.....#
+.~#..x..x#
+....#..#.*
+...h.x..~.
+..........
+#...##...#
+#.~...H#.#
+..~....#..
+....#..H.~
+.~.#..~..B
+
+END: termination=exhausted steps=26 rescued=3/6

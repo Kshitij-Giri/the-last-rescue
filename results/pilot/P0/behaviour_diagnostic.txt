@@ -1,0 +1,6 @@
+Diagnostic (validation, Abundant, final greedy P0 policies): action shares and team budget use (pool 3 x 64 = 192)
+seed 1000: WAIT 0.57 moves 0.39 SEARCH 0.01 RESCUE 0.02 ASSIST 0.01 | team spent 154.5 (80%)
+seed 1001: WAIT 0.56 moves 0.40 SEARCH 0.01 RESCUE 0.02 ASSIST 0.01 | team spent 153.8 (80%)
+seed 1002: WAIT 0.63 moves 0.31 SEARCH 0.03 RESCUE 0.01 ASSIST 0.02 | team spent 145.5 (76%)
+seed 1003: WAIT 0.54 moves 0.41 SEARCH 0.01 RESCUE 0.03 ASSIST 0.01 | team spent 155.5 (81%)
+seed 1004: WAIT 0.61 moves 0.35 SEARCH 0.01 RESCUE 0.03 ASSIST 0.01 | team spent 150.0 (78%)

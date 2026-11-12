@@ -1,0 +1,349 @@
+{
+ "n_boot": 10000,
+ "seeds": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9
+ ],
+ "H0": {
+  "n": 10,
+  "n_nonzero": 10,
+  "median_diff": 0.5246666666666666,
+  "mean_diff": 0.5098333333333334,
+  "statistic": 55.0,
+  "p": 0.0009765625,
+  "r_rb": 1.0,
+  "W_plus": 55.0,
+  "W_minus": 0.0,
+  "method": "exact",
+  "delta_1": 1.0,
+  "n_above": 10,
+  "n_below": 0,
+  "passed": true,
+  "random_rf": 0.06283333333333331
+ },
+ "H5": {
+  "did_per_seed": [
+   -0.34666666666666673,
+   -0.09499999999999997,
+   -0.18833333333333346,
+   -0.20666666666666655,
+   -0.040000000000000036,
+   -0.42333333333333323,
+   -0.35000000000000003,
+   -0.20499999999999985,
+   -0.3933333333333334,
+   -0.23166666666666647
+  ],
+  "mean_did": -0.24799999999999994,
+  "ci_lo": -0.32249999999999995,
+  "ci_hi": -0.17082916666666673,
+  "median_did": -0.2191666666666665,
+  "seeds_positive": 0,
+  "r_rb": -1.0,
+  "p": 0.001953125,
+  "method": "exact"
+ },
+ "A3_oracle": {
+  "main": {
+   "Abundant": 1.0,
+   "Moderate": 0.96,
+   "Scarce": 0.6166666666666666,
+   "Critical": 0.4033333333333334
+  },
+  "p0": {
+   "Abundant": 1.0,
+   "Moderate": 1.0,
+   "Scarce": 0.8283333333333331,
+   "Critical": 0.49666666666666665
+  },
+  "p0sec": {
+   "Abundant": 1.0,
+   "Moderate": 0.9149999999999998,
+   "Scarce": 0.43666666666666665,
+   "Critical": 0.17833333333333332
+  }
+ },
+ "sensitivity": {
+  "bestval_friedman": {
+   "n": 10,
+   "chi2": 30.0,
+   "p": 1.3800570312932553e-06,
+   "kendall_w": 1.0
+  },
+  "bestval_page": {
+   "n": 10,
+   "L_dec": 300.0,
+   "p_dec": 1.577202957908649e-14,
+   "L_inc": 200.0,
+   "p_inc": 0.9999999999999994,
+   "p": 3.154405915817298e-14,
+   "direction": "decreasing"
+  },
+  "stable_runs_total": 5,
+  "runs_total": 350,
+  "stable_by_block_level": [
+   {
+    "block": "alt",
+    "level": "Abundant",
+    "stable": 0
+   },
+   {
+    "block": "alt",
+    "level": "Critical",
+    "stable": 0
+   },
+   {
+    "block": "alt",
+    "level": "Moderate",
+    "stable": 0
+   },
+   {
+    "block": "alt",
+    "level": "Scarce",
+    "stable": 0
+   },
+   {
+    "block": "eqsteps",
+    "level": "Critical",
+    "stable": 0
+   },
+   {
+    "block": "eqsteps",
+    "level": "Moderate",
+    "stable": 2
+   },
+   {
+    "block": "eqsteps",
+    "level": "Scarce",
+    "stable": 1
+   },
+   {
+    "block": "main",
+    "level": "Abundant",
+    "stable": 0
+   },
+   {
+    "block": "main",
+    "level": "Critical",
+    "stable": 0
+   },
+   {
+    "block": "main",
+    "level": "Moderate",
+    "stable": 0
+   },
+   {
+    "block": "main",
+    "level": "Scarce",
+    "stable": 0
+   },
+   {
+    "block": "p0",
+    "level": "Abundant",
+    "stable": 0
+   },
+   {
+    "block": "p0",
+    "level": "Critical",
+    "stable": 0
+   },
+   {
+    "block": "p0",
+    "level": "Moderate",
+    "stable": 0
+   },
+   {
+    "block": "p0",
+    "level": "Scarce",
+    "stable": 0
+   },
+   {
+    "block": "p0sec",
+    "level": "Abundant",
+    "stable": 0
+   },
+   {
+    "block": "p0sec",
+    "level": "Critical",
+    "stable": 1
+   },
+   {
+    "block": "p0sec",
+    "level": "Moderate",
+    "stable": 0
+   },
+   {
+    "block": "p0sec",
+    "level": "Scarce",
+    "stable": 0
+   },
+   {
+    "block": "pooled",
+    "level": "Abundant",
+    "stable": 0
+   },
+   {
+    "block": "pooled",
+    "level": "Critical",
+    "stable": 0
+   },
+   {
+    "block": "pooled",
+    "level": "Moderate",
+    "stable": 1
+   },
+   {
+    "block": "pooled",
+    "level": "Scarce",
+    "stable": 0
+   },
+   {
+    "block": "solo",
+    "level": "Abundant",
+    "stable": 0
+   },
+   {
+    "block": "solo",
+    "level": "Critical",
+    "stable": 0
+   },
+   {
+    "block": "solo",
+    "level": "Moderate",
+    "stable": 0
+   },
+   {
+    "block": "solo",
+    "level": "Scarce",
+    "stable": 0
+   }
+  ],
+  "main_stable_runs": 0,
+  "stable_only_H1": "not computable: 0 of 40 main-block runs meet the preregistered stability criterion"
+ },
+ "A6_equal_steps_trend": {
+  "friedman": {
+   "n": 10,
+   "chi2": 26.400000000000006,
+   "p": 7.864274593371464e-06,
+   "kendall_w": 0.8800000000000002
+  },
+  "page": {
+   "n": 10,
+   "L_dec": 296.0,
+   "p_dec": 4.0046760304258513e-10,
+   "L_inc": 204.0,
+   "p_inc": 0.9999999999369744,
+   "p": 8.009352060851703e-10,
+   "direction": "decreasing"
+  }
+ },
+ "trend_pooled": {
+  "friedman": {
+   "n": 10,
+   "chi2": 28.919999999999987,
+   "p": 2.3278065917953752e-06,
+   "kendall_w": 0.9639999999999996
+  },
+  "page": {
+   "n": 10,
+   "L_dec": 299.0,
+   "p_dec": 4.889329169516812e-13,
+   "L_inc": 201.0,
+   "p_inc": 0.9999999999999837,
+   "p": 9.778658339033623e-13,
+   "direction": "decreasing"
+  }
+ },
+ "trend_alt": {
+  "friedman": {
+   "n": 10,
+   "chi2": 28.079999999999984,
+   "p": 3.494281590861251e-06,
+   "kendall_w": 0.9359999999999995
+  },
+  "page": {
+   "n": 10,
+   "L_dec": 298.0,
+   "p_dec": 7.034325192272575e-12,
+   "L_inc": 202.0,
+   "p_inc": 0.9999999999995106,
+   "p": 1.406865038454515e-11,
+   "direction": "decreasing"
+  }
+ },
+ "trend_p0": {
+  "friedman": {
+   "n": 10,
+   "chi2": 30.0,
+   "p": 1.3800570312932553e-06,
+   "kendall_w": 1.0
+  },
+  "page": {
+   "n": 10,
+   "L_dec": 300.0,
+   "p_dec": 1.577202957908649e-14,
+   "L_inc": 200.0,
+   "p_inc": 0.9999999999999994,
+   "p": 3.154405915817298e-14,
+   "direction": "decreasing"
+  }
+ },
+ "trend_p0sec": {
+  "friedman": {
+   "n": 10,
+   "chi2": 30.0,
+   "p": 1.3800570312932553e-06,
+   "kendall_w": 1.0
+  },
+  "page": {
+   "n": 10,
+   "L_dec": 300.0,
+   "p_dec": 1.577202957908649e-14,
+   "L_inc": 200.0,
+   "p_inc": 0.9999999999999994,
+   "p": 3.154405915817298e-14,
+   "direction": "decreasing"
+  }
+ },
+ "trend_shifted": {
+  "friedman": {
+   "n": 10,
+   "chi2": 30.0,
+   "p": 1.3800570312932553e-06,
+   "kendall_w": 1.0
+  },
+  "page": {
+   "n": 10,
+   "L_dec": 300.0,
+   "p_dec": 1.577202957908649e-14,
+   "L_inc": 200.0,
+   "p_inc": 0.9999999999999994,
+   "p": 3.154405915817298e-14,
+   "direction": "decreasing"
+  }
+ },
+ "A8": {
+  "n_obs": 38,
+  "n_excluded_undefined_ear": 2,
+  "r2_joint": 0.9780948103740513,
+  "r2_levels_only": 0.9273491486465233,
+  "vif": {
+   "ear": 1.3974105200460514,
+   "rsr_other": 1.2992538191304068,
+   "tdi": 1.7488851611544298,
+   "pss": 7.834177790248027,
+   "gini_consumption": 1.4431422762966657,
+   "cr": 8.255264589065579
+  },
+  "note": "Observational association across seeds; not causal evidence."
+ }
+}

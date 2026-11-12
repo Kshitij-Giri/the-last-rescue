@@ -1,0 +1,2 @@
+config/calibration.yaml sha256=62ea21cb2e0cde43c5791c4ace6671b753c74e9e707cb7e724422a225651da78
+recorded_utc=2026-11-11T19:15:32Z (before any calibration run)

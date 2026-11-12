@@ -1,0 +1,14 @@
+# 2026-11-11T19:23:10Z python3 scripts/make_instance_sets.py
+main      train        n=1000 rejected= 14 (1.4%) sha256=13bda5e4526dab7d
+main      validation   n=  50 rejected=  0 (0.0%) sha256=3ad0331b76e6ee9f
+main      test         n= 100 rejected=  1 (1.0%) sha256=533ba4dbeaf377a7
+main      shifted_test n= 100 rejected=  2 (2.0%) sha256=89b8f4e8b998ad27
+alternate train        n=1000 rejected=  2 (0.2%) sha256=085363fe0b963b72
+alternate validation   n=  50 rejected=  0 (0.0%) sha256=3b4049b55ef3b976
+alternate test         n= 100 rejected=  0 (0.0%) sha256=30f2622a7065f95b
+A3 p_heavy=0 feasibility on main seeds: {'validation': 0.62, 'test': 0.73}
+pooled feasibility on main seeds: {'validation': 1.0, 'test': 1.0}
+
+real	1m12.575s
+user	1m12.006s
+sys	0m0.008s

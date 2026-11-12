@@ -1,0 +1,12 @@
+analytic vs empirical mean consumption across 6 configurations: Pearson r = 0.998; ratio analytic/mean range 0.453-0.493 (mean 0.476)
+Abundant rho=1.0: coop RF main 0.971; L>=10 spread 0.003; L=8 configs 0.957-0.972; p_heavy=0 0.982
+Moderate rho=0.5: coop RF main 0.696; L>=10 spread 0.038; L=8 configs 0.485-0.603; p_heavy=0 0.601
+Scarce   rho=0.3: coop RF main 0.392; L>=10 spread 0.079; L=8 configs 0.213-0.310; p_heavy=0 0.237
+Critical rho=0.2: coop RF main 0.220; L>=10 spread 0.075; L=8 configs 0.087-0.160; p_heavy=0 0.109
+provable UB at abundant (b0=64): mean UB/V = 1.000
+provable UB at moderate (b0=32): mean UB/V = 1.000
+provable UB at scarce (b0=19): mean UB/V = 1.000
+provable UB at critical (b0=13): mean UB/V = 1.000
+f4 thresholds for B_ref=64: (3, 16, 32) -> initial buckets per level: {'Abundant': 3, 'Moderate': 3, 'Scarce': 2, 'Critical': 1}
+coop mean episode length per level (A6 sample-size confound): {'Abundant': 50.8, 'Moderate': 45.2, 'Scarce': 27.6, 'Critical': 16.6}
+p_heavy=0 vs 0.5 B_ref: 41 vs 64 (+56% when half the victims need cooperation)

@@ -1,0 +1,1000 @@
+=== Most abandonment events (E1: partner action wasted) | main, Abundant (b0 = 64), training seed 7, test instance seed 4001400, greedy final Q-tables ===
+instance seed=4001400 L=10 V=6 heavy=3 n_agents=3 mode=per_agent b0=64 H=105
+Legend: # wall  ~ hazard  . free  B base  h/l unseen heavy/light  H/L seen waiting heavy/light  x rescued  1..n agents  * several agents on a cell
+
+--- t=0  budgets=[64, 64, 64]
+*..h~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=RIGHT  A2=RIGHT  A3=DOWN
+rewards: -0.020  -0.020  -0.020
+
+--- t=1  budgets=[63, 63, 63]
+B*.h~..#..
+3......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=RIGHT  A2=RIGHT  A3=RIGHT
+rewards: +0.030  +0.030  -0.020
+event: t=1, type=first_sighting, victim=0, agents=[0, 1]
+
+--- t=2  budgets=[62, 62, 62]
+B.*H~..#..
+.3.....#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=RIGHT  A2=RIGHT  A3=RIGHT
+rewards: -0.020  -0.020  -0.020
+
+--- t=3  budgets=[61, 61, 61]
+B..*~..#..
+..3....#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=ASSIST  A2=ASSIST  A3=UP
+rewards: -0.040  -0.040  -0.020
+event: t=3, type=failed_assist, agent=0, victim=0, cell=3
+event: t=3, type=failed_assist, agent=1, victim=0, cell=3
+
+--- t=4  budgets=[59, 59, 60]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=ASSIST  A2=ASSIST  A3=WAIT
+rewards: -0.040  -0.040  +0.000
+event: t=4, type=failed_assist, agent=0, victim=0, cell=3
+event: t=4, type=failed_assist, agent=1, victim=0, cell=3
+
+--- t=5  budgets=[57, 57, 60]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=ASSIST  A2=ASSIST  A3=WAIT
+rewards: -0.040  -0.040  +0.000
+event: t=5, type=failed_assist, agent=0, victim=0, cell=3
+event: t=5, type=failed_assist, agent=1, victim=0, cell=3
+
+--- t=6  budgets=[55, 55, 60]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=ASSIST  A2=ASSIST  A3=WAIT
+rewards: -0.040  -0.040  +0.000
+event: t=6, type=failed_assist, agent=0, victim=0, cell=3
+event: t=6, type=failed_assist, agent=1, victim=0, cell=3
+
+--- t=7  budgets=[53, 53, 60]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=ASSIST  A2=ASSIST  A3=WAIT
+rewards: -0.040  -0.040  +0.000
+event: t=7, type=failed_assist, agent=0, victim=0, cell=3
+event: t=7, type=failed_assist, agent=1, victim=0, cell=3
+
+--- t=8  budgets=[51, 51, 60]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=ASSIST  A2=ASSIST  A3=WAIT
+rewards: -0.040  -0.040  +0.000
+event: t=8, type=failed_assist, agent=0, victim=0, cell=3
+event: t=8, type=failed_assist, agent=1, victim=0, cell=3
+
+--- t=9  budgets=[49, 49, 60]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=ASSIST  A2=ASSIST  A3=WAIT
+rewards: -0.040  -0.040  +0.000
+event: t=9, type=failed_assist, agent=0, victim=0, cell=3
+event: t=9, type=failed_assist, agent=1, victim=0, cell=3
+
+--- t=10  budgets=[47, 47, 60]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=ASSIST  A2=ASSIST  A3=WAIT
+rewards: -0.040  -0.040  +0.000
+event: t=10, type=failed_assist, agent=0, victim=0, cell=3
+event: t=10, type=failed_assist, agent=1, victim=0, cell=3
+
+--- t=11  budgets=[45, 45, 60]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=ASSIST  A2=ASSIST  A3=WAIT
+rewards: -0.040  -0.040  +0.000
+event: t=11, type=failed_assist, agent=0, victim=0, cell=3
+event: t=11, type=failed_assist, agent=1, victim=0, cell=3
+
+--- t=12  budgets=[43, 43, 60]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=ASSIST  A2=ASSIST  A3=WAIT
+rewards: -0.040  -0.040  +0.000
+event: t=12, type=failed_assist, agent=0, victim=0, cell=3
+event: t=12, type=failed_assist, agent=1, victim=0, cell=3
+
+--- t=13  budgets=[41, 41, 60]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=ASSIST  A2=ASSIST  A3=WAIT
+rewards: -0.040  -0.040  +0.000
+event: t=13, type=failed_assist, agent=0, victim=0, cell=3
+event: t=13, type=failed_assist, agent=1, victim=0, cell=3
+
+--- t=14  budgets=[39, 39, 60]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=ASSIST  A2=ASSIST  A3=WAIT
+rewards: -0.040  -0.040  +0.000
+event: t=14, type=failed_assist, agent=0, victim=0, cell=3
+event: t=14, type=failed_assist, agent=1, victim=0, cell=3
+
+--- t=15  budgets=[37, 37, 60]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=ASSIST  A2=ASSIST  A3=WAIT
+rewards: -0.040  -0.040  +0.000
+event: t=15, type=failed_assist, agent=0, victim=0, cell=3
+event: t=15, type=failed_assist, agent=1, victim=0, cell=3
+
+--- t=16  budgets=[35, 35, 60]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=ASSIST  A2=ASSIST  A3=WAIT
+rewards: -0.040  -0.040  +0.000
+event: t=16, type=failed_assist, agent=0, victim=0, cell=3
+event: t=16, type=failed_assist, agent=1, victim=0, cell=3
+
+--- t=17  budgets=[33, 33, 60]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=ASSIST  A2=ASSIST  A3=WAIT
+rewards: -0.040  -0.040  +0.000
+event: t=17, type=failed_assist, agent=0, victim=0, cell=3
+event: t=17, type=failed_assist, agent=1, victim=0, cell=3
+
+--- t=18  budgets=[31, 31, 60]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=ASSIST  A2=ASSIST  A3=WAIT
+rewards: -0.040  -0.040  +0.000
+event: t=18, type=failed_assist, agent=0, victim=0, cell=3
+event: t=18, type=failed_assist, agent=1, victim=0, cell=3
+
+--- t=19  budgets=[29, 29, 60]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=ASSIST  A2=ASSIST  A3=WAIT
+rewards: -0.040  -0.040  +0.000
+event: t=19, type=failed_assist, agent=0, victim=0, cell=3
+event: t=19, type=failed_assist, agent=1, victim=0, cell=3
+
+--- t=20  budgets=[27, 27, 60]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=ASSIST  A2=ASSIST  A3=WAIT
+rewards: -0.040  -0.040  +0.000
+event: t=20, type=failed_assist, agent=0, victim=0, cell=3
+event: t=20, type=failed_assist, agent=1, victim=0, cell=3
+
+--- t=21  budgets=[25, 25, 60]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=ASSIST  A2=ASSIST  A3=WAIT
+rewards: -0.040  -0.040  +0.000
+event: t=21, type=failed_assist, agent=0, victim=0, cell=3
+event: t=21, type=failed_assist, agent=1, victim=0, cell=3
+
+--- t=22  budgets=[23, 23, 60]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=ASSIST  A2=ASSIST  A3=WAIT
+rewards: -0.040  -0.040  +0.000
+event: t=22, type=failed_assist, agent=0, victim=0, cell=3
+event: t=22, type=failed_assist, agent=1, victim=0, cell=3
+
+--- t=23  budgets=[21, 21, 60]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=ASSIST  A2=ASSIST  A3=WAIT
+rewards: -0.040  -0.040  +0.000
+event: t=23, type=failed_assist, agent=0, victim=0, cell=3
+event: t=23, type=failed_assist, agent=1, victim=0, cell=3
+
+--- t=24  budgets=[19, 19, 60]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=ASSIST  A2=ASSIST  A3=WAIT
+rewards: -0.040  -0.040  +0.000
+event: t=24, type=failed_assist, agent=0, victim=0, cell=3
+event: t=24, type=failed_assist, agent=1, victim=0, cell=3
+
+--- t=25  budgets=[17, 17, 60]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=ASSIST  A2=ASSIST  A3=WAIT
+rewards: -0.040  -0.040  +0.000
+event: t=25, type=failed_assist, agent=0, victim=0, cell=3
+event: t=25, type=failed_assist, agent=1, victim=0, cell=3
+
+--- t=26  budgets=[15, 15, 60]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=RESCUE  A2=RESCUE  A3=WAIT
+rewards: -0.060  -0.060  +0.000
+event: t=26, type=failed_rescue, agent=0, victim=0, cell=3
+event: t=26, type=failed_rescue, agent=1, victim=0, cell=3
+
+--- t=27  budgets=[12, 12, 60]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=RESCUE  A2=RESCUE  A3=WAIT
+rewards: -0.060  -0.060  +0.000
+event: t=27, type=failed_rescue, agent=0, victim=0, cell=3
+event: t=27, type=failed_rescue, agent=1, victim=0, cell=3
+
+--- t=28  budgets=[9, 9, 60]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=RESCUE  A2=RESCUE  A3=WAIT
+rewards: -0.060  -0.060  +0.000
+event: t=28, type=failed_rescue, agent=0, victim=0, cell=3
+event: t=28, type=failed_rescue, agent=1, victim=0, cell=3
+
+--- t=29  budgets=[6, 6, 60]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=RESCUE  A2=RESCUE  A3=WAIT
+rewards: -0.060  -0.060  +0.000
+event: t=29, type=failed_rescue, agent=0, victim=0, cell=3
+event: t=29, type=failed_rescue, agent=1, victim=0, cell=3
+
+--- t=30  budgets=[3, 3, 60]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=RESCUE  A2=RESCUE  A3=WAIT
+rewards: -0.060  -0.060  +0.000
+event: t=30, type=failed_rescue, agent=0, victim=0, cell=3
+event: t=30, type=failed_rescue, agent=1, victim=0, cell=3
+
+--- t=31  budgets=[0, 0, 60]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=WAIT  A2=WAIT  A3=WAIT
+rewards: +0.000  +0.000  +0.000
+event: t=31, type=dormant, agent=0
+event: t=31, type=dormant, agent=1
+
+--- t=32  budgets=[0, 0, 60]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=WAIT  A2=WAIT  A3=WAIT
+rewards: +0.000  +0.000  +0.000
+
+--- t=33  budgets=[0, 0, 60]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=WAIT  A2=WAIT  A3=WAIT
+rewards: +0.000  +0.000  +0.000
+
+--- t=34  budgets=[0, 0, 60]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=WAIT  A2=WAIT  A3=WAIT
+rewards: +0.000  +0.000  +0.000
+
+--- t=35  budgets=[0, 0, 60]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=WAIT  A2=WAIT  A3=SEARCH
+rewards: +0.000  +0.000  -0.040
+
+--- t=36  budgets=[0, 0, 58]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=WAIT  A2=WAIT  A3=SEARCH
+rewards: +0.000  +0.000  -0.040
+
+--- t=37  budgets=[0, 0, 56]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=WAIT  A2=WAIT  A3=SEARCH
+rewards: +0.000  +0.000  -0.040
+
+--- t=38  budgets=[0, 0, 54]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=WAIT  A2=WAIT  A3=SEARCH
+rewards: +0.000  +0.000  -0.040
+
+--- t=39  budgets=[0, 0, 52]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=WAIT  A2=WAIT  A3=SEARCH
+rewards: +0.000  +0.000  -0.040
+
+--- t=40  budgets=[0, 0, 50]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=WAIT  A2=WAIT  A3=SEARCH
+rewards: +0.000  +0.000  -0.040
+
+--- t=41  budgets=[0, 0, 48]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=WAIT  A2=WAIT  A3=SEARCH
+rewards: +0.000  +0.000  -0.040
+
+--- t=42  budgets=[0, 0, 46]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=WAIT  A2=WAIT  A3=SEARCH
+rewards: +0.000  +0.000  -0.040
+
+--- t=43  budgets=[0, 0, 44]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=WAIT  A2=WAIT  A3=SEARCH
+rewards: +0.000  +0.000  -0.040
+
+--- t=44  budgets=[0, 0, 42]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=WAIT  A2=WAIT  A3=SEARCH
+rewards: +0.000  +0.000  -0.040
+
+--- t=45  budgets=[0, 0, 40]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=WAIT  A2=WAIT  A3=SEARCH
+rewards: +0.000  +0.000  -0.040
+
+--- t=46  budgets=[0, 0, 38]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=WAIT  A2=WAIT  A3=SEARCH
+rewards: +0.000  +0.000  -0.040
+
+--- t=47  budgets=[0, 0, 36]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=WAIT  A2=WAIT  A3=SEARCH
+rewards: +0.000  +0.000  -0.040
+
+--- t=48  budgets=[0, 0, 34]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=WAIT  A2=WAIT  A3=SEARCH
+rewards: +0.000  +0.000  -0.040
+
+--- t=49  budgets=[0, 0, 32]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=WAIT  A2=WAIT  A3=SEARCH
+rewards: +0.000  +0.000  -0.040
+
+--- t=50  budgets=[0, 0, 30]
+B.3*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=WAIT  A2=WAIT  A3=RIGHT
+rewards: +0.000  +0.000  -0.020
+
+--- t=51  budgets=[0, 0, 29]
+B..*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=WAIT  A2=WAIT  A3=ASSIST
+rewards: +0.000  +0.000  -0.040
+event: t=51, type=failed_assist, agent=2, victim=0, cell=3
+
+--- t=52  budgets=[0, 0, 27]
+B..*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=WAIT  A2=WAIT  A3=ASSIST
+rewards: +0.000  +0.000  -0.040
+event: t=52, type=failed_assist, agent=2, victim=0, cell=3
+
+--- t=53  budgets=[0, 0, 25]
+B..*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=WAIT  A2=WAIT  A3=ASSIST
+rewards: +0.000  +0.000  -0.040
+event: t=53, type=failed_assist, agent=2, victim=0, cell=3
+
+--- t=54  budgets=[0, 0, 23]
+B..*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=WAIT  A2=WAIT  A3=ASSIST
+rewards: +0.000  +0.000  -0.040
+event: t=54, type=failed_assist, agent=2, victim=0, cell=3
+
+--- t=55  budgets=[0, 0, 21]
+B..*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=WAIT  A2=WAIT  A3=ASSIST
+rewards: +0.000  +0.000  -0.040
+event: t=55, type=failed_assist, agent=2, victim=0, cell=3
+
+--- t=56  budgets=[0, 0, 19]
+B..*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=WAIT  A2=WAIT  A3=ASSIST
+rewards: +0.000  +0.000  -0.040
+event: t=56, type=failed_assist, agent=2, victim=0, cell=3
+
+--- t=57  budgets=[0, 0, 17]
+B..*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=WAIT  A2=WAIT  A3=ASSIST
+rewards: +0.000  +0.000  -0.040
+event: t=57, type=failed_assist, agent=2, victim=0, cell=3
+
+--- t=58  budgets=[0, 0, 15]
+B..*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=WAIT  A2=WAIT  A3=ASSIST
+rewards: +0.000  +0.000  -0.040
+event: t=58, type=failed_assist, agent=2, victim=0, cell=3
+
+--- t=59  budgets=[0, 0, 13]
+B..*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=WAIT  A2=WAIT  A3=ASSIST
+rewards: +0.000  +0.000  -0.040
+event: t=59, type=failed_assist, agent=2, victim=0, cell=3
+
+--- t=60  budgets=[0, 0, 11]
+B..*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=WAIT  A2=WAIT  A3=ASSIST
+rewards: +0.000  +0.000  -0.040
+event: t=60, type=failed_assist, agent=2, victim=0, cell=3
+
+--- t=61  budgets=[0, 0, 9]
+B..*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=WAIT  A2=WAIT  A3=ASSIST
+rewards: +0.000  +0.000  -0.040
+event: t=61, type=failed_assist, agent=2, victim=0, cell=3
+
+--- t=62  budgets=[0, 0, 7]
+B..*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=WAIT  A2=WAIT  A3=ASSIST
+rewards: +0.000  +0.000  -0.040
+event: t=62, type=failed_assist, agent=2, victim=0, cell=3
+
+--- t=63  budgets=[0, 0, 5]
+B..*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=WAIT  A2=WAIT  A3=ASSIST
+rewards: +0.000  +0.000  -0.040
+event: t=63, type=failed_assist, agent=2, victim=0, cell=3
+
+--- t=64  budgets=[0, 0, 3]
+B..*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+actions: A1=WAIT  A2=WAIT  A3=ASSIST
+rewards: +0.000  +0.000  -0.040
+event: t=64, type=failed_assist, agent=2, victim=0, cell=3
+
+--- t=65  budgets=[0, 0, 1]
+B..*~..#..
+.......#..
+..#.......
+..h~.l..h.
+~#..l.....
+..~...#.#.
+....#.~.#.
+#....#..~#
+..#~.l..#.
+~##.......
+
+END: termination=exhausted steps=65 rescued=0/6

@@ -1,0 +1,482 @@
+=== 2026-11-11T19:54:28Z START python3 scripts/run_experiments.py train --block main
+19:54:28 train main: 40 runs to do
+19:56:33 main_Abundant_s0: 104.3 s, 721548 steps, val RF 0.477, heavy 0.233, stable False
+19:56:31 main_Abundant_s1: 102.8 s, 714007 steps, val RF 0.630, heavy 0.487, stable False
+19:58:09 main_Abundant_s2: 97.8 s, 705125 steps, val RF 0.637, heavy 0.493, stable False
+19:58:12 main_Abundant_s3: 98.6 s, 713399 steps, val RF 0.663, heavy 0.540, stable False
+19:59:46 main_Abundant_s4: 97.1 s, 703248 steps, val RF 0.680, heavy 0.533, stable False
+19:59:47 main_Abundant_s5: 95.4 s, 701613 steps, val RF 0.387, heavy 0.227, stable False
+20:01:23 main_Abundant_s6: 97.2 s, 716249 steps, val RF 0.490, heavy 0.313, stable False
+20:01:23 main_Abundant_s7: 95.9 s, 697790 steps, val RF 0.747, heavy 0.660, stable False
+20:03:02 main_Abundant_s8: 98.6 s, 707756 steps, val RF 0.470, heavy 0.340, stable False
+20:03:01 main_Abundant_s9: 97.1 s, 712291 steps, val RF 0.553, heavy 0.380, stable False
+20:04:10 main_Moderate_s0: 69.8 s, 500180 steps, val RF 0.353, heavy 0.187, stable False
+20:04:09 main_Moderate_s1: 67.3 s, 485615 steps, val RF 0.347, heavy 0.180, stable False
+20:05:13 main_Moderate_s2: 64.2 s, 460029 steps, val RF 0.410, heavy 0.267, stable False
+20:05:15 main_Moderate_s3: 64.3 s, 458483 steps, val RF 0.330, heavy 0.187, stable False
+20:06:21 main_Moderate_s4: 67.8 s, 488992 steps, val RF 0.343, heavy 0.193, stable False
+20:06:22 main_Moderate_s5: 67.3 s, 485165 steps, val RF 0.350, heavy 0.220, stable False
+20:07:27 main_Moderate_s6: 66.1 s, 481221 steps, val RF 0.437, heavy 0.267, stable False
+20:07:30 main_Moderate_s7: 68.1 s, 489550 steps, val RF 0.337, heavy 0.180, stable False
+20:08:33 main_Moderate_s8: 65.6 s, 482111 steps, val RF 0.350, heavy 0.220, stable False
+20:08:37 main_Moderate_s9: 66.6 s, 477193 steps, val RF 0.417, heavy 0.287, stable False
+20:09:13 main_Scarce_s0: 40.0 s, 281356 steps, val RF 0.240, heavy 0.133, stable False
+20:09:19 main_Scarce_s1: 42.1 s, 296015 steps, val RF 0.183, heavy 0.080, stable False
+20:09:52 main_Scarce_s2: 39.0 s, 274389 steps, val RF 0.193, heavy 0.060, stable False
+20:10:02 main_Scarce_s3: 42.9 s, 310490 steps, val RF 0.183, heavy 0.093, stable False
+20:10:33 main_Scarce_s4: 41.0 s, 287764 steps, val RF 0.207, heavy 0.080, stable False
+20:10:45 main_Scarce_s5: 43.2 s, 300075 steps, val RF 0.160, heavy 0.000, stable False
+20:11:16 main_Scarce_s6: 42.2 s, 281822 steps, val RF 0.217, heavy 0.087, stable False
+20:11:32 main_Scarce_s7: 46.9 s, 319417 steps, val RF 0.187, heavy 0.073, stable False
+20:12:01 main_Scarce_s8: 45.4 s, 315347 steps, val RF 0.183, heavy 0.027, stable False
+20:12:16 main_Scarce_s9: 43.6 s, 297649 steps, val RF 0.143, heavy 0.013, stable False
+20:12:39 main_Critical_s0: 37.6 s, 257803 steps, val RF 0.130, heavy 0.013, stable False
+20:12:53 main_Critical_s1: 36.4 s, 255029 steps, val RF 0.080, heavy 0.007, stable False
+20:13:16 main_Critical_s2: 37.6 s, 259143 steps, val RF 0.107, heavy 0.000, stable False
+20:13:28 main_Critical_s3: 35.4 s, 237608 steps, val RF 0.133, heavy 0.040, stable False
+20:13:51 main_Critical_s4: 34.3 s, 251001 steps, val RF 0.070, heavy 0.013, stable False
+20:14:04 main_Critical_s5: 36.3 s, 257960 steps, val RF 0.097, heavy 0.000, stable False
+20:14:26 main_Critical_s6: 35.7 s, 256687 steps, val RF 0.113, heavy 0.020, stable False
+20:14:42 main_Critical_s7: 37.4 s, 259497 steps, val RF 0.110, heavy 0.020, stable False
+20:15:04 main_Critical_s8: 37.5 s, 265871 steps, val RF 0.103, heavy 0.020, stable False
+20:15:17 main_Critical_s9: 35.1 s, 240627 steps, val RF 0.150, heavy 0.053, stable False
+=== 2026-11-11T20:15:17Z END (1249 s, exit 0) train --block main
+=== 2026-11-11T20:15:17Z START python3 scripts/run_experiments.py eval --kind learned
+20:15:17 eval learned: 27 parts to do
+20:15:41 learned/main__Abundant: 2000 episodes in 24 s
+20:15:37 learned/main__Moderate: 2000 episodes in 19 s
+20:15:49 learned/main__Scarce: 2000 episodes in 13 s
+20:15:54 learned/main__Critical: 2000 episodes in 13 s
+20:15:49 SKIP ('learned', 'p0', 'Abundant'): training incomplete
+20:15:49 SKIP ('learned', 'p0', 'Moderate'): training incomplete
+20:15:49 SKIP ('learned', 'p0', 'Scarce'): training incomplete
+20:15:49 SKIP ('learned', 'p0', 'Critical'): training incomplete
+20:15:49 SKIP ('learned', 'p0sec', 'Abundant'): training incomplete
+20:15:49 SKIP ('learned', 'p0sec', 'Moderate'): training incomplete
+20:15:49 SKIP ('learned', 'p0sec', 'Scarce'): training incomplete
+20:15:49 SKIP ('learned', 'p0sec', 'Critical'): training incomplete
+20:15:49 SKIP ('learned', 'pooled', 'Abundant'): training incomplete
+20:15:49 SKIP ('learned', 'pooled', 'Moderate'): training incomplete
+20:15:49 SKIP ('learned', 'pooled', 'Scarce'): training incomplete
+20:15:49 SKIP ('learned', 'pooled', 'Critical'): training incomplete
+20:15:49 SKIP ('learned', 'alt', 'Abundant'): training incomplete
+20:15:49 SKIP ('learned', 'alt', 'Moderate'): training incomplete
+20:15:49 SKIP ('learned', 'alt', 'Scarce'): training incomplete
+20:15:49 SKIP ('learned', 'alt', 'Critical'): training incomplete
+20:15:49 SKIP ('learned', 'solo', 'Abundant'): training incomplete
+20:15:49 SKIP ('learned', 'solo', 'Moderate'): training incomplete
+20:15:49 SKIP ('learned', 'solo', 'Scarce'): training incomplete
+20:15:49 SKIP ('learned', 'solo', 'Critical'): training incomplete
+20:15:49 SKIP ('learned', 'eqsteps', 'Moderate'): training incomplete
+20:15:49 SKIP ('learned', 'eqsteps', 'Scarce'): training incomplete
+20:15:49 SKIP ('learned', 'eqsteps', 'Critical'): training incomplete
+=== 2026-11-11T20:15:54Z END (37 s, exit 0) eval --kind learned
+=== 2026-11-11T20:15:54Z START python3 scripts/run_experiments.py eval --kind shifted
+20:15:55 eval shifted: 4 parts to do
+20:16:08 shifted/main__Abundant: 1000 episodes in 13 s
+20:16:06 shifted/main__Moderate: 1000 episodes in 11 s
+20:16:14 shifted/main__Scarce: 1000 episodes in 8 s
+20:16:15 shifted/main__Critical: 1000 episodes in 7 s
+=== 2026-11-11T20:16:15Z END (21 s, exit 0) eval --kind shifted
+=== 2026-11-11T20:16:15Z START python3 scripts/run_experiments.py eval --kind transfer
+20:16:15 eval transfer: 4 parts to do
+20:16:55 transfer/main__Abundant: 4000 episodes in 40 s
+20:16:52 transfer/main__Moderate: 4000 episodes in 37 s
+20:17:25 transfer/main__Scarce: 4000 episodes in 33 s
+20:17:34 transfer/main__Critical: 4000 episodes in 39 s
+=== 2026-11-11T20:17:34Z END (79 s, exit 0) eval --kind transfer
+=== 2026-11-11T20:17:34Z START python3 scripts/run_experiments.py eval --kind A1
+20:17:35 eval A1: 4 parts to do
+20:18:00 A1/main__Abundant: 2000 episodes in 25 s
+20:17:56 A1/main__Moderate: 2000 episodes in 21 s
+20:18:11 A1/main__Scarce: 2000 episodes in 15 s
+20:18:15 A1/main__Critical: 2000 episodes in 15 s
+=== 2026-11-11T20:18:15Z END (41 s, exit 0) eval --kind A1
+=== 2026-11-11T20:18:15Z START python3 scripts/run_experiments.py eval --kind A2
+20:18:15 eval A2: 4 parts to do
+20:19:37 A2/main__Abundant: 6700 episodes in 81 s
+20:19:23 A2/main__Moderate: 6700 episodes in 68 s
+20:20:21 A2/main__Scarce: 6700 episodes in 58 s
+20:20:34 A2/main__Critical: 6700 episodes in 58 s
+=== 2026-11-11T20:20:35Z END (140 s, exit 0) eval --kind A2
+=== 2026-11-11T20:22:11Z START python3 scripts/run_experiments.py train --block p0
+20:22:11 train p0: 40 runs to do
+20:23:46 p0_Abundant_s0: 72.7 s, 530998 steps, val RF 0.973, heavy nan, stable False
+20:23:47 p0_Abundant_s1: 73.7 s, 534511 steps, val RF 0.870, heavy nan, stable False
+20:24:57 p0_Abundant_s2: 71.2 s, 534536 steps, val RF 0.917, heavy nan, stable False
+20:24:59 p0_Abundant_s3: 71.8 s, 543769 steps, val RF 0.950, heavy nan, stable False
+20:26:08 p0_Abundant_s4: 70.7 s, 531135 steps, val RF 0.960, heavy nan, stable False
+20:26:11 p0_Abundant_s5: 72.1 s, 542370 steps, val RF 0.913, heavy nan, stable False
+20:27:16 p0_Abundant_s6: 68.1 s, 529172 steps, val RF 0.933, heavy nan, stable False
+20:27:21 p0_Abundant_s7: 70.0 s, 533447 steps, val RF 0.970, heavy nan, stable False
+20:28:27 p0_Abundant_s8: 70.4 s, 541107 steps, val RF 0.947, heavy nan, stable False
+20:28:31 p0_Abundant_s9: 70.1 s, 534863 steps, val RF 0.920, heavy nan, stable False
+20:29:20 p0_Moderate_s0: 52.8 s, 397131 steps, val RF 0.633, heavy nan, stable False
+20:29:23 p0_Moderate_s1: 51.6 s, 384321 steps, val RF 0.647, heavy nan, stable False
+20:30:11 p0_Moderate_s2: 51.5 s, 386584 steps, val RF 0.630, heavy nan, stable False
+20:30:14 p0_Moderate_s3: 51.4 s, 382109 steps, val RF 0.603, heavy nan, stable False
+20:31:02 p0_Moderate_s4: 51.2 s, 381343 steps, val RF 0.657, heavy nan, stable False
+20:31:08 p0_Moderate_s5: 53.6 s, 397824 steps, val RF 0.680, heavy nan, stable False
+20:31:53 p0_Moderate_s6: 50.9 s, 379517 steps, val RF 0.697, heavy nan, stable False
+20:31:58 p0_Moderate_s7: 49.5 s, 373626 steps, val RF 0.623, heavy nan, stable False
+20:32:47 p0_Moderate_s8: 53.3 s, 394418 steps, val RF 0.663, heavy nan, stable False
+20:32:52 p0_Moderate_s9: 54.3 s, 395766 steps, val RF 0.590, heavy nan, stable False
+20:33:21 p0_Scarce_s0: 34.3 s, 240642 steps, val RF 0.350, heavy nan, stable False
+20:33:25 p0_Scarce_s1: 32.8 s, 231230 steps, val RF 0.350, heavy nan, stable False
+20:33:52 p0_Scarce_s2: 31.3 s, 224621 steps, val RF 0.253, heavy nan, stable False
+20:33:57 p0_Scarce_s3: 32.2 s, 231871 steps, val RF 0.397, heavy nan, stable False
+20:34:24 p0_Scarce_s4: 32.0 s, 237399 steps, val RF 0.360, heavy nan, stable False
+20:34:30 p0_Scarce_s5: 33.1 s, 232152 steps, val RF 0.380, heavy nan, stable False
+20:34:56 p0_Scarce_s6: 31.6 s, 222755 steps, val RF 0.323, heavy nan, stable False
+20:35:01 p0_Scarce_s7: 31.0 s, 224312 steps, val RF 0.357, heavy nan, stable False
+20:35:26 p0_Scarce_s8: 30.1 s, 223131 steps, val RF 0.370, heavy nan, stable False
+20:35:33 p0_Scarce_s9: 31.7 s, 231179 steps, val RF 0.343, heavy nan, stable False
+20:35:53 p0_Critical_s0: 26.6 s, 190864 steps, val RF 0.170, heavy nan, stable False
+20:35:59 p0_Critical_s1: 25.9 s, 181242 steps, val RF 0.210, heavy nan, stable False
+20:36:21 p0_Critical_s2: 27.7 s, 190865 steps, val RF 0.223, heavy nan, stable False
+20:36:26 p0_Critical_s3: 27.0 s, 192781 steps, val RF 0.213, heavy nan, stable False
+20:36:48 p0_Critical_s4: 27.6 s, 195512 steps, val RF 0.217, heavy nan, stable False
+20:36:51 p0_Critical_s5: 25.3 s, 184176 steps, val RF 0.180, heavy nan, stable False
+20:37:14 p0_Critical_s6: 25.9 s, 183325 steps, val RF 0.187, heavy nan, stable False
+20:37:17 p0_Critical_s7: 25.9 s, 188316 steps, val RF 0.193, heavy nan, stable False
+20:37:41 p0_Critical_s8: 26.5 s, 194193 steps, val RF 0.097, heavy nan, stable False
+20:37:45 p0_Critical_s9: 27.3 s, 196111 steps, val RF 0.193, heavy nan, stable False
+=== 2026-11-11T20:37:45Z END (934 s, exit 0) train --block p0
+=== 2026-11-11T20:37:45Z START python3 scripts/run_experiments.py train --block pooled
+20:37:45 train pooled: 40 runs to do
+20:39:27 pooled_Abundant_s0: 82.4 s, 616476 steps, val RF 0.730, heavy 0.613, stable False
+20:39:30 pooled_Abundant_s1: 85.9 s, 638295 steps, val RF 0.560, heavy 0.393, stable False
+20:40:50 pooled_Abundant_s2: 83.2 s, 621620 steps, val RF 0.777, heavy 0.700, stable False
+20:40:55 pooled_Abundant_s3: 85.1 s, 631592 steps, val RF 0.620, heavy 0.487, stable False
+20:42:14 pooled_Abundant_s4: 83.4 s, 616121 steps, val RF 0.700, heavy 0.587, stable False
+20:42:20 pooled_Abundant_s5: 85.1 s, 641461 steps, val RF 0.743, heavy 0.620, stable False
+20:43:40 pooled_Abundant_s6: 85.9 s, 642597 steps, val RF 0.517, heavy 0.360, stable False
+20:43:46 pooled_Abundant_s7: 85.3 s, 640143 steps, val RF 0.640, heavy 0.533, stable False
+20:45:05 pooled_Abundant_s8: 85.4 s, 630259 steps, val RF 0.667, heavy 0.587, stable False
+20:45:11 pooled_Abundant_s9: 84.8 s, 640564 steps, val RF 0.557, heavy 0.393, stable False
+20:45:54 pooled_Moderate_s0: 48.2 s, 355482 steps, val RF 0.390, heavy 0.267, stable False
+20:46:01 pooled_Moderate_s1: 50.3 s, 365008 steps, val RF 0.347, heavy 0.207, stable False
+20:46:42 pooled_Moderate_s2: 48.4 s, 352635 steps, val RF 0.477, heavy 0.320, stable False
+20:46:47 pooled_Moderate_s3: 45.5 s, 336632 steps, val RF 0.440, heavy 0.300, stable False
+20:47:32 pooled_Moderate_s4: 49.8 s, 351567 steps, val RF 0.427, heavy 0.273, stable False
+20:47:35 pooled_Moderate_s5: 48.6 s, 352818 steps, val RF 0.390, heavy 0.260, stable False
+20:48:23 pooled_Moderate_s6: 50.7 s, 362173 steps, val RF 0.397, heavy 0.267, stable False
+20:48:27 pooled_Moderate_s7: 51.8 s, 370678 steps, val RF 0.320, heavy 0.133, stable False
+20:49:11 pooled_Moderate_s8: 47.8 s, 345515 steps, val RF 0.463, heavy 0.353, stable True
+20:49:18 pooled_Moderate_s9: 50.6 s, 359232 steps, val RF 0.450, heavy 0.313, stable False
+20:49:44 pooled_Scarce_s0: 33.0 s, 227904 steps, val RF 0.213, heavy 0.080, stable False
+20:49:53 pooled_Scarce_s1: 35.0 s, 233856 steps, val RF 0.217, heavy 0.087, stable False
+20:50:16 pooled_Scarce_s2: 32.4 s, 221824 steps, val RF 0.207, heavy 0.100, stable False
+20:50:23 pooled_Scarce_s3: 30.5 s, 217114 steps, val RF 0.143, heavy 0.060, stable False
+20:50:50 pooled_Scarce_s4: 33.8 s, 236712 steps, val RF 0.207, heavy 0.073, stable False
+20:50:57 pooled_Scarce_s5: 33.2 s, 239037 steps, val RF 0.150, heavy 0.033, stable False
+20:51:22 pooled_Scarce_s6: 32.0 s, 230307 steps, val RF 0.247, heavy 0.127, stable False
+20:51:29 pooled_Scarce_s7: 32.4 s, 226631 steps, val RF 0.197, heavy 0.107, stable False
+20:51:55 pooled_Scarce_s8: 32.6 s, 226429 steps, val RF 0.200, heavy 0.073, stable False
+20:52:02 pooled_Scarce_s9: 33.1 s, 233715 steps, val RF 0.227, heavy 0.127, stable False
+20:52:21 pooled_Critical_s0: 26.3 s, 183552 steps, val RF 0.140, heavy 0.047, stable False
+20:52:29 pooled_Critical_s1: 26.9 s, 185059 steps, val RF 0.127, heavy 0.027, stable False
+20:52:47 pooled_Critical_s2: 25.6 s, 179424 steps, val RF 0.130, heavy 0.013, stable False
+20:52:55 pooled_Critical_s3: 25.5 s, 183961 steps, val RF 0.137, heavy 0.027, stable False
+20:53:12 pooled_Critical_s4: 25.6 s, 178725 steps, val RF 0.137, heavy 0.020, stable False
+20:53:20 pooled_Critical_s5: 25.5 s, 182763 steps, val RF 0.140, heavy 0.027, stable False
+20:53:40 pooled_Critical_s6: 27.2 s, 185188 steps, val RF 0.133, heavy 0.033, stable False
+20:53:48 pooled_Critical_s7: 27.5 s, 177549 steps, val RF 0.197, heavy 0.120, stable False
+20:54:07 pooled_Critical_s8: 27.1 s, 180792 steps, val RF 0.100, heavy 0.000, stable False
+20:54:13 pooled_Critical_s9: 25.5 s, 176968 steps, val RF 0.123, heavy 0.020, stable False
+=== 2026-11-11T20:54:14Z END (989 s, exit 0) train --block pooled
+=== 2026-11-11T20:54:14Z START python3 scripts/run_experiments.py train --block eqsteps
+20:54:14 train eqsteps: 30 runs to do
+20:56:13 eqsteps_Moderate_s0: 99.8 s, 721577 steps, val RF 0.487, heavy 0.393, stable True
+20:56:14 eqsteps_Moderate_s1: 99.7 s, 714091 steps, val RF 0.333, heavy 0.193, stable False
+20:57:50 eqsteps_Moderate_s2: 96.6 s, 705149 steps, val RF 0.413, heavy 0.300, stable False
+20:57:52 eqsteps_Moderate_s3: 98.8 s, 713423 steps, val RF 0.437, heavy 0.320, stable False
+20:59:29 eqsteps_Moderate_s4: 98.6 s, 703258 steps, val RF 0.443, heavy 0.287, stable False
+20:59:31 eqsteps_Moderate_s5: 98.0 s, 701617 steps, val RF 0.463, heavy 0.300, stable True
+21:01:11 eqsteps_Moderate_s6: 101.9 s, 716291 steps, val RF 0.403, heavy 0.273, stable False
+21:01:10 eqsteps_Moderate_s7: 99.0 s, 697827 steps, val RF 0.433, heavy 0.300, stable False
+21:02:50 eqsteps_Moderate_s8: 100.4 s, 707773 steps, val RF 0.427, heavy 0.287, stable False
+21:02:51 eqsteps_Moderate_s9: 99.8 s, 712345 steps, val RF 0.383, heavy 0.273, stable False
+21:04:34 eqsteps_Scarce_s0: 103.8 s, 721639 steps, val RF 0.080, heavy 0.007, stable False
+21:04:33 eqsteps_Scarce_s1: 102.1 s, 714014 steps, val RF 0.207, heavy 0.133, stable False
+21:06:15 eqsteps_Scarce_s2: 102.0 s, 705213 steps, val RF 0.110, heavy 0.027, stable False
+21:06:18 eqsteps_Scarce_s3: 103.6 s, 713448 steps, val RF 0.143, heavy 0.000, stable True
+21:07:59 eqsteps_Scarce_s4: 103.4 s, 703314 steps, val RF 0.130, heavy 0.007, stable False
+21:08:00 eqsteps_Scarce_s5: 102.0 s, 701641 steps, val RF 0.167, heavy 0.080, stable False
+21:09:43 eqsteps_Scarce_s6: 104.6 s, 716279 steps, val RF 0.213, heavy 0.080, stable False
+21:09:40 eqsteps_Scarce_s7: 100.1 s, 697870 steps, val RF 0.137, heavy 0.000, stable False
+21:11:23 eqsteps_Scarce_s8: 102.8 s, 707768 steps, val RF 0.133, heavy 0.007, stable False
+21:11:26 eqsteps_Scarce_s9: 102.7 s, 712303 steps, val RF 0.210, heavy 0.093, stable False
+21:13:09 eqsteps_Critical_s0: 106.2 s, 721561 steps, val RF 0.107, heavy 0.060, stable False
+21:13:11 eqsteps_Critical_s1: 104.6 s, 714031 steps, val RF 0.133, heavy 0.080, stable False
+21:14:55 eqsteps_Critical_s2: 105.8 s, 705134 steps, val RF 0.127, heavy 0.060, stable False
+21:15:01 eqsteps_Critical_s3: 109.4 s, 713405 steps, val RF 0.130, heavy 0.047, stable False
+21:16:42 eqsteps_Critical_s4: 106.2 s, 703263 steps, val RF 0.150, heavy 0.067, stable False
+21:16:44 eqsteps_Critical_s5: 103.4 s, 701647 steps, val RF 0.093, heavy 0.027, stable False
+21:18:29 eqsteps_Critical_s6: 107.4 s, 716353 steps, val RF 0.083, heavy 0.000, stable False
+21:18:28 eqsteps_Critical_s7: 103.7 s, 697811 steps, val RF 0.127, heavy 0.040, stable False
+21:20:14 eqsteps_Critical_s8: 105.8 s, 707807 steps, val RF 0.060, heavy 0.013, stable False
+21:20:12 eqsteps_Critical_s9: 102.3 s, 712310 steps, val RF 0.073, heavy 0.020, stable False
+=== 2026-11-11T21:20:14Z END (1560 s, exit 0) train --block eqsteps
+=== 2026-11-11T21:20:14Z START python3 scripts/run_experiments.py train --block solo
+21:20:15 train solo: 120 runs to do
+21:21:11 solo_Abundant_s0_slot0: 37.1 s, 536843 steps, val RF 0.153, heavy 0.000, stable False
+21:21:13 solo_Abundant_s0_slot1: 37.9 s, 538206 steps, val RF 0.167, heavy 0.000, stable False
+21:21:49 solo_Abundant_s0_slot2: 37.2 s, 532432 steps, val RF 0.123, heavy 0.000, stable False
+21:21:51 solo_Abundant_s1_slot0: 38.8 s, 537547 steps, val RF 0.153, heavy 0.000, stable False
+21:22:27 solo_Abundant_s1_slot1: 38.3 s, 540227 steps, val RF 0.133, heavy 0.000, stable False
+21:22:31 solo_Abundant_s1_slot2: 39.8 s, 530064 steps, val RF 0.110, heavy 0.000, stable False
+21:23:05 solo_Abundant_s2_slot0: 38.3 s, 531180 steps, val RF 0.207, heavy 0.000, stable False
+21:23:11 solo_Abundant_s2_slot1: 39.2 s, 533194 steps, val RF 0.157, heavy 0.000, stable False
+21:23:44 solo_Abundant_s2_slot2: 38.0 s, 534331 steps, val RF 0.083, heavy 0.000, stable False
+21:23:51 solo_Abundant_s3_slot0: 40.0 s, 541729 steps, val RF 0.150, heavy 0.000, stable False
+21:24:23 solo_Abundant_s3_slot1: 39.1 s, 539534 steps, val RF 0.117, heavy 0.000, stable False
+21:24:28 solo_Abundant_s3_slot2: 37.6 s, 540918 steps, val RF 0.107, heavy 0.000, stable False
+21:25:00 solo_Abundant_s4_slot0: 37.0 s, 541898 steps, val RF 0.140, heavy 0.000, stable False
+21:25:06 solo_Abundant_s4_slot1: 37.5 s, 543577 steps, val RF 0.140, heavy 0.000, stable False
+21:25:37 solo_Abundant_s4_slot2: 36.9 s, 540577 steps, val RF 0.067, heavy 0.000, stable False
+21:25:44 solo_Abundant_s5_slot0: 38.1 s, 544039 steps, val RF 0.110, heavy 0.000, stable False
+21:26:16 solo_Abundant_s5_slot1: 39.1 s, 549704 steps, val RF 0.057, heavy 0.000, stable False
+21:26:22 solo_Abundant_s5_slot2: 37.7 s, 537899 steps, val RF 0.103, heavy 0.000, stable False
+21:26:55 solo_Abundant_s6_slot0: 39.4 s, 539642 steps, val RF 0.063, heavy 0.000, stable False
+21:27:00 solo_Abundant_s6_slot1: 38.2 s, 527788 steps, val RF 0.183, heavy 0.000, stable False
+21:27:31 solo_Abundant_s6_slot2: 36.0 s, 533123 steps, val RF 0.123, heavy 0.000, stable False
+21:27:37 solo_Abundant_s7_slot0: 37.2 s, 529115 steps, val RF 0.177, heavy 0.000, stable False
+21:28:10 solo_Abundant_s7_slot1: 38.3 s, 543238 steps, val RF 0.160, heavy 0.000, stable False
+21:28:15 solo_Abundant_s7_slot2: 37.1 s, 537992 steps, val RF 0.083, heavy 0.000, stable False
+21:28:48 solo_Abundant_s8_slot0: 37.9 s, 544569 steps, val RF 0.177, heavy 0.000, stable False
+21:28:53 solo_Abundant_s8_slot1: 38.6 s, 541274 steps, val RF 0.103, heavy 0.000, stable False
+21:29:25 solo_Abundant_s8_slot2: 37.1 s, 536502 steps, val RF 0.150, heavy 0.000, stable False
+21:29:31 solo_Abundant_s9_slot0: 38.1 s, 536017 steps, val RF 0.103, heavy 0.000, stable False
+21:30:05 solo_Abundant_s9_slot1: 39.8 s, 532394 steps, val RF 0.173, heavy 0.000, stable False
+21:30:11 solo_Abundant_s9_slot2: 39.2 s, 546617 steps, val RF 0.140, heavy 0.000, stable False
+21:30:26 solo_Moderate_s0_slot0: 20.8 s, 276401 steps, val RF 0.077, heavy 0.000, stable False
+21:30:33 solo_Moderate_s0_slot1: 22.1 s, 278225 steps, val RF 0.080, heavy 0.000, stable False
+21:30:47 solo_Moderate_s0_slot2: 21.3 s, 273721 steps, val RF 0.070, heavy 0.000, stable False
+21:30:52 solo_Moderate_s1_slot0: 19.5 s, 265892 steps, val RF 0.127, heavy 0.000, stable False
+21:31:08 solo_Moderate_s1_slot1: 21.2 s, 273369 steps, val RF 0.103, heavy 0.000, stable False
+21:31:13 solo_Moderate_s1_slot2: 20.8 s, 278683 steps, val RF 0.067, heavy 0.000, stable False
+21:31:29 solo_Moderate_s2_slot0: 20.7 s, 275419 steps, val RF 0.127, heavy 0.000, stable False
+21:31:34 solo_Moderate_s2_slot1: 20.4 s, 274261 steps, val RF 0.103, heavy 0.000, stable False
+21:31:49 solo_Moderate_s2_slot2: 19.9 s, 275162 steps, val RF 0.143, heavy 0.000, stable False
+21:31:54 solo_Moderate_s3_slot0: 20.1 s, 270371 steps, val RF 0.100, heavy 0.000, stable False
+21:32:10 solo_Moderate_s3_slot1: 20.8 s, 266830 steps, val RF 0.093, heavy 0.000, stable False
+21:32:16 solo_Moderate_s3_slot2: 21.8 s, 268096 steps, val RF 0.043, heavy 0.000, stable False
+21:32:31 solo_Moderate_s4_slot0: 21.6 s, 263810 steps, val RF 0.133, heavy 0.000, stable False
+21:32:36 solo_Moderate_s4_slot1: 20.2 s, 278090 steps, val RF 0.077, heavy 0.000, stable False
+21:32:52 solo_Moderate_s4_slot2: 20.4 s, 272808 steps, val RF 0.130, heavy 0.000, stable False
+21:32:56 solo_Moderate_s5_slot0: 20.1 s, 265786 steps, val RF 0.013, heavy 0.000, stable False
+21:33:13 solo_Moderate_s5_slot1: 20.6 s, 277095 steps, val RF 0.100, heavy 0.000, stable False
+21:33:15 solo_Moderate_s5_slot2: 19.1 s, 275265 steps, val RF 0.017, heavy 0.000, stable False
+21:33:33 solo_Moderate_s6_slot0: 20.3 s, 278957 steps, val RF 0.130, heavy 0.000, stable False
+21:33:36 solo_Moderate_s6_slot1: 20.2 s, 277097 steps, val RF 0.123, heavy 0.000, stable False
+21:33:53 solo_Moderate_s6_slot2: 19.8 s, 274932 steps, val RF 0.030, heavy 0.000, stable False
+21:33:54 solo_Moderate_s7_slot0: 18.9 s, 273334 steps, val RF 0.120, heavy 0.000, stable False
+21:34:13 solo_Moderate_s7_slot1: 19.8 s, 271621 steps, val RF 0.170, heavy 0.000, stable False
+21:34:15 solo_Moderate_s7_slot2: 20.8 s, 278678 steps, val RF 0.137, heavy 0.000, stable False
+21:34:32 solo_Moderate_s8_slot0: 19.3 s, 267561 steps, val RF 0.160, heavy 0.000, stable False
+21:34:36 solo_Moderate_s8_slot1: 20.5 s, 274499 steps, val RF 0.073, heavy 0.000, stable False
+21:34:52 solo_Moderate_s8_slot2: 19.9 s, 271545 steps, val RF 0.080, heavy 0.000, stable False
+21:34:56 solo_Moderate_s9_slot0: 19.8 s, 270627 steps, val RF 0.153, heavy 0.000, stable False
+21:35:13 solo_Moderate_s9_slot1: 20.4 s, 277503 steps, val RF 0.140, heavy 0.000, stable False
+21:35:17 solo_Moderate_s9_slot2: 20.8 s, 280666 steps, val RF 0.117, heavy 0.000, stable False
+21:35:24 solo_Scarce_s0_slot0: 10.9 s, 144565 steps, val RF 0.107, heavy 0.000, stable False
+21:35:28 solo_Scarce_s0_slot1: 11.5 s, 149859 steps, val RF 0.100, heavy 0.000, stable False
+21:35:34 solo_Scarce_s0_slot2: 10.3 s, 144862 steps, val RF 0.083, heavy 0.000, stable False
+21:35:39 solo_Scarce_s1_slot0: 10.6 s, 145208 steps, val RF 0.093, heavy 0.000, stable False
+21:35:44 solo_Scarce_s1_slot1: 10.4 s, 144535 steps, val RF 0.107, heavy 0.000, stable False
+21:35:50 solo_Scarce_s1_slot2: 10.8 s, 148499 steps, val RF 0.077, heavy 0.000, stable False
+21:35:55 solo_Scarce_s2_slot0: 10.6 s, 145516 steps, val RF 0.103, heavy 0.000, stable False
+21:36:01 solo_Scarce_s2_slot1: 11.1 s, 147946 steps, val RF 0.050, heavy 0.000, stable False
+21:36:06 solo_Scarce_s2_slot2: 10.9 s, 148124 steps, val RF 0.110, heavy 0.000, stable False
+21:36:12 solo_Scarce_s3_slot0: 11.0 s, 146972 steps, val RF 0.090, heavy 0.000, stable False
+21:36:17 solo_Scarce_s3_slot1: 11.2 s, 146569 steps, val RF 0.127, heavy 0.000, stable False
+21:36:23 solo_Scarce_s3_slot2: 11.1 s, 147656 steps, val RF 0.093, heavy 0.000, stable False
+21:36:29 solo_Scarce_s4_slot0: 11.9 s, 148127 steps, val RF 0.040, heavy 0.000, stable False
+21:36:35 solo_Scarce_s4_slot1: 11.9 s, 148007 steps, val RF 0.053, heavy 0.000, stable False
+21:36:40 solo_Scarce_s4_slot2: 11.0 s, 145998 steps, val RF 0.123, heavy 0.000, stable False
+21:36:46 solo_Scarce_s5_slot0: 11.4 s, 144138 steps, val RF 0.050, heavy 0.000, stable False
+21:36:51 solo_Scarce_s5_slot1: 11.1 s, 143387 steps, val RF 0.070, heavy 0.000, stable False
+21:36:57 solo_Scarce_s5_slot2: 11.0 s, 145125 steps, val RF 0.093, heavy 0.000, stable False
+21:37:03 solo_Scarce_s6_slot0: 11.2 s, 145652 steps, val RF 0.067, heavy 0.000, stable False
+21:37:09 solo_Scarce_s6_slot1: 11.3 s, 147955 steps, val RF 0.073, heavy 0.000, stable False
+21:37:14 solo_Scarce_s6_slot2: 10.9 s, 144566 steps, val RF 0.063, heavy 0.000, stable False
+21:37:20 solo_Scarce_s7_slot0: 11.2 s, 146793 steps, val RF 0.097, heavy 0.000, stable False
+21:37:25 solo_Scarce_s7_slot1: 11.3 s, 145623 steps, val RF 0.077, heavy 0.000, stable False
+21:37:32 solo_Scarce_s7_slot2: 12.0 s, 146634 steps, val RF 0.103, heavy 0.000, stable False
+21:37:37 solo_Scarce_s8_slot0: 11.7 s, 145770 steps, val RF 0.023, heavy 0.000, stable False
+21:37:43 solo_Scarce_s8_slot1: 11.1 s, 145083 steps, val RF 0.023, heavy 0.000, stable False
+21:37:48 solo_Scarce_s8_slot2: 11.0 s, 144837 steps, val RF 0.063, heavy 0.000, stable False
+21:37:55 solo_Scarce_s9_slot0: 11.6 s, 148328 steps, val RF 0.083, heavy 0.000, stable False
+21:37:59 solo_Scarce_s9_slot1: 11.3 s, 150126 steps, val RF 0.093, heavy 0.000, stable False
+21:38:06 solo_Scarce_s9_slot2: 10.9 s, 149358 steps, val RF 0.053, heavy 0.000, stable False
+21:38:07 solo_Critical_s0_slot0: 7.5 s, 98213 steps, val RF 0.077, heavy 0.000, stable False
+21:38:14 solo_Critical_s0_slot1: 8.4 s, 100557 steps, val RF 0.063, heavy 0.000, stable False
+21:38:15 solo_Critical_s0_slot2: 8.3 s, 98995 steps, val RF 0.070, heavy 0.000, stable False
+21:38:22 solo_Critical_s1_slot0: 7.7 s, 98355 steps, val RF 0.090, heavy 0.000, stable False
+21:38:23 solo_Critical_s1_slot1: 7.7 s, 99558 steps, val RF 0.070, heavy 0.000, stable False
+21:38:30 solo_Critical_s1_slot2: 7.8 s, 97129 steps, val RF 0.023, heavy 0.000, stable False
+21:38:31 solo_Critical_s2_slot0: 7.8 s, 98694 steps, val RF 0.063, heavy 0.000, stable False
+21:38:39 solo_Critical_s2_slot1: 8.8 s, 99337 steps, val RF 0.033, heavy 0.000, stable False
+21:38:39 solo_Critical_s2_slot2: 8.0 s, 99103 steps, val RF 0.077, heavy 0.000, stable False
+21:38:47 solo_Critical_s3_slot0: 8.1 s, 100956 steps, val RF 0.063, heavy 0.000, stable False
+21:38:47 solo_Critical_s3_slot1: 7.7 s, 99172 steps, val RF 0.090, heavy 0.000, stable False
+21:38:54 solo_Critical_s3_slot2: 7.6 s, 99009 steps, val RF 0.037, heavy 0.000, stable False
+21:38:54 solo_Critical_s4_slot0: 7.4 s, 99602 steps, val RF 0.090, heavy 0.000, stable False
+21:39:02 solo_Critical_s4_slot1: 7.9 s, 96961 steps, val RF 0.080, heavy 0.000, stable False
+21:39:02 solo_Critical_s4_slot2: 7.6 s, 96984 steps, val RF 0.070, heavy 0.000, stable False
+21:39:10 solo_Critical_s5_slot0: 8.3 s, 97451 steps, val RF 0.087, heavy 0.000, stable False
+21:39:10 solo_Critical_s5_slot1: 7.9 s, 97710 steps, val RF 0.053, heavy 0.000, stable False
+21:39:18 solo_Critical_s5_slot2: 7.6 s, 99353 steps, val RF 0.093, heavy 0.000, stable False
+21:39:18 solo_Critical_s6_slot0: 7.8 s, 98107 steps, val RF 0.090, heavy 0.000, stable False
+21:39:26 solo_Critical_s6_slot1: 8.0 s, 98988 steps, val RF 0.057, heavy 0.000, stable False
+21:39:26 solo_Critical_s6_slot2: 7.4 s, 99350 steps, val RF 0.087, heavy 0.000, stable False
+21:39:33 solo_Critical_s7_slot0: 7.6 s, 99685 steps, val RF 0.067, heavy 0.000, stable False
+21:39:34 solo_Critical_s7_slot1: 7.9 s, 100393 steps, val RF 0.047, heavy 0.000, stable False
+21:39:41 solo_Critical_s7_slot2: 7.8 s, 99775 steps, val RF 0.027, heavy 0.000, stable False
+21:39:41 solo_Critical_s8_slot0: 7.3 s, 97324 steps, val RF 0.080, heavy 0.000, stable False
+21:39:49 solo_Critical_s8_slot1: 7.9 s, 99329 steps, val RF 0.070, heavy 0.000, stable False
+21:39:49 solo_Critical_s8_slot2: 7.5 s, 98190 steps, val RF 0.063, heavy 0.000, stable False
+21:39:57 solo_Critical_s9_slot0: 7.7 s, 99333 steps, val RF 0.050, heavy 0.000, stable False
+21:39:57 solo_Critical_s9_slot1: 7.8 s, 97625 steps, val RF 0.097, heavy 0.000, stable False
+21:40:04 solo_Critical_s9_slot2: 7.7 s, 98619 steps, val RF 0.070, heavy 0.000, stable False
+=== 2026-11-11T21:40:04Z END (1190 s, exit 0) train --block solo
+=== 2026-11-11T21:48:26Z START python3 scripts/run_experiments.py train --block alt
+21:48:27 train alt: 40 runs to do
+21:51:19 alt_Abundant_s0: 132.5 s, 1021984 steps, val RF 0.327, heavy 0.233, stable False
+21:51:17 alt_Abundant_s1: 130.4 s, 1016910 steps, val RF 0.317, heavy 0.213, stable False
+21:53:28 alt_Abundant_s2: 131.5 s, 1020144 steps, val RF 0.460, heavy 0.393, stable False
+21:53:32 alt_Abundant_s3: 132.9 s, 1016122 steps, val RF 0.563, heavy 0.473, stable False
+21:55:42 alt_Abundant_s4: 134.0 s, 1019497 steps, val RF 0.293, heavy 0.220, stable False
+21:55:47 alt_Abundant_s5: 135.1 s, 1017807 steps, val RF 0.527, heavy 0.387, stable False
+21:57:57 alt_Abundant_s6: 134.9 s, 1017601 steps, val RF 0.543, heavy 0.387, stable False
+21:58:04 alt_Abundant_s7: 136.3 s, 1025729 steps, val RF 0.567, heavy 0.453, stable False
+22:00:09 alt_Abundant_s8: 131.6 s, 1021029 steps, val RF 0.463, heavy 0.313, stable False
+22:00:18 alt_Abundant_s9: 134.3 s, 1020025 steps, val RF 0.483, heavy 0.347, stable False
+22:01:46 alt_Moderate_s0: 97.1 s, 715610 steps, val RF 0.310, heavy 0.213, stable False
+22:01:47 alt_Moderate_s1: 88.5 s, 651606 steps, val RF 0.377, heavy 0.233, stable False
+22:03:19 alt_Moderate_s2: 92.7 s, 700426 steps, val RF 0.303, heavy 0.200, stable False
+22:03:16 alt_Moderate_s3: 89.6 s, 687195 steps, val RF 0.397, heavy 0.280, stable False
+22:04:48 alt_Moderate_s4: 91.7 s, 681629 steps, val RF 0.387, heavy 0.213, stable False
+22:04:52 alt_Moderate_s5: 92.8 s, 683096 steps, val RF 0.427, heavy 0.320, stable False
+22:06:20 alt_Moderate_s6: 92.2 s, 676114 steps, val RF 0.450, heavy 0.353, stable False
+22:06:27 alt_Moderate_s7: 95.4 s, 701885 steps, val RF 0.423, heavy 0.273, stable False
+22:07:58 alt_Moderate_s8: 97.8 s, 716011 steps, val RF 0.387, heavy 0.220, stable False
+22:07:56 alt_Moderate_s9: 88.4 s, 635774 steps, val RF 0.363, heavy 0.287, stable False
+22:08:49 alt_Scarce_s0: 52.9 s, 368396 steps, val RF 0.273, heavy 0.147, stable False
+22:08:59 alt_Scarce_s1: 61.0 s, 420673 steps, val RF 0.247, heavy 0.160, stable False
+22:09:44 alt_Scarce_s2: 55.4 s, 392310 steps, val RF 0.220, heavy 0.133, stable False
+22:09:51 alt_Scarce_s3: 52.0 s, 361946 steps, val RF 0.197, heavy 0.093, stable False
+22:10:42 alt_Scarce_s4: 57.4 s, 409885 steps, val RF 0.160, heavy 0.033, stable False
+22:10:50 alt_Scarce_s5: 58.9 s, 415307 steps, val RF 0.177, heavy 0.067, stable False
+22:11:38 alt_Scarce_s6: 56.7 s, 406260 steps, val RF 0.203, heavy 0.100, stable False
+22:11:53 alt_Scarce_s7: 62.9 s, 442989 steps, val RF 0.183, heavy 0.073, stable False
+22:12:39 alt_Scarce_s8: 60.1 s, 434859 steps, val RF 0.257, heavy 0.147, stable False
+22:12:52 alt_Scarce_s9: 59.2 s, 423872 steps, val RF 0.153, heavy 0.020, stable False
+22:13:31 alt_Critical_s0: 52.8 s, 371962 steps, val RF 0.110, heavy 0.020, stable False
+22:13:45 alt_Critical_s1: 52.7 s, 371682 steps, val RF 0.030, heavy 0.007, stable False
+22:14:23 alt_Critical_s2: 51.2 s, 353449 steps, val RF 0.077, heavy 0.000, stable False
+22:14:36 alt_Critical_s3: 50.3 s, 349919 steps, val RF 0.120, heavy 0.040, stable False
+22:15:13 alt_Critical_s4: 50.7 s, 365648 steps, val RF 0.083, heavy 0.000, stable False
+22:15:24 alt_Critical_s5: 48.3 s, 341139 steps, val RF 0.113, heavy 0.007, stable False
+22:16:08 alt_Critical_s6: 54.0 s, 388266 steps, val RF 0.067, heavy 0.000, stable False
+22:16:12 alt_Critical_s7: 47.6 s, 340350 steps, val RF 0.110, heavy 0.027, stable False
+22:16:57 alt_Critical_s8: 49.7 s, 358567 steps, val RF 0.073, heavy 0.000, stable False
+22:17:01 alt_Critical_s9: 49.0 s, 348911 steps, val RF 0.050, heavy 0.013, stable False
+=== 2026-11-11T22:17:01Z END (1715 s, exit 0) train --block alt
+=== 2026-11-11T22:17:01Z START python3 scripts/run_experiments.py train --block p0sec
+22:17:01 train p0sec: 40 runs to do
+22:18:08 p0sec_Abundant_s0: 46.7 s, 353221 steps, val RF 0.813, heavy nan, stable False
+22:18:07 p0sec_Abundant_s1: 47.2 s, 352627 steps, val RF 0.750, heavy nan, stable False
+22:18:55 p0sec_Abundant_s2: 47.7 s, 351207 steps, val RF 0.820, heavy nan, stable False
+22:18:55 p0sec_Abundant_s3: 47.4 s, 353991 steps, val RF 0.837, heavy nan, stable False
+22:19:42 p0sec_Abundant_s4: 47.3 s, 355283 steps, val RF 0.730, heavy nan, stable False
+22:19:42 p0sec_Abundant_s5: 46.8 s, 353841 steps, val RF 0.763, heavy nan, stable False
+22:20:30 p0sec_Abundant_s6: 48.0 s, 352389 steps, val RF 0.790, heavy nan, stable False
+22:20:27 p0sec_Abundant_s7: 44.7 s, 351787 steps, val RF 0.770, heavy nan, stable False
+22:21:14 p0sec_Abundant_s8: 47.0 s, 350772 steps, val RF 0.743, heavy nan, stable False
+22:21:17 p0sec_Abundant_s9: 46.5 s, 354933 steps, val RF 0.743, heavy nan, stable False
+22:21:48 p0sec_Moderate_s0: 33.8 s, 246873 steps, val RF 0.393, heavy nan, stable False
+22:21:50 p0sec_Moderate_s1: 33.2 s, 241673 steps, val RF 0.417, heavy nan, stable False
+22:22:19 p0sec_Moderate_s2: 31.1 s, 239860 steps, val RF 0.430, heavy nan, stable False
+22:22:23 p0sec_Moderate_s3: 32.7 s, 247321 steps, val RF 0.370, heavy nan, stable False
+22:22:52 p0sec_Moderate_s4: 32.4 s, 244295 steps, val RF 0.420, heavy nan, stable False
+22:22:54 p0sec_Moderate_s5: 31.1 s, 241834 steps, val RF 0.403, heavy nan, stable False
+22:23:25 p0sec_Moderate_s6: 32.9 s, 244006 steps, val RF 0.380, heavy nan, stable False
+22:23:28 p0sec_Moderate_s7: 33.8 s, 250195 steps, val RF 0.333, heavy nan, stable False
+22:23:57 p0sec_Moderate_s8: 32.6 s, 242106 steps, val RF 0.410, heavy nan, stable False
+22:24:01 p0sec_Moderate_s9: 33.0 s, 243918 steps, val RF 0.440, heavy nan, stable False
+22:24:19 p0sec_Scarce_s0: 21.3 s, 161615 steps, val RF 0.160, heavy nan, stable False
+22:24:22 p0sec_Scarce_s1: 21.5 s, 155188 steps, val RF 0.137, heavy nan, stable False
+22:24:40 p0sec_Scarce_s2: 21.3 s, 150587 steps, val RF 0.140, heavy nan, stable False
+22:24:45 p0sec_Scarce_s3: 22.2 s, 160364 steps, val RF 0.150, heavy nan, stable False
+22:25:01 p0sec_Scarce_s4: 20.7 s, 147859 steps, val RF 0.130, heavy nan, stable False
+22:25:07 p0sec_Scarce_s5: 22.1 s, 152975 steps, val RF 0.133, heavy nan, stable False
+22:25:23 p0sec_Scarce_s6: 21.8 s, 157336 steps, val RF 0.147, heavy nan, stable False
+22:25:29 p0sec_Scarce_s7: 22.6 s, 160016 steps, val RF 0.133, heavy nan, stable False
+22:25:46 p0sec_Scarce_s8: 23.2 s, 162503 steps, val RF 0.107, heavy nan, stable False
+22:25:52 p0sec_Scarce_s9: 22.4 s, 162160 steps, val RF 0.123, heavy nan, stable False
+22:26:04 p0sec_Critical_s0: 18.2 s, 133242 steps, val RF 0.047, heavy nan, stable False
+22:26:11 p0sec_Critical_s1: 18.8 s, 132108 steps, val RF 0.077, heavy nan, stable False
+22:26:23 p0sec_Critical_s2: 18.8 s, 134105 steps, val RF 0.077, heavy nan, stable False
+22:26:30 p0sec_Critical_s3: 18.7 s, 135187 steps, val RF 0.060, heavy nan, stable True
+22:26:41 p0sec_Critical_s4: 17.8 s, 128880 steps, val RF 0.080, heavy nan, stable False
+22:26:49 p0sec_Critical_s5: 19.1 s, 134541 steps, val RF 0.073, heavy nan, stable False
+22:27:00 p0sec_Critical_s6: 18.7 s, 133559 steps, val RF 0.083, heavy nan, stable False
+22:27:07 p0sec_Critical_s7: 18.7 s, 133026 steps, val RF 0.063, heavy nan, stable False
+22:27:18 p0sec_Critical_s8: 17.9 s, 123779 steps, val RF 0.067, heavy nan, stable False
+22:27:27 p0sec_Critical_s9: 19.1 s, 139652 steps, val RF 0.067, heavy nan, stable False
+=== 2026-11-11T22:27:27Z END (626 s, exit 0) train --block p0sec
+=== 2026-11-11T22:27:27Z START python3 scripts/run_experiments.py eval --kind learned
+22:27:27 eval learned: 23 parts to do
+22:27:36 learned/p0__Abundant: 1000 episodes in 9 s
+22:27:36 learned/p0__Moderate: 1000 episodes in 9 s
+22:27:40 learned/p0__Scarce: 1000 episodes in 5 s
+22:27:40 learned/p0__Critical: 1000 episodes in 4 s
+22:27:45 learned/p0sec__Abundant: 1000 episodes in 5 s
+22:27:44 learned/p0sec__Moderate: 1000 episodes in 4 s
+22:27:48 learned/p0sec__Scarce: 1000 episodes in 3 s
+22:27:48 learned/p0sec__Critical: 1000 episodes in 3 s
+22:27:59 learned/pooled__Abundant: 1000 episodes in 12 s
+22:27:59 learned/pooled__Moderate: 1000 episodes in 11 s
+22:28:05 learned/pooled__Scarce: 1000 episodes in 7 s
+22:28:05 learned/pooled__Critical: 1000 episodes in 6 s
+22:28:25 learned/alt__Abundant: 1000 episodes in 20 s
+22:28:20 learned/alt__Moderate: 1000 episodes in 15 s
+22:28:30 learned/alt__Scarce: 1000 episodes in 9 s
+22:28:37 learned/alt__Critical: 1000 episodes in 12 s
+22:28:39 learned/solo__Abundant: 1000 episodes in 9 s
+22:28:41 learned/solo__Moderate: 1000 episodes in 4 s
+22:28:41 learned/solo__Scarce: 1000 episodes in 3 s
+22:28:43 learned/solo__Critical: 1000 episodes in 2 s
+22:28:48 learned/eqsteps__Moderate: 1000 episodes in 7 s
+22:28:49 learned/eqsteps__Scarce: 1000 episodes in 7 s
+22:28:54 learned/eqsteps__Critical: 1000 episodes in 6 s
+=== 2026-11-11T22:28:54Z END (87 s, exit 0) eval --kind learned
+=== 2026-11-11T22:28:54Z START python3 scripts/run_experiments.py eval --kind baselines
+22:28:54 eval baselines: 24 parts to do
+22:29:07 baselines/main__Abundant: 1300 episodes in 13 s
+22:29:03 baselines/main__Moderate: 1300 episodes in 9 s
+22:29:07 baselines/main__Scarce: 1300 episodes in 5 s
+22:29:10 baselines/main__Critical: 1300 episodes in 3 s
+22:29:19 baselines/p0__Abundant: 1300 episodes in 12 s
+22:29:17 baselines/p0__Moderate: 1300 episodes in 7 s
+22:29:22 baselines/p0__Scarce: 1300 episodes in 4 s
+22:29:23 baselines/p0__Critical: 1300 episodes in 4 s
+22:29:29 baselines/p0sec__Abundant: 1300 episodes in 7 s
+22:29:27 baselines/p0sec__Moderate: 1300 episodes in 4 s
+22:29:29 baselines/p0sec__Scarce: 1300 episodes in 3 s
+22:29:31 baselines/p0sec__Critical: 1300 episodes in 2 s
+22:29:40 baselines/pooled__Abundant: 1300 episodes in 10 s
+22:29:37 baselines/pooled__Moderate: 1300 episodes in 6 s
+22:29:41 baselines/pooled__Scarce: 1300 episodes in 4 s
+22:29:43 baselines/pooled__Critical: 1300 episodes in 4 s
+22:29:59 baselines/alt__Abundant: 1300 episodes in 18 s
+22:29:55 baselines/alt__Moderate: 1300 episodes in 12 s
+22:30:01 baselines/alt__Scarce: 1300 episodes in 6 s
+22:30:04 baselines/alt__Critical: 1300 episodes in 5 s
+22:30:14 baselines/shifted__Abundant: 1300 episodes in 13 s
+22:30:12 baselines/shifted__Moderate: 1300 episodes in 8 s
+22:30:17 baselines/shifted__Scarce: 1300 episodes in 4 s
+22:30:18 baselines/shifted__Critical: 1300 episodes in 4 s
+=== 2026-11-11T22:30:18Z END (84 s, exit 0) eval --kind baselines

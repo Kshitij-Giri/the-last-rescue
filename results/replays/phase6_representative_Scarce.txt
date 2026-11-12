@@ -1,0 +1,263 @@
+=== Representative episode (Scarce) | main, Scarce (b0 = 19), training seed 2, test instance seed 4000000, greedy final Q-tables ===
+instance seed=4000000 L=10 V=6 heavy=3 n_agents=3 mode=per_agent b0=19 H=105
+Legend: # wall  ~ hazard  . free  B base  h/l unseen heavy/light  H/L seen waiting heavy/light  x rescued  1..n agents  * several agents on a cell
+
+--- t=0  budgets=[19, 19, 19]
+........#.
+......#...
+#.........
+#.....~~.#
+......~..~
+.l#.h#..#.
+.~.l...#..
+..##....#.
+..#~.#.~#.
+..lhh...*.
+actions: A1=LEFT  A2=LEFT  A3=LEFT
+rewards: -0.020  -0.020  -0.020
+
+--- t=1  budgets=[18, 18, 18]
+........#.
+......#...
+#.........
+#.....~~.#
+......~..~
+.l#.h#..#.
+.~.l...#..
+..##....#.
+..#~.#.~#.
+..lhh..*B.
+actions: A1=LEFT  A2=LEFT  A3=LEFT
+rewards: -0.020  -0.020  -0.020
+
+--- t=2  budgets=[17, 17, 17]
+........#.
+......#...
+#.........
+#.....~~.#
+......~..~
+.l#.h#..#.
+.~.l...#..
+..##....#.
+..#~.#.~#.
+..lhh.*.B.
+actions: A1=UP  A2=SEARCH  A3=SEARCH
+rewards: -0.020  +0.010  +0.010
+event: t=2, type=first_sighting, victim=5, agents=[1, 2]
+
+--- t=3  budgets=[16, 15, 15]
+........#.
+......#...
+#.........
+#.....~~.#
+......~..~
+.l#.h#..#.
+.~.l...#..
+..##....#.
+..#~.#1~#.
+..lhH.*.B.
+actions: A1=UP  A2=SEARCH  A3=UP
+rewards: -0.020  -0.040  -0.020
+
+--- t=4  budgets=[15, 13, 14]
+........#.
+......#...
+#.........
+#.....~~.#
+......~..~
+.l#.h#..#.
+.~.l...#..
+..##..1.#.
+..#~.#3~#.
+..lhH.2.B.
+actions: A1=LEFT  A2=LEFT  A3=DOWN
+rewards: -0.020  -0.020  -0.020
+
+--- t=5  budgets=[14, 12, 13]
+........#.
+......#...
+#.........
+#.....~~.#
+......~..~
+.l#.h#..#.
+.~.l...#..
+..##.1..#.
+..#~.#.~#.
+..lhH23.B.
+actions: A1=LEFT  A2=LEFT  A3=LEFT
+rewards: +0.080  +0.060  -0.020
+event: t=5, type=first_sighting, victim=2, agents=[0]
+event: t=5, type=first_sighting, victim=4, agents=[1]
+
+--- t=6  budgets=[13, 10, 12]
+........#.
+......#...
+#.........
+#.....~~.#
+......~..~
+.l#.h#..#.
+.~.L...#..
+..##1...#.
+..#~.#.~#.
+..lH23..B.
+actions: A1=UP  A2=RIGHT  A3=WAIT
+rewards: +0.080  -0.020  +0.000
+event: t=6, type=first_sighting, victim=1, agents=[0]
+
+--- t=7  budgets=[12, 9, 12]
+........#.
+......#...
+#.........
+#.....~~.#
+......~..~
+.l#.H#..#.
+.~.L1..#..
+..##....#.
+..#~.#.~#.
+..lHH*..B.
+actions: A1=UP  A2=WAIT  A3=LEFT
+rewards: -0.020  +0.000  -0.040
+
+--- t=8  budgets=[11, 9, 10]
+........#.
+......#...
+#.........
+#.....~~.#
+......~..~
+.l#.1#..#.
+.~.L...#..
+..##....#.
+..#~.#.~#.
+..lH32..B.
+actions: A1=UP  A2=LEFT  A3=LEFT
+rewards: -0.020  -0.040  +0.080
+event: t=8, type=first_sighting, victim=3, agents=[2]
+
+--- t=9  budgets=[10, 7, 9]
+........#.
+......#...
+#.........
+#.....~~.#
+....1.~..~
+.l#.H#..#.
+.~.L...#..
+..##....#.
+..#~.#.~#.
+..L32...B.
+actions: A1=DOWN  A2=LEFT  A3=LEFT
+rewards: -0.020  -0.020  -0.020
+
+--- t=10  budgets=[9, 6, 8]
+........#.
+......#...
+#.........
+#.....~~.#
+......~..~
+.l#.1#..#.
+.~.L...#..
+..##....#.
+..#~.#.~#.
+..32H...B.
+actions: A1=UP  A2=LEFT  A3=RESCUE
+rewards: +0.980  +0.980  +1.940
+event: t=10, type=rescue, victim=3, heavy=False, cell=92, rescuers=[2], assisters=[]
+event: t=10, type=stale_correction, agent=1, victim=3, cell=92, steps_since_rescue=0
+
+--- t=11  budgets=[8, 5, 5]
+........#.
+......#...
+#.........
+#.....~~.#
+....1.~..~
+.l#.H#..#.
+.~.L...#..
+..##....#.
+..#~.#.~#.
+..*HH...B.
+actions: A1=DOWN  A2=WAIT  A3=RIGHT
+rewards: -0.020  +0.000  -0.020
+
+--- t=12  budgets=[7, 5, 4]
+........#.
+......#...
+#.........
+#.....~~.#
+......~..~
+.l#.1#..#.
+.~.L...#..
+..##....#.
+..#~.#.~#.
+..23H...B.
+actions: A1=UP  A2=RIGHT  A3=LEFT
+rewards: -0.020  -0.020  -0.020
+
+--- t=13  budgets=[6, 4, 3]
+........#.
+......#...
+#.........
+#.....~~.#
+....1.~..~
+.l#.H#..#.
+.~.L...#..
+..##....#.
+..#~.#.~#.
+..32H...B.
+actions: A1=DOWN  A2=LEFT  A3=RIGHT
+rewards: -0.020  -0.020  -0.020
+
+--- t=14  budgets=[5, 3, 2]
+........#.
+......#...
+#.........
+#.....~~.#
+......~..~
+.l#.1#..#.
+.~.L...#..
+..##....#.
+..#~.#.~#.
+..23H...B.
+actions: A1=UP  A2=RIGHT  A3=WAIT
+rewards: -0.020  -0.020  +0.000
+
+--- t=15  budgets=[4, 2, 2]
+........#.
+......#...
+#.........
+#.....~~.#
+....1.~..~
+.l#.H#..#.
+.~.L...#..
+..##....#.
+..#~.#.~#.
+..x*H...B.
+actions: A1=DOWN  A2=LEFT  A3=SEARCH
+rewards: -0.020  -0.020  -0.040
+
+--- t=16  budgets=[3, 1, 0]
+........#.
+......#...
+#.........
+#.....~~.#
+......~..~
+.l#.1#..#.
+.~.L...#..
+..##....#.
+..#~.#.~#.
+..23H...B.
+actions: A1=UP  A2=WAIT  A3=WAIT
+rewards: -0.020  +0.000  +0.000
+event: t=16, type=dormant, agent=2
+
+--- t=17  budgets=[2, 1, 0]
+........#.
+......#...
+#.........
+#.....~~.#
+....1.~..~
+.l#.H#..#.
+.~.L...#..
+..##....#.
+..#~.#.~#.
+..23H...B.
+
+END: termination=exhausted steps=17 rescued=1/6

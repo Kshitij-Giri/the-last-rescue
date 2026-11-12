@@ -1,0 +1,10 @@
+# 2026-11-11T19:35:48Z python3 scripts/run_pilot.py --variant P0
+P0_s1000: val RF 0.717 heavy 0.613 EAR 0.492 CR 0.264 steps 98.3 | stable False churn 0.092 rf-range 0.210 | 100.3 s, 708556 env steps
+P0_s1001: val RF 0.663 heavy 0.527 EAR 0.441 CR 0.224 steps 99.4 | stable False churn 0.117 rf-range 0.050 | 101.1 s, 714202 env steps
+P0_s1002: val RF 0.503 heavy 0.327 EAR 0.151 CR 0.143 steps 105.0 | stable False churn 0.181 rf-range 0.073 | 101.1 s, 714712 env steps
+P0_s1003: val RF 0.700 heavy 0.580 EAR 0.540 CR 0.248 steps 93.4 | stable False churn 0.085 rf-range 0.213 | 98.6 s, 705122 env steps
+P0_s1004: val RF 0.527 heavy 0.320 EAR 0.327 CR 0.126 steps 103.4 | stable False churn 0.116 rf-range 0.157 | 96.6 s, 713813 env steps
+
+real	5m16.979s
+user	8m51.429s
+sys	0m0.561s

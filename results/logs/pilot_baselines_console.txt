@@ -1,0 +1,5 @@
+# 2026-11-11T19:35:35Z python3 scripts/run_pilot.py --baselines
+random       RF 0.066  heavy share 0.001  EAR 0.062  CR 0.000  steps 63.7
+greedy       RF 0.470  heavy share 0.000  EAR nan  CR 0.000  steps 50.4
+cooperative  RF 0.983  heavy share 0.967  EAR 0.895  CR 0.457  steps 45.9
+oracle       RF 1.000  heavy share 1.000  EAR 1.000  CR 0.792  steps 28.2

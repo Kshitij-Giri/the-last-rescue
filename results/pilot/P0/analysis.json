@@ -1,0 +1,27 @@
+{
+ "variant": "P0",
+ "random_val_rf": 0.06566666666666666,
+ "iql_val_rf_mean": 0.6219999999999999,
+ "seeds_above_random": 5,
+ "seeds_below_random": 0,
+ "wilcoxon_one_sided_p": 0.03125,
+ "delta_1": 1.0,
+ "gate_passed": true,
+ "episodes": 8000,
+ "rf_at_75pct": 0.604,
+ "rf_at_100pct": 0.6219999999999999,
+ "rise_last_quarter": 0.017999999999999905,
+ "still_learning": false,
+ "joint_rescue_reading": "learned joint rescue (heavy share >= 0.10 in >= 3/5 seeds)",
+ "heavy_share_by_seed": [
+  0.6133333333333333,
+  0.5266666666666666,
+  0.3266666666666666,
+  0.58,
+  0.32
+ ],
+ "stable_runs": 0,
+ "n_runs": 5,
+ "mean_seconds": 99.54,
+ "mean_env_steps": 711281.0
+}

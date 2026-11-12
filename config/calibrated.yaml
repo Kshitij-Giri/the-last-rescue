@@ -1,0 +1,82 @@
+source: results/calibration/calibration_summary.json (scripts/run_calibration.py,
+  rules sha256 in results/calibration/rules_hash.txt)
+rho_levels:
+  Abundant: 1.0
+  Moderate: 0.5
+  Scarce: 0.3
+  Critical: 0.2
+configurations:
+  main:
+    spec:
+      grid_size: 10
+      victim_density: 0.06
+      p_heavy: 0.5
+    H: 105
+    B_ref: 64
+    b0_per_level:
+      Abundant: 64
+      Moderate: 32
+      Scarce: 19
+      Critical: 13
+  L8_d04:
+    spec:
+      grid_size: 8
+      victim_density: 0.04
+      p_heavy: 0.5
+    H: 48
+    B_ref: 34
+    b0_per_level:
+      Abundant: 34
+      Moderate: 17
+      Scarce: 10
+      Critical: 7
+  L8_d08:
+    spec:
+      grid_size: 8
+      victim_density: 0.08
+      p_heavy: 0.5
+    H: 59
+    B_ref: 43
+    b0_per_level:
+      Abundant: 43
+      Moderate: 22
+      Scarce: 13
+      Critical: 9
+  L12_d04:
+    spec:
+      grid_size: 12
+      victim_density: 0.04
+      p_heavy: 0.5
+    H: 150
+    B_ref: 87
+    b0_per_level:
+      Abundant: 87
+      Moderate: 44
+      Scarce: 26
+      Critical: 17
+  L12_d08:
+    spec:
+      grid_size: 12
+      victim_density: 0.08
+      p_heavy: 0.5
+    H: 186
+    B_ref: 113
+    b0_per_level:
+      Abundant: 113
+      Moderate: 57
+      Scarce: 34
+      Critical: 23
+  main_p0:
+    spec:
+      grid_size: 10
+      victim_density: 0.06
+      p_heavy: 0.0
+    H: 48
+    B_ref: 41
+    b0_per_level:
+      Abundant: 41
+      Moderate: 21
+      Scarce: 12
+      Critical: 8
+alternate_configuration: L12_d04
+a3_primary_budgets: main

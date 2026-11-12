@@ -1,0 +1,9 @@
+test,level,diff,seeds_in_direction,r_rb,p_raw,p_holm4
+H4 / A1 original - mismatched,Abundant,"0.134 [0.057, 0.211]",8,0.85,0.0137,0.0273
+H4 / A1 original - mismatched,Moderate,"0.090 [0.067, 0.114]",10,1.0,0.0020,0.0078
+H4 / A1 original - mismatched,Scarce,"0.043 [0.025, 0.063]",10,1.0,0.0020,0.0078
+H4 / A1 original - mismatched,Critical,"0.017 [0.004, 0.030]",8,0.64,0.0840,0.0840
+H6 / A4 joint - solo,Abundant,"0.471 [0.415, 0.527]",10,1.0,0.0020,0.0078
+H6 / A4 joint - solo,Moderate,"0.305 [0.280, 0.329]",10,1.0,0.0020,0.0078
+H6 / A4 joint - solo,Scarce,"0.165 [0.150, 0.179]",10,1.0,0.0020,0.0078
+H6 / A4 joint - solo,Critical,"0.081 [0.070, 0.091]",10,1.0,0.0020,0.0078

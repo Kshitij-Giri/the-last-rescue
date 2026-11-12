@@ -1,0 +1,69 @@
+=== Scripted: heavy victim needs simultaneous RESCUE + ASSIST ===
+instance seed=None L=5 V=2 heavy=1 n_agents=3 mode=per_agent b0=40 H=30
+Legend: # wall  ~ hazard  . free  B base  h/l unseen heavy/light  H/L seen waiting heavy/light  x rescued  1..n agents  * several agents on a cell
+
+--- t=0  budgets=[40, 40, 40]
+.....
+.....
+..h..
+.....
+*...l
+actions: A1=UP  A2=RIGHT  A3=WAIT
+rewards: -0.020  -0.020  +0.000
+
+--- t=1  budgets=[39, 39, 40]
+.....
+.....
+..h..
+1....
+32..l
+actions: A1=UP  A2=RIGHT  A3=WAIT
+rewards: -0.020  -0.020  +0.000
+
+--- t=2  budgets=[38, 38, 40]
+.....
+.....
+1.h..
+.....
+3.2.l
+actions: A1=RIGHT  A2=UP  A3=WAIT
+rewards: +0.030  +0.030  +0.000
+event: t=2, type=first_sighting, victim=0, agents=[0, 1]
+
+--- t=3  budgets=[37, 37, 40]
+.....
+.....
+.1H..
+..2..
+3...l
+actions: A1=RIGHT  A2=WAIT  A3=WAIT
+rewards: -0.020  +0.000  +0.000
+
+--- t=4  budgets=[36, 37, 40]
+.....
+.....
+..1..
+..2..
+3...l
+actions: A1=RESCUE  A2=UP  A3=WAIT
+rewards: -0.060  -0.020  +0.000
+event: t=4, type=failed_rescue, agent=0, victim=0, cell=12
+
+--- t=5  budgets=[33, 36, 40]
+.....
+.....
+..*..
+.....
+3...l
+actions: A1=RESCUE  A2=ASSIST  A3=WAIT
+rewards: +1.440  +1.460  +1.000
+event: t=5, type=rescue, victim=0, heavy=True, cell=12, rescuers=[0], assisters=[1]
+
+--- t=6  budgets=[30, 34, 40]
+.....
+.....
+..*..
+.....
+3...l
+
+END: termination=none (episode still running when the script stopped) steps=6 rescued=1/2

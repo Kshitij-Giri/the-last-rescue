@@ -1,0 +1,280 @@
+[PASS] V1 seed-level rows matched - 310 rows
+[PASS] V1 seed-level rf
+[PASS] V1 seed-level rescued_heavy_share
+[PASS] V1 seed-level ear
+[PASS] V1 seed-level rsr
+[PASS] V1 seed-level rsr_other
+[PASS] V1 seed-level tdi
+[PASS] V1 seed-level pss
+[PASS] V1 seed-level gini_consumption
+[PASS] V1 seed-level cr
+[PASS] V1 seed-level steps
+[PASS] V1 baseline rows - 96 rows
+[PASS] V1 baselines rf
+[PASS] V1 baselines cr
+[PASS] V1 baselines rescued_heavy_share
+[PASS] V2 mean alt/final/Abundant/rf
+[PASS] V2 mean alt/final/Abundant/cr
+[PASS] V2 mean alt/final/Abundant/ear
+[PASS] V2 mean alt/final/Abundant/tdi
+[PASS] V2 mean alt/final/Abundant/pss
+[PASS] V2 mean alt/final/Critical/rf
+[PASS] V2 mean alt/final/Critical/cr
+[PASS] V2 mean alt/final/Critical/ear
+[PASS] V2 mean alt/final/Critical/tdi
+[PASS] V2 mean alt/final/Critical/pss
+[PASS] V2 mean alt/final/Moderate/rf
+[PASS] V2 mean alt/final/Moderate/cr
+[PASS] V2 mean alt/final/Moderate/ear
+[PASS] V2 mean alt/final/Moderate/tdi
+[PASS] V2 mean alt/final/Moderate/pss
+[PASS] V2 mean alt/final/Scarce/rf
+[PASS] V2 mean alt/final/Scarce/cr
+[PASS] V2 mean alt/final/Scarce/ear
+[PASS] V2 mean alt/final/Scarce/tdi
+[PASS] V2 mean alt/final/Scarce/pss
+[PASS] V2 mean eqsteps/final/Critical/rf
+[PASS] V2 mean eqsteps/final/Critical/cr
+[PASS] V2 mean eqsteps/final/Critical/ear
+[PASS] V2 mean eqsteps/final/Critical/tdi
+[PASS] V2 mean eqsteps/final/Critical/pss
+[PASS] V2 mean eqsteps/final/Moderate/rf
+[PASS] V2 mean eqsteps/final/Moderate/cr
+[PASS] V2 mean eqsteps/final/Moderate/ear
+[PASS] V2 mean eqsteps/final/Moderate/tdi
+[PASS] V2 mean eqsteps/final/Moderate/pss
+[PASS] V2 mean eqsteps/final/Scarce/rf
+[PASS] V2 mean eqsteps/final/Scarce/cr
+[PASS] V2 mean eqsteps/final/Scarce/ear
+[PASS] V2 mean eqsteps/final/Scarce/tdi
+[PASS] V2 mean eqsteps/final/Scarce/pss
+[PASS] V2 mean main/bestval/Abundant/rf
+[PASS] V2 mean main/bestval/Abundant/cr
+[PASS] V2 mean main/bestval/Abundant/ear
+[PASS] V2 mean main/bestval/Abundant/tdi
+[PASS] V2 mean main/bestval/Abundant/pss
+[PASS] V2 mean main/bestval/Critical/rf
+[PASS] V2 mean main/bestval/Critical/cr
+[PASS] V2 mean main/bestval/Critical/ear
+[PASS] V2 mean main/bestval/Critical/tdi
+[PASS] V2 mean main/bestval/Critical/pss
+[PASS] V2 mean main/bestval/Moderate/rf
+[PASS] V2 mean main/bestval/Moderate/cr
+[PASS] V2 mean main/bestval/Moderate/ear
+[PASS] V2 mean main/bestval/Moderate/tdi
+[PASS] V2 mean main/bestval/Moderate/pss
+[PASS] V2 mean main/bestval/Scarce/rf
+[PASS] V2 mean main/bestval/Scarce/cr
+[PASS] V2 mean main/bestval/Scarce/ear
+[PASS] V2 mean main/bestval/Scarce/tdi
+[PASS] V2 mean main/bestval/Scarce/pss
+[PASS] V2 mean main/final/Abundant/rf
+[PASS] V2 mean main/final/Abundant/cr
+[PASS] V2 mean main/final/Abundant/ear
+[PASS] V2 mean main/final/Abundant/tdi
+[PASS] V2 mean main/final/Abundant/pss
+[PASS] V2 mean main/final/Critical/rf
+[PASS] V2 mean main/final/Critical/cr
+[PASS] V2 mean main/final/Critical/ear
+[PASS] V2 mean main/final/Critical/tdi
+[PASS] V2 mean main/final/Critical/pss
+[PASS] V2 mean main/final/Moderate/rf
+[PASS] V2 mean main/final/Moderate/cr
+[PASS] V2 mean main/final/Moderate/ear
+[PASS] V2 mean main/final/Moderate/tdi
+[PASS] V2 mean main/final/Moderate/pss
+[PASS] V2 mean main/final/Scarce/rf
+[PASS] V2 mean main/final/Scarce/cr
+[PASS] V2 mean main/final/Scarce/ear
+[PASS] V2 mean main/final/Scarce/tdi
+[PASS] V2 mean main/final/Scarce/pss
+[PASS] V2 mean p0/final/Abundant/rf
+[PASS] V2 mean p0/final/Abundant/cr
+[PASS] V2 mean p0/final/Abundant/ear
+[PASS] V2 mean p0/final/Abundant/tdi
+[PASS] V2 mean p0/final/Abundant/pss
+[PASS] V2 mean p0/final/Critical/rf
+[PASS] V2 mean p0/final/Critical/cr
+[PASS] V2 mean p0/final/Critical/ear
+[PASS] V2 mean p0/final/Critical/tdi
+[PASS] V2 mean p0/final/Critical/pss
+[PASS] V2 mean p0/final/Moderate/rf
+[PASS] V2 mean p0/final/Moderate/cr
+[PASS] V2 mean p0/final/Moderate/ear
+[PASS] V2 mean p0/final/Moderate/tdi
+[PASS] V2 mean p0/final/Moderate/pss
+[PASS] V2 mean p0/final/Scarce/rf
+[PASS] V2 mean p0/final/Scarce/cr
+[PASS] V2 mean p0/final/Scarce/ear
+[PASS] V2 mean p0/final/Scarce/tdi
+[PASS] V2 mean p0/final/Scarce/pss
+[PASS] V2 mean p0sec/final/Abundant/rf
+[PASS] V2 mean p0sec/final/Abundant/cr
+[PASS] V2 mean p0sec/final/Abundant/ear
+[PASS] V2 mean p0sec/final/Abundant/tdi
+[PASS] V2 mean p0sec/final/Abundant/pss
+[PASS] V2 mean p0sec/final/Critical/rf
+[PASS] V2 mean p0sec/final/Critical/cr
+[PASS] V2 mean p0sec/final/Critical/ear
+[PASS] V2 mean p0sec/final/Critical/tdi
+[PASS] V2 mean p0sec/final/Critical/pss
+[PASS] V2 mean p0sec/final/Moderate/rf
+[PASS] V2 mean p0sec/final/Moderate/cr
+[PASS] V2 mean p0sec/final/Moderate/ear
+[PASS] V2 mean p0sec/final/Moderate/tdi
+[PASS] V2 mean p0sec/final/Moderate/pss
+[PASS] V2 mean p0sec/final/Scarce/rf
+[PASS] V2 mean p0sec/final/Scarce/cr
+[PASS] V2 mean p0sec/final/Scarce/ear
+[PASS] V2 mean p0sec/final/Scarce/tdi
+[PASS] V2 mean p0sec/final/Scarce/pss
+[PASS] V2 mean pooled/final/Abundant/rf
+[PASS] V2 mean pooled/final/Abundant/cr
+[PASS] V2 mean pooled/final/Abundant/ear
+[PASS] V2 mean pooled/final/Abundant/tdi
+[PASS] V2 mean pooled/final/Abundant/pss
+[PASS] V2 mean pooled/final/Critical/rf
+[PASS] V2 mean pooled/final/Critical/cr
+[PASS] V2 mean pooled/final/Critical/ear
+[PASS] V2 mean pooled/final/Critical/tdi
+[PASS] V2 mean pooled/final/Critical/pss
+[PASS] V2 mean pooled/final/Moderate/rf
+[PASS] V2 mean pooled/final/Moderate/cr
+[PASS] V2 mean pooled/final/Moderate/ear
+[PASS] V2 mean pooled/final/Moderate/tdi
+[PASS] V2 mean pooled/final/Moderate/pss
+[PASS] V2 mean pooled/final/Scarce/rf
+[PASS] V2 mean pooled/final/Scarce/cr
+[PASS] V2 mean pooled/final/Scarce/ear
+[PASS] V2 mean pooled/final/Scarce/tdi
+[PASS] V2 mean pooled/final/Scarce/pss
+[PASS] V2 mean solo/final/Abundant/rf
+[PASS] V2 mean solo/final/Abundant/cr
+[PASS] V2 mean solo/final/Abundant/ear
+[PASS] V2 mean solo/final/Abundant/tdi
+[PASS] V2 mean solo/final/Abundant/pss
+[PASS] V2 mean solo/final/Critical/rf
+[PASS] V2 mean solo/final/Critical/cr
+[PASS] V2 mean solo/final/Critical/ear
+[PASS] V2 mean solo/final/Critical/tdi
+[PASS] V2 mean solo/final/Critical/pss
+[PASS] V2 mean solo/final/Moderate/rf
+[PASS] V2 mean solo/final/Moderate/cr
+[PASS] V2 mean solo/final/Moderate/ear
+[PASS] V2 mean solo/final/Moderate/tdi
+[PASS] V2 mean solo/final/Moderate/pss
+[PASS] V2 mean solo/final/Scarce/rf
+[PASS] V2 mean solo/final/Scarce/cr
+[PASS] V2 mean solo/final/Scarce/ear
+[PASS] V2 mean solo/final/Scarce/tdi
+[PASS] V2 mean solo/final/Scarce/pss
+[PASS] V3 Friedman rf
+[PASS] V3 Page rf
+[PASS] V3 Friedman ear
+[PASS] V3 Page ear
+[PASS] V3 Friedman rsr
+[PASS] V3 Page rsr
+[PASS] V3 Friedman rsr_other
+[PASS] V3 Page rsr_other
+[PASS] V3 Friedman tdi
+[PASS] V3 Page tdi
+[PASS] V3 Friedman pss
+[PASS] V3 Page pss
+[PASS] V3 Friedman gini_consumption
+[PASS] V3 Page gini_consumption
+[PASS] V3 Friedman cr
+[PASS] V3 Page cr
+[PASS] V3 Holm H2 Friedman
+[PASS] V3 RF pairwise p
+[PASS] V3 H3 p and Holm(12)
+[PASS] V3 H0
+[PASS] V3 H4 diff Abundant
+[PASS] V3 H4 diff Moderate
+[PASS] V3 H4 diff Scarce
+[PASS] V3 H4 diff Critical
+[PASS] V3 H4 p and Holm(4)
+[PASS] V3 H6 p and Holm(4)
+[PASS] V3 H5 DiD and p
+[PASS] V4 run_stats.py reproduces every output byte-identically - 18/18 files identical
+[PASS] V5 claim CAL1 - stated 105, source 105
+[PASS] V5 claim CAL2 - stated 64, source 64
+[PASS] V5 claim CAL3 - stated 13, source 13
+[PASS] V5 claim PIL1 - stated 0.03125, source 0.03125
+[PASS] V5 claim P5a - stated 350, source 350
+[PASS] V5 claim P5b - stated 5, source 5
+[PASS] V5 claim P5c - stated 0, source 0
+[PASS] V5 claim H0a - stated 0.0009765625, source 0.0009765625
+[PASS] V5 claim H0b - stated 1.0, source 1.0
+[PASS] V5 claim H0c - stated 0.063, source 0.06283333333333331
+[PASS] V5 claim E1a - stated 0.573, source 0.5726666666666668
+[PASS] V5 claim E1b - stated 0.344, source 0.3441666666666667
+[PASS] V5 claim E1c - stated 0.18, source 0.1798333333333333
+[PASS] V5 claim E1d - stated 0.087, source 0.0873333333333332
+[PASS] V5 claim E1e - stated 0.422, source 0.4223333333333333
+[PASS] V5 claim E1f - stated 0.016, source 0.0159999999999999
+[PASS] V5 claim H1a - stated 30.0, source 30.0
+[PASS] V5 claim H1b - stated 1.38e-06, source 1.380057031293255e-06
+[PASS] V5 claim H1c - stated 1.0, source 1.0
+[PASS] V5 claim H1d - stated 3.15e-14, source 3.1544059158172984e-14
+[PASS] V5 claim H1e - stated 0.01171875, source 0.01171875
+[PASS] V5 claim H2a - stated 0.000167, source 0.0001673822477351
+[PASS] V5 claim H2b - stated 0.000563, source 0.0005631548028034
+[PASS] V5 claim H2c - stated 0.00411, source 0.004111605808135
+[PASS] V5 claim H2d - stated 0.025, source 0.0249856022090949
+[PASS] V5 claim H2e - stated 0.407, source 0.4070353851430989
+[PASS] V5 claim H2f - stated 0.587, source 0.5866592123139767
+[PASS] V5 claim H2g - stated 0.896, source 0.8964323733419127
+[PASS] V5 claim H2h - stated 0.18, source 0.1801295457279745
+[PASS] V5 claim H2i - stated 0.023, source 0.0233136346349517
+[PASS] V5 claim H3a - stated 0.0742, source 0.07421875
+[PASS] V5 claim H3b - stated 0.0273, source 0.02734375
+[PASS] V5 claim H3c - stated 0.0234, source 0.0234375
+[PASS] V5 claim H4a - stated 0.1335, source 0.1335
+[PASS] V5 claim H4b - stated 0.0273, source 0.02734375
+[PASS] V5 claim H4c - stated 0.084, source 0.083984375
+[PASS] V5 claim H5a - stated -0.248, source -0.24799999999999994
+[PASS] V5 claim H5b - stated -0.322, source -0.32249999999999995
+[PASS] V5 claim H5c - stated -0.171, source -0.17082916666666673
+[PASS] V5 claim H5d - stated 0.001953125, source 0.001953125
+[PASS] V5 claim A3a - stated -0.176, source -0.176368970362564
+[PASS] V5 claim A3b - stated -0.081, source -0.0814489731820954
+[PASS] V5 claim A3c - stated 0.331, source 0.3307798983827048
+[PASS] V5 claim A3d - stated 0.113, source 0.1128034785990439
+[PASS] V5 claim A3e - stated 0.15, source 0.1525029103608846
+[PASS] V5 claim A3f - stated 0.21, source 0.2127393093576667
+[PASS] V5 claim A3g - stated 0.052, source 0.0520349373085142
+[PASS] V5 claim H6a - stated 0.471, source 0.4711666666666667
+[PASS] V5 claim H6b - stated 0.0078125, source 0.0078125
+[PASS] V5 claim A6a - stated 0.078, source 0.0779999999999999
+[PASS] V5 claim A6b - stated 8e-10, source 8.009352060851703e-10
+[PASS] V5 claim A2a - stated 0.281, source 0.2809444444444444
+[PASS] V5 claim A8a - stated 0.927, source 0.9273491486465233
+[PASS] V5 claim A8b - stated 0.978, source 0.9780948103740513
+[PASS] V5 claim A8c - stated 0.082, source 0.0824379969523857
+[PASS] V5 claim A8d - stated -0.016, source -0.016270523347683
+[PASS] V5 claim A8e - stated 0.046, source 0.0455146470101618
+[PASS] V5 claim X5a - stated 0.01, source 0.0098333333333333
+[PASS] V5 claim X5b - stated 0.121, source 0.1206666666666666
+[PASS] V5 claim X5c - stated 0.429, source 0.4286666666666666
+[PASS] V5 claim X4a - stated 0.161, source 0.1609999999999999
+[PASS] V5 claim SEN1 - stated 1.0, source 1.0
+[PASS] V5 claim A2b - stated 0.184, source 0.1837222222222221
+[PASS] V5 claim POOL1 - stated 0.061, source 0.0611666666666666
+[PASS] V5 claim POOL2 - stated 0.042, source 0.0419999999999999
+[PASS] V5 claim X4b - stated 0.052, source 0.052
+[PASS] V5 claim X4c - stated 3.337, source 3.337
+[PASS] V5 claim X4d - stated 0.152, source 0.152
+[PASS] V5 claim A3h - stated -0.339, source -0.3387294139509281
+[PASS] V5 claim E1g - stated 0.723, source 0.7230000000000001
+[PASS] V5 claim E1h - stated 0.159, source 0.1586666666666666
+[PASS] V5 claim SEN2 - stated 0.647, source 0.647
+[PASS] V7 report numbers: every registered value equals its source file - 579/579
+[PASS] V7 report numbers: displayed text = formatted source value - 579/579
+[PASS] V7 report numbers: every displayed value appears in report.docx - 579/579
+[PASS] V7 report figures: every figure file exists and is embedded - 14 figures, 14 embedded images
+[PASS] V7 report: every table and figure caption is present
+[PASS] V7 report length within 25-40 pages (PDF rendering) - 34 pages
+[PASS] V6 training runs - 350
+[PASS] V6 raw evaluation CSVs unchanged since the Phase 5 manifest - 67/67
+
+278 checks passed, 0 failed

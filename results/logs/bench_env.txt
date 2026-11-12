@@ -1,0 +1,6 @@
+python 3.13.18 on x86_64 (Linux)
+
+map generation: 1.3 ms/map; path tables: 21.9 ms/map
+b0= 15 H=100: 100 episodes, mean length 15.1 steps, env.step = 91.1 us/step (3 agents) = 30.4 us per agent-step
+b0= 40 H=100: 100 episodes, mean length 40.2 steps, env.step = 79.0 us/step (3 agents) = 26.3 us per agent-step
+b0=400 H=100: 100 episodes, mean length 100.0 steps, env.step = 87.4 us/step (3 agents) = 29.1 us per agent-step

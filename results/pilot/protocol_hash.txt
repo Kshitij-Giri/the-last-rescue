@@ -1,0 +1,2 @@
+docs/pilot_protocol.md sha256=51a4bdc5d946e5e49060a09515801bb21b80262fcccf4cae13a61a38b1cef359
+recorded_utc=2026-11-11T19:35:13Z (before any pilot run)

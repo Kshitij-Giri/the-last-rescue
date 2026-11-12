@@ -1,0 +1,22 @@
+### T6b. A3 difference-in-differences, all analyses (positive = scarcity removes more, in points or log-fraction, in the heavy-victim world); retained = RF(level)/RF(Abundant)
+
+| family                           | analysis                      | level_vs_abundant   | did                     |   seeds_positive |   retained_p05 |   retained_p0 |
+|:---------------------------------|:------------------------------|:--------------------|:------------------------|-----------------:|---------------:|--------------:|
+| CONFIRMATORY (Critical row = H5) | raw_primary                   | Moderate            | -0.064 [-0.126, 0.004]  |                3 |          0.601 |         0.686 |
+| CONFIRMATORY (Critical row = H5) | raw_primary                   | Scarce              | -0.200 [-0.272, -0.129] |                0 |          0.314 |         0.364 |
+| CONFIRMATORY (Critical row = H5) | raw_primary                   | Critical            | -0.248 [-0.321, -0.174] |                0 |          0.153 |         0.213 |
+| SECONDARY (estimate only)        | oracle_normalised_primary     | Moderate            | -0.078 [-0.141, -0.010] |                2 |          0.626 |         0.686 |
+| SECONDARY (estimate only)        | oracle_normalised_primary     | Scarce              | -0.241 [-0.319, -0.168] |                0 |          0.509 |         0.439 |
+| SECONDARY (estimate only)        | oracle_normalised_primary     | Critical            | -0.176 [-0.266, -0.081] |                2 |          0.378 |         0.428 |
+| SECONDARY (estimate only)        | raw_secondary_own_calibration | Moderate            | -0.170 [-0.235, -0.106] |                1 |          0.601 |         0.487 |
+| SECONDARY (estimate only)        | raw_secondary_own_calibration | Scarce              | -0.240 [-0.308, -0.176] |                0 |          0.314 |         0.186 |
+| SECONDARY (estimate only)        | raw_secondary_own_calibration | Critical            | -0.207 [-0.273, -0.138] |                1 |          0.153 |         0.109 |
+| SECONDARY (estimate only)        | oracle_normalised_secondary   | Moderate            | -0.149 [-0.214, -0.082] |                1 |          0.626 |         0.532 |
+| SECONDARY (estimate only)        | oracle_normalised_secondary   | Scarce              | -0.166 [-0.238, -0.098] |                0 |          0.509 |         0.425 |
+| SECONDARY (estimate only)        | oracle_normalised_secondary   | Critical            | 0.052 [-0.029, 0.147]   |                6 |          0.378 |         0.609 |
+| POST HOC exploratory             | posthoc_log_ratio_primary     | Moderate            | 0.126 [0.003, 0.259]    |                7 |          0.604 |         0.685 |
+| POST HOC exploratory             | posthoc_log_ratio_primary     | Scarce              | 0.141 [-0.020, 0.294]   |                8 |          0.315 |         0.363 |
+| POST HOC exploratory             | posthoc_log_ratio_primary     | Critical            | 0.331 [0.113, 0.575]    |                8 |          0.151 |         0.21  |
+| POST HOC exploratory             | posthoc_log_ratio_secondary   | Moderate            | -0.215 [-0.334, -0.092] |                2 |          0.604 |         0.487 |
+| POST HOC exploratory             | posthoc_log_ratio_secondary   | Scarce              | -0.533 [-0.686, -0.390] |                0 |          0.315 |         0.185 |
+| POST HOC exploratory             | posthoc_log_ratio_secondary   | Critical            | -0.339 [-0.550, -0.083] |                2 |          0.151 |         0.108 |

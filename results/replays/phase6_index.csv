@@ -1,0 +1,9 @@
+file,level,seed,instance_seed,rescued,steps,termination,matches_eval_csv
+phase6_representative_Abundant.txt,Abundant,2,4000000,3,105,horizon,True
+phase6_representative_Moderate.txt,Moderate,3,4000000,2,33,exhausted,True
+phase6_representative_Scarce.txt,Scarce,2,4000000,1,17,exhausted,True
+phase6_representative_Critical.txt,Critical,5,4000300,1,105,horizon,True
+phase6_heavy_assist.txt,Abundant,4,4000000,5,105,horizon,True
+phase6_redundant_search.txt,Abundant,2,4004300,3,105,horizon,True
+phase6_abandonment.txt,Abundant,7,4001400,0,65,exhausted,True
+phase6_e3_conflict.txt,Abundant,0,4001000,3,105,horizon,True

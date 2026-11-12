@@ -1,0 +1,52 @@
+### T3. Pairwise level comparisons (CONFIRMATORY follow-ups): paired Wilcoxon, Holm across 6 pairs within metric; difference = first minus second level
+
+| family   | metric           | pair                |   n | diff                    |   r_rb |   p_raw |   p_holm6 |   cliffs_delta_secondary |
+|:---------|:-----------------|:--------------------|----:|:------------------------|-------:|--------:|----------:|-------------------------:|
+| H1       | rf               | Abundant - Moderate |  10 | 0.229 [0.169, 0.292]    |   1    |  0.002  |    0.0117 |                     1    |
+| H1       | rf               | Abundant - Scarce   |  10 | 0.393 [0.336, 0.449]    |   1    |  0.002  |    0.0117 |                     1    |
+| H1       | rf               | Abundant - Critical |  10 | 0.485 [0.429, 0.543]    |   1    |  0.002  |    0.0117 |                     1    |
+| H1       | rf               | Moderate - Scarce   |  10 | 0.164 [0.134, 0.194]    |   1    |  0.002  |    0.0117 |                     1    |
+| H1       | rf               | Moderate - Critical |  10 | 0.257 [0.231, 0.283]    |   1    |  0.002  |    0.0117 |                     1    |
+| H1       | rf               | Scarce - Critical   |  10 | 0.092 [0.071, 0.114]    |   1    |  0.002  |    0.0117 |                     1    |
+| H2       | ear              | Abundant - Moderate |  10 | 0.073 [-0.048, 0.198]   |   0.35 |  0.375  |    1      |                     0.36 |
+| H2       | ear              | Abundant - Scarce   |   9 | -0.033 [-0.154, 0.095]  |  -0.16 |  0.7344 |    1      |                    -0.33 |
+| H2       | ear              | Abundant - Critical |   9 | 0.096 [-0.022, 0.199]   |   0.64 |  0.0977 |    0.4883 |                     0.49 |
+| H2       | ear              | Moderate - Scarce   |   9 | -0.119 [-0.263, 0.072]  |  -0.56 |  0.1641 |    0.6562 |                    -0.42 |
+| H2       | ear              | Moderate - Critical |   9 | 0.066 [-0.044, 0.200]   |   0.24 |  0.5703 |    1      |                     0.13 |
+| H2       | ear              | Scarce - Critical   |   8 | 0.133 [0.029, 0.237]    |   0.78 |  0.0547 |    0.3281 |                     0.6  |
+| H2       | rsr              | Abundant - Moderate |  10 | 0.217 [0.178, 0.266]    |   1    |  0.002  |    0.0117 |                     0.96 |
+| H2       | rsr              | Abundant - Scarce   |  10 | 0.069 [-0.014, 0.161]   |   0.38 |  0.3223 |    0.6445 |                     0.48 |
+| H2       | rsr              | Abundant - Critical |  10 | 0.258 [0.187, 0.318]    |   1    |  0.002  |    0.0117 |                     0.92 |
+| H2       | rsr              | Moderate - Scarce   |  10 | -0.147 [-0.235, -0.056] |  -0.78 |  0.0273 |    0.082  |                    -0.78 |
+| H2       | rsr              | Moderate - Critical |  10 | 0.041 [-0.053, 0.126]   |   0.27 |  0.4922 |    0.6445 |                     0.18 |
+| H2       | rsr              | Scarce - Critical   |  10 | 0.188 [0.094, 0.282]    |   0.89 |  0.0098 |    0.0391 |                     0.8  |
+| H2       | rsr_other        | Abundant - Moderate |  10 | -0.008 [-0.069, 0.049]  |  -0.05 |  0.9219 |    1      |                     0.04 |
+| H2       | rsr_other        | Abundant - Scarce   |  10 | -0.260 [-0.338, -0.169] |  -0.96 |  0.0039 |    0.0195 |                    -0.9  |
+| H2       | rsr_other        | Abundant - Critical |  10 | 0.018 [-0.060, 0.087]   |   0.2  |  0.625  |    1      |                     0.1  |
+| H2       | rsr_other        | Moderate - Scarce   |  10 | -0.252 [-0.357, -0.142] |  -0.89 |  0.0098 |    0.0391 |                    -0.88 |
+| H2       | rsr_other        | Moderate - Critical |  10 | 0.026 [-0.055, 0.117]   |   0.16 |  0.6953 |    1      |                     0.16 |
+| H2       | rsr_other        | Scarce - Critical   |  10 | 0.278 [0.204, 0.348]    |   1    |  0.002  |    0.0117 |                     0.98 |
+| H2       | tdi              | Abundant - Moderate |  10 | 0.062 [-0.020, 0.158]   |   0.2  |  0.625  |    1      |                     0.28 |
+| H2       | tdi              | Abundant - Scarce   |  10 | 0.055 [-0.046, 0.151]   |   0.38 |  0.3223 |    0.9668 |                     0.28 |
+| H2       | tdi              | Abundant - Critical |  10 | 0.147 [0.027, 0.259]    |   0.67 |  0.0645 |    0.3867 |                     0.56 |
+| H2       | tdi              | Moderate - Scarce   |  10 | -0.007 [-0.059, 0.043]  |   0.02 |  1      |    1      |                    -0.04 |
+| H2       | tdi              | Moderate - Critical |  10 | 0.084 [-0.002, 0.172]   |   0.53 |  0.1602 |    0.8008 |                     0.38 |
+| H2       | tdi              | Scarce - Critical   |  10 | 0.091 [-0.014, 0.198]   |   0.45 |  0.2324 |    0.9297 |                     0.38 |
+| H2       | pss              | Abundant - Moderate |  10 | -0.007 [-0.018, 0.005]  |  -0.35 |  0.375  |    0.375  |                    -0.24 |
+| H2       | pss              | Abundant - Scarce   |  10 | 0.009 [0.001, 0.017]    |   0.67 |  0.0645 |    0.1289 |                     0.42 |
+| H2       | pss              | Abundant - Critical |  10 | 0.032 [0.026, 0.039]    |   1    |  0.002  |    0.0117 |                     0.94 |
+| H2       | pss              | Moderate - Scarce   |  10 | 0.017 [0.005, 0.030]    |   0.78 |  0.0273 |    0.082  |                     0.62 |
+| H2       | pss              | Moderate - Critical |  10 | 0.039 [0.029, 0.050]    |   1    |  0.002  |    0.0117 |                     1    |
+| H2       | pss              | Scarce - Critical   |  10 | 0.023 [0.013, 0.032]    |   0.96 |  0.0039 |    0.0156 |                     0.84 |
+| H2       | gini_consumption | Abundant - Moderate |  10 | -0.017 [-0.050, 0.009]  |  -0.35 |  0.375  |    1      |                    -0.42 |
+| H2       | gini_consumption | Abundant - Scarce   |  10 | -0.024 [-0.063, 0.009]  |  -0.31 |  0.4316 |    1      |                    -0.26 |
+| H2       | gini_consumption | Abundant - Critical |  10 | -0.011 [-0.029, 0.007]  |  -0.42 |  0.2754 |    1      |                    -0.3  |
+| H2       | gini_consumption | Moderate - Scarce   |  10 | -0.007 [-0.048, 0.024]  |   0.13 |  0.7695 |    1      |                     0.06 |
+| H2       | gini_consumption | Moderate - Critical |  10 | 0.006 [-0.021, 0.040]   |  -0.05 |  0.9219 |    1      |                    -0.12 |
+| H2       | gini_consumption | Scarce - Critical   |  10 | 0.012 [-0.022, 0.055]   |  -0.09 |  0.8457 |    1      |                     0.04 |
+| H2       | cr               | Abundant - Moderate |  10 | 0.006 [-0.024, 0.037]   |   0.09 |  0.8457 |    0.8457 |                     0.16 |
+| H2       | cr               | Abundant - Scarce   |  10 | 0.097 [0.067, 0.123]    |   1    |  0.002  |    0.0117 |                     0.94 |
+| H2       | cr               | Abundant - Critical |  10 | 0.157 [0.138, 0.174]    |   1    |  0.002  |    0.0117 |                     1    |
+| H2       | cr               | Moderate - Scarce   |  10 | 0.090 [0.054, 0.133]    |   0.96 |  0.0039 |    0.0117 |                     0.94 |
+| H2       | cr               | Moderate - Critical |  10 | 0.151 [0.130, 0.169]    |   1    |  0.002  |    0.0117 |                     1    |
+| H2       | cr               | Scarce - Critical   |  10 | 0.060 [0.031, 0.088]    |   0.96 |  0.0078 |    0.0156 |                     0.72 |

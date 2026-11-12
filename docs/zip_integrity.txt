@@ -1,0 +1,8 @@
+ZIP integrity test, 2026-11-12T06:35:14Z
+Archive: the_last_rescue_final.zip (built 2026-11-12, 162,483,100 bytes before this file was added)
+1 unzip -t: No errors detected in compressed data.
+2 Extracted into a fresh directory (/tmp/zt).
+3 results/manifest.json: 2521/2521 listed files present with matching SHA-256.
+4 pytest in the extracted copy: 264 passed.
+5 scripts/verify_results.py in the extracted copy: 278 checks passed, 0 failed.
+This file is written after the test and is excluded from results/manifest.json.

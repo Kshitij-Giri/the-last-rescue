@@ -1,0 +1,31 @@
+=== Scripted: pooled pool of 4; at t=1 agent 2 pays first, agent 1's RESCUE is preempted ===
+instance seed=None L=5 V=2 heavy=0 n_agents=3 mode=pooled b0=40 H=30
+Legend: # wall  ~ hazard  . free  B base  h/l unseen heavy/light  H/L seen waiting heavy/light  x rescued  1..n agents  * several agents on a cell
+
+--- t=0  budgets=[4]
+.....
+.....
+..1..
+.....
+*...l
+actions: A1=WAIT  A2=WAIT  A3=WAIT
+rewards: +0.000  +0.000  +0.000
+
+--- t=1  budgets=[4]
+.....
+.....
+..1..
+.....
+*...l
+actions: A1=RESCUE(->WAIT)  A2=SEARCH  A3=WAIT
+rewards: +0.000  -0.040  +0.000
+event: t=1, type=preempted, agent=0, action=5, cost=3, pool_left=2
+
+--- t=2  budgets=[2]
+.....
+.....
+..1..
+.....
+*...l
+
+END: termination=exhausted steps=2 rescued=0/2

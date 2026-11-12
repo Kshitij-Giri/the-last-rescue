@@ -1,0 +1,46 @@
+# The Last Rescue — default configuration (Phase 0 spec v0.2, §1 and §6).
+# Every constant used by the environment lives here; code never hard-codes these values.
+# Values marked "calibrated" are null until Phase 3 fills them in (config/calibration.yaml);
+# tests pass explicit values instead.
+
+env:
+  grid_size: 10            # L (grid is L x L)
+  wall_fraction: 0.15      # fraction of all cells that are walls
+  hazard_fraction: 0.10    # fraction of free (non-wall, non-base) cells that are hazard cells
+  victim_density: 0.06     # V = round(density * L^2)  -> 6 victims on 10x10
+  p_heavy: 0.5             # number of heavy victims = round(p_heavy * V) (exact count)
+  victim_min_chebyshev_from_base: 2   # victims are never visible from the base at t = 0
+  n_agents: 3
+  radius_passive: 1        # r_v: passive victim sensing (Chebyshev), always includes own cell
+  radius_search: 2         # r_s: SEARCH footprint (Chebyshev)
+  radius_teammate: 3       # r_tm: teammates visible within this Chebyshev radius
+  near_steps: 3            # f1 "near" means <= this many steps on the cheapest path
+
+costs:                     # integer resource units (spec §1.2)
+  move: 1
+  move_hazard: 2           # cost of entering a hazard cell
+  search: 2
+  rescue: 3
+  assist: 2
+  wait: 0
+
+reward:                    # spec §1.6 ; R_i = lambda_I*r_ind + lambda_T*r_team - lambda_C*cost
+  discovery: 0.1           # per victim first seen by the team (split among simultaneous first observers)
+  light_rescue: 1.0        # individual credit for a light rescue (split among RESCUErs)
+  heavy_rescuer: 0.5       # individual credit for the RESCUE role of a heavy rescue (split)
+  heavy_assister: 0.5      # individual credit for the ASSIST role of a heavy rescue (split)
+  team_per_rescue: 1.0     # r_team: paid to every agent per victim rescued by anyone
+  lambda_I: 1.0
+  lambda_T: 1.0
+  lambda_C: 0.02
+
+budget:
+  mode: per_agent          # per_agent (main) | pooled (ablation)
+
+calibrated:                # Phase 3 calibration of the MAIN configuration (full record: config/calibrated.yaml)
+  horizon: 105
+  b_ref: 64
+  rho_levels: {Abundant: 1.0, Moderate: 0.5, Scarce: 0.3, Critical: 0.2}
+
+mapgen:
+  seed_stride: 100         # instance seed = split_base + stride*index + attempt (attempt < stride; see utils.instance_seed)
