@@ -3,8 +3,6 @@
 Foundations of AI, Group 14, IIT Gandhinagar: Kshitij Suresh Giri (23110177), Panjari Maheshkumar Patel (23110236),
 DV Snehal (23110083), Kshitish Madbhavi (24110175).
 
-Status: **complete (Phases 0–8).** Final report: `report/report.pdf` and `report/report.docx`.
-Viva preparation: `docs/viva_guide.md`, `docs/module_owners.md`. Final audit: `docs/final_audit.md`.
 
 A preregistered multi-agent RL study. Three independent tabular Q-learners rescue victims on a 10 x 10 grid with private,
 non-refillable budgets; heavy victims need RESCUE + ASSIST by two agents in the same step. Scarcity rho is a fraction of a
