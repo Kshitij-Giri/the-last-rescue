@@ -1,6 +1,6 @@
 # The Last Rescue — Learning to Cooperate Under Resource Scarcity
 
-Fundamentals of AI, Group 14, IIT Gandhinagar: Kshitij Suresh Giri (23110177), Panjari Maheshkumar Patel (23110236),
+Foundations of AI, Group 14, IIT Gandhinagar: Kshitij Suresh Giri (23110177), Panjari Maheshkumar Patel (23110236),
 DV Snehal (23110083), Kshitish Madbhavi (24110175).
 
 Status: **complete (Phases 0–8).** Final report: `report/report.pdf` and `report/report.docx`.
