@@ -67,7 +67,4 @@ python scripts/make_manifest.py             # results/manifest.json (SHA-256 of 
 - `results/` — `calibration/` (frozen instance sets, freeze manifest), `pilot/`, `runs/` (350 training runs: Q-tables,
   checkpoints, logs), `eval/` (raw test episodes), `phase5/`, `stats/`, `tables/`, `figures/`, `replays/`, `logs/`,
   `manifest.json` (SHA-256 of every file).
-- `report/` — `report.pdf`, `report.docx`, `report_source.md` (same content as Markdown), `content.json`, `toc_pages.json`.
-- `docs/` — design spec, preregistration (FROZEN v1.0), decision log D1–D28, deviations log, claims ledger,
-  `report_numbers.yaml`, references verification, phase summaries, viva guide, module owners, final audit.
 - `results_quick/` — output of the last `--quick` run (pipeline check, not study results).
