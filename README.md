@@ -118,6 +118,7 @@ python scripts/run_stats.py                 # statistics from raw episodes -> re
 python scripts/make_tables.py               # tables -> results/tables/
 python scripts/make_figures.py              # figures -> results/figures/
 python scripts/make_replays.py              # replays from test episodes -> results/replays/phase6_*
+python scripts/make_latex_figures.py        # report figures (titles cut) -> report/latex/figures/
 python scripts/run_robustness.py train --workers 6   # robustness blocks R1-R7 (exploratory, about 1 h on 7 cores)
 python scripts/run_robustness.py eval --workers 6
 python scripts/run_robustness.py summary    # -> results/robustness/summary.md
