@@ -210,7 +210,11 @@ BUL([
 ])
 P(f"**Main limitation.** The policies had not converged after 8,000 episodes. {rj('sensitivity.stable_runs_total', fmt='int')} "
   f"of {N_RUNS} runs meet the preregistered stability criterion, and none of the 40 main runs do. All results are "
-  f"statements about policies after a fixed training budget, with 10 seeds per condition.")
+  f"statements about policies after a fixed training budget, with 10 seeds per condition. Seven exploratory blocks that "
+  f"each change one design choice (budget feature, role signal, reward split, initial values, dormant-agent learning, "
+  f"training partners, three times longer training) all keep the scarcity decline; with longer training the gap "
+  f"between Abundant and Critical widens ({R.js('results/robustness/summary.json', 'blocks.long.levels.Abundant.rf')} vs "
+  f"{R.js('results/robustness/summary.json', 'blocks.long.levels.Critical.rf')}; Section 11.3).")
 
 DOC.append({"t": "toc"})
 BREAK()
@@ -375,7 +379,40 @@ P("Each agent sees a compact discrete tuple o = (f1, …, f5), 3,960 values in t
   "half-open intervals with integer thresholds τ_{1} = c_{R} = 3, τ_{2} = max(τ_{1}+1, ⌈0.25·B_{ref}⌉) and "
   "τ_{3} = max(τ_{2}+1, ⌈0.5·B_{ref}⌉). With B_{ref} = 64 these are 3, 16 and 32. Bucket 0 therefore means exactly "
   "*cannot pay for a RESCUE* in the per-agent setting (clarification P1). Thresholds are relative to B_{ref}, not to the "
-  "agent's own starting budget, so the same bucket means the same absolute amount at every ρ.")
+  "agent's own starting budget, so the same bucket means the same absolute amount at every ρ. The price is resolution: "
+  "Abundant and Moderate agents both start in the top bucket, and a Critical agent (b_{0} = 13) only ever sees buckets 0 "
+  "and 1. Section 11.3 (R1) tests thresholds set from b_{0} instead.")
+H(2, "3.6 Modelling assumptions")
+P("The following choices are part of the model, not facts about search and rescue. Each one could change the results, so "
+  "they are stated here and, where possible, tested in Section 11.3.")
+BUL([
+    "**The static map is known in advance.** Walls, hazards and the base are known to every agent from t = 0; only "
+    "victims must be found. The directions in f1 and f2 are first moves on cheapest paths over this map, so navigation is "
+    "solved by the features and the learner chooses among planner directions and the five non-move actions. In a real "
+    "building the layout would itself be uncertain.",
+    "**No communication.** Agents share nothing except what they see: teammates within r_{tm} (positions only) and victims "
+    "within their own sensing radius. There is no shared map, message or budget signal.",
+    "**Symmetric roles at a heavy victim.** Two agents on the same heavy victim receive the same observation, so nothing in "
+    "the observation tells them who should RESCUE and who should ASSIST. Two RESCUEs fail. The cooperative baseline breaks "
+    "this tie with a fixed convention (lowest index RESCUEs); the learners must break it through their own Q-tables. "
+    "R2 adds the convention as one observation bit.",
+    "**Reward favours light victims for a selfish agent.** Per agent, a solo light rescue is worth 1.0 + 1.0 = 2.0 and "
+    "costs 3 units; each role of a heavy rescue is worth 0.5 + 1.0 = 1.5 and costs 3 or 2 units plus the risk of a failed "
+    "joint action. λ_{C} = 0.02 is small (at most 1.28 per agent per episode), so scarcity reaches the learner mainly "
+    "through the end of the episode, not through the reward. R3 equalises the individual credit.",
+    "**Zero initial Q-values.** WAIT costs nothing, so with Q = 0 everywhere and a small cost penalty, waiting is a safe "
+    "default that exploration must overcome. R4 uses optimistic initial values.",
+    "**Dormant agents do not learn.** A dormant agent (budget below the cheapest action) can only WAIT, so its "
+    "transitions are not used for updates. It still receives r_{team} when others rescue, and the value of becoming "
+    "dormant is bootstrapped from WAIT in budget bucket 0, which it shares with agents that have 1–2 units left. R5 keeps "
+    "updating dormant agents.",
+    "**Coarse time and a terminal horizon.** The game ends at H and the target treats this as terminal, but the agent sees "
+    "time only in thirds (f5), so the observation is not Markov in time near the horizon. Most episodes at Moderate and "
+    "below end by exhaustion, so this mainly affects Abundant.",
+    "**The budget scale comes from a heuristic.** H, B_{ref} and the ρ levels are calibrated on the hand-designed "
+    "cooperative baseline. \"Just enough\" budget means the 90th percentile of what that policy spends, not a budget "
+    "that is necessary for any policy.",
+])
 
 # =====================================================================================================================
 # 4 Environment
@@ -597,7 +634,8 @@ P("The design was written first (Phase 0) and revised only before the freeze (ch
   "A learnability pilot on validation maps only (Phase 4) was allowed to change four named settings; it passed its gate, "
   f"and **no setting was changed** (validation RF {R.js(PIL, 'iql_val_rf_mean')} vs random {R.js(PIL, 'random_val_rf')}, "
   f"{R.js(PIL, 'seeds_above_random', 0, 'int')}/5 seeds above, p = {R.js(PIL, 'wilcoxon_one_sided_p', fmt='p')}). Every "
-  "later change is listed in Appendix C (C1–C6, N2–N5); none changed a frozen design choice, parameter or hypothesis.")
+  "later change is listed in Appendix C (C1–C7, N2–N5, R1–R7); none changed a frozen design choice, parameter or "
+  "hypothesis.")
 H(2, "8.2 Conditions and runs")
 blocks = [("main", "Main sweep (Exp1, Exp2, H1–H4, H6)", "per-agent budgets, p_heavy = 0.5, main H and B_ref"),
           ("p0", "A3 all-light world, primary (H5)", "p_heavy = 0, same maps and main H, B_ref"),
@@ -634,7 +672,8 @@ BUL([
     "**Secondary**: Kruskal–Wallis and Cliff's δ (unpaired) are reported for comparability only.",
 ])
 P(f"All statistics are produced by one script (scripts/run_stats.py). The verifier recomputes the confirmatory tests "
-  f"independently from the seed-level files, re-runs the statistics script and checks that every output is byte-identical, "
+  f"independently from the seed-level files, re-runs the statistics script and checks that every output is reproduced "
+  f"(byte-identical on the original platform, equal within a relative 10^{{−5}} where floating-point order differs), "
   f"and checks every number in this report against its source file (Section 13).")
 BREAK()
 
@@ -1017,6 +1056,67 @@ FIG("9", "results/figures/fig9_robustness.png",
     "Robustness: learned RF by scarcity level across budget scope, map configuration and victim mix. The decline with "
     "scarcity appears in every variant.", width=5.6)
 
+RB = "results/robustness/summary.json"
+
+
+def rb(block, level, col="rf", nd=3, fmt="f"):
+    return R.js(RB, f"blocks.{block}.levels.{level}.{col}", nd, fmt)
+
+
+H(2, "11.3 Sensitivity to design choices (R1–R7, exploratory)")
+P("Section 3.6 lists modelling choices that could produce the scarcity effect by themselves. Seven extra blocks test "
+  "them, each changing one choice and keeping everything else of the main block: same seeds 0–9, training pool, "
+  "validation list, levels and 100 test maps. They were added after all confirmatory results were known, so they are "
+  "exploratory and their p-values (paired Wilcoxon against the main block, unadjusted) are descriptive.")
+names = [("relbudget", "R1 Budget buckets from own b_{0}"), ("role", "R2 Role bit at shared cell"),
+         ("heavycredit", "R3 Heavy credit 1.0 per role"), ("optinit", "R4 Optimistic Q_{0} = 2.0"),
+         ("dormupd", "R5 Dormant agents update"), ("partner", "R6 Trained with cooperative partners"),
+         ("long", "R7 24,000 episodes")]
+rows = [["Main block (reference)"] + [rb("main", l) for l in LV] + [R.js(RB, "blocks.main.page_p", 2, "p")]]
+for k, name in names:
+    rows.append([name] + [f"{rb(k, l)} ({rb(k, l, 'diff', 3, 'sf')})" for l in LV]
+                + [R.js(RB, f"blocks.{k}.page_p", 2, "p")])
+TAB("19", "Learned RF on the test maps in each robustness block (mean of 10 seeds; in brackets the paired difference to "
+          "the main block). Page p = two-sided trend test across the four levels. EXPLORATORY.",
+    ["Block", "Abundant", "Moderate", "Scarce", "Critical", "Page p"], rows, [2.0, 1.0, 1.0, 1.0, 1.0, 0.7], font=8.5)
+P(f"**The scarcity effect survives every change.** RF falls from Abundant to Critical in all seven blocks (Page p ≤ "
+  f"{R.js(RB, 'blocks.partner.page_p', 2, 'p')}). None of the tested choices is the source of the decline.")
+BUL([
+    f"**R1, budget resolution.** With thresholds set from b_{{0}}, Abundant is unchanged (b_{{0}} = B_{{ref}}, so the "
+    f"thresholds are identical), but RF is *lower* at the other levels (Critical {rb('relbudget', 'Critical')} vs "
+    f"{rb('main', 'Critical')}, p = {rb('relbudget', 'Critical', 'p', 4, 'p')}). Agents that can see their budget falling "
+    f"WAIT far more ({rb('relbudget', 'Critical', 'share_wait', 0, 'pct')} of actions at Critical vs "
+    f"{rb('main', 'Critical', 'share_wait', 0, 'pct')}). Coarse budget buckets do not create the effect; finer ones "
+    "make it stronger.",
+    f"**R2, role symmetry.** The role bit raises the effective-assist rate at Abundant ({rb('role', 'Abundant', 'ear')} vs "
+    f"{rb('main', 'Abundant', 'ear')}) but changes RF at no level beyond noise (largest difference "
+    f"{rb('role', 'Abundant', 'diff', 3, 'sf')}, p = {rb('role', 'Abundant', 'p', 4, 'p')}). The missing role signal costs "
+    "some wasted ASSISTs, not rescues.",
+    f"**R3, reward split.** Equal individual credit for heavy roles raises the heavy-victim share at Abundant "
+    f"({rb('heavycredit', 'Abundant', 'rescued_heavy_share')} vs {rb('main', 'Abundant', 'rescued_heavy_share')}) and RF "
+    f"there ({rb('heavycredit', 'Abundant', 'diff', 3, 'sf')}, p = {rb('heavycredit', 'Abundant', 'p', 4, 'p')}), with "
+    "small changes elsewhere. The reward design shapes how often agents attempt heavy victims when budget allows, but "
+    "not the scarcity trend.",
+    f"**R4, initial values.** Optimistic initial Q-values reduce WAIT at Abundant ({rb('optinit', 'Abundant', 'share_wait', 0, 'pct')} "
+    f"vs {rb('main', 'Abundant', 'share_wait', 0, 'pct')}) and more than double SEARCH, but RF is unchanged at every level. The "
+    f"main policies WAIT in {rb('main', 'Scarce', 'share_wait', 0, 'pct')}–{rb('main', 'Critical', 'share_wait', 0, 'pct')} "
+    "of steps at every level, so heavy waiting is a feature of the learned policies, not of scarcity alone.",
+    f"**R5, dormant agents.** Learning from dormant steps changes RF by at most "
+    f"{rb('dormupd', 'Moderate', 'diff', 3, 'sf')} (p ≥ {rb('dormupd', 'Moderate', 'p', 4, 'p')}).",
+    f"**R6, the A4 confound.** Agents trained next to two cooperative-baseline teammates see teammates throughout "
+    f"training, so the unseen-observation problem of A4 is absent. Deployed together they still fail "
+    f"(RF {rb('partner', 'Abundant')} at Abundant, below the solo-trained teams). They learn to rely on partners that "
+    f"follow fixed conventions and leave most of the work to them (WAIT {rb('partner', 'Abundant', 'share_wait', 0, 'pct')} of "
+    "actions), and nothing they learned transfers to learning teammates. This supports H6: what joint training teaches "
+    "is specific to co-learning teammates, not only familiarity with seeing a teammate.",
+    f"**R7, training length.** Three times more episodes raises RF at Abundant to {rb('long', 'Abundant')} "
+    f"({rb('long', 'Abundant', 'diff', 3, 'sf')}) and slightly at Critical ({rb('long', 'Critical', 'diff', 3, 'sf')}), "
+    f"while Moderate does not improve ({rb('long', 'Moderate', 'diff', 3, 'sf')}). The gap between Abundant and Critical "
+    f"therefore *widens* with training ({rb('long', 'Abundant')} vs {rb('long', 'Critical')}). Still 0 of 40 runs meet the "
+    "stability criterion, so the claim remains \"at a fixed training budget\", but the effect is not an artefact of "
+    "stopping early.",
+])
+
 # =====================================================================================================================
 # 12 Limitations
 # =====================================================================================================================
@@ -1051,7 +1151,18 @@ BUL([
     "**Scope.** One environment family, three agents, tabular IQL with a hand-designed observation, and no communication. "
     "Other MARL methods (e.g. centralised training with decentralised execution) may cope with scarcity differently.",
     "**Multiple analyses.** Confirmatory families are Holm-corrected; exploratory p-values are not and should be read "
-    "descriptively. One analysis (log-scale A3) is post hoc and labelled as such.",
+    "descriptively. One analysis (log-scale A3) is post hoc and labelled as such; the robustness blocks R1–R7 were added "
+    "after all results were known and are exploratory.",
+    "**Pairing by seed.** Conditions with the same seed share the training-map order, the exploration stream and the test "
+    "maps, which justifies a paired design. Their trajectories still diverge within the first episodes, so the "
+    "within-seed correlation may be weak. The unpaired Kruskal–Wallis results (secondary; results/stats/h1_h2_omnibus.csv) lead to the same "
+    "conclusions for RF.",
+    "**Cooperation metrics depend on performance.** PSS counts the cost of completed rescues and CR counts cooperative "
+    "actions, which occur mostly around rescues. When fewer victims are rescued both fall for that reason alone. The H2 "
+    "trends in PSS and CR are therefore partly a restatement of H1. The metrics that do not depend on the number of "
+    "rescues (EAR, TDI, Gini) show no significant trend.",
+    "**Design choices.** Section 3.6 lists the modelling assumptions; Section 11.3 shows which of them the scarcity "
+    "effect depends on.",
 ])
 
 # =====================================================================================================================
@@ -1110,7 +1221,7 @@ rows = [
     ["7 Generalisation", "test and shifted-test evaluations reported", "test, shifted test, transfer matrix, alternate map", "Met"],
     ["8 Reproducibility", "verify_results.py exits 0; manifest complete", "all checks pass (results/logs/verify_results.txt); manifests complete", "Met"],
 ]
-TAB("19", "The eight success criteria of the proposal, as operationalised in the preregistration.",
+TAB("20", "The eight success criteria of the proposal, as operationalised in the preregistration.",
     ["Criterion", "Operationalisation", "Evidence", "Status"], rows, [1.5, 1.8, 2.3, 0.9], font=8.5)
 P("Meeting the criteria does not mean that every hypothesis was supported. The criteria are about whether the study "
   "worked and was reported properly. The scientific answer is mixed: scarcity clearly degrades performance and "
@@ -1203,7 +1314,10 @@ dv = [
     ["C5", "post-freeze", "Sign-convention bug in the post hoc log DiD corrected"],
     ["C6", "post-freeze", "Floating-point ties snapped to zero before Wilcoxon; H3 Critical-vs-greedy p corrected"],
     ["N4", "post-freeze note", "Report written from verified result files; no analysis changed"],
-    ["N5", "post-freeze note", "Quick mode, reference verification, viva package; no result changed; remaining gaps listed"],
+    ["N5", "post-freeze note", "Quick mode and reference verification; no result changed; remaining gaps listed"],
+    ["C7", "post-delivery", "Repository repairs (restored docs, dependency pin, portable build, cross-platform V4); "
+                            "Exp4 Spearman tie handling (4th decimal)"],
+    ["R1–R7", "post-delivery, EXPLORATORY", "Seven one-change robustness blocks (Section 11.3)"],
 ]
 TAB("C1", "Deviations and notes.", ["ID", "Type", "Change"], dv, [0.5, 1.4, 4.6], font=8.5)
 
