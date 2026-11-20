@@ -76,7 +76,10 @@ def main() -> None:
                      "T1. Exp1/Exp2 main sweep, test set, final checkpoint: mean [95% CI] (n = 10; EAR n = 9 at Scarce "
                      "and Critical)"))
     # Baselines
-    sb = lv(SB[SB.combo == "main"])[["level", "policy", "rf", "rescued_heavy_share", "cr"]].round(3)
+    sb = SB[SB.combo == "main"].assign(
+        _l=lambda d: d.level.map(LEVELS.index),
+        _p=lambda d: d.policy.map(["random", "greedy", "cooperative", "oracle"].index)).sort_values(["_l", "_p"])
+    sb = sb[["level", "policy", "rf", "rescued_heavy_share", "cr"]].round(3)
     out.append(write("T1b_baselines_main", sb, "T1b. Baselines and oracle reference on the same 100 test instances "
                                                  "(oracle = full information, not a learner)"))
     # T2 H0 + H1/H2

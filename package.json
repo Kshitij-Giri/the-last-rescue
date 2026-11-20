@@ -1,0 +1,8 @@
+{
+  "name": "the-last-rescue-report",
+  "private": true,
+  "description": "Renders report/report.docx from report/content.json (scripts/render_report.js)",
+  "dependencies": {
+    "docx": "9.5.1"
+  }
+}

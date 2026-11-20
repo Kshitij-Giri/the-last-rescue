@@ -301,8 +301,10 @@ def main() -> None:
         df = pd.DataFrame(rows).assign(e3=flags)
         per_seed = df.groupby("seed").agg(e3=("e3", "mean"), e1=("e1_abandonment", "mean"),
                                           e2=("e2_duplicate", "mean"))
-        ind = df[["return_agent0", "return_agent1", "return_agent2"]].values
-        rho = ss.spearmanr(ind.max(axis=1), df.collective_return).statistic
+        # Returns are sums of fractional reward shares; rounding makes equal returns exact ties before ranking
+        # (otherwise last-digit floating-point noise breaks ties differently on different platforms).
+        ind = df[["return_agent0", "return_agent1", "return_agent2"]].values.round(9)
+        rho = ss.spearmanr(ind.max(axis=1), df.collective_return.round(9)).statistic
         for m in ("e1", "e2", "e3"):
             lo, hi = bootstrap_ci(per_seed[m].values, f"e4|{level}|{m}")
             e4.append({"level": level, "measure": m, "mean_per_seed": per_seed[m].mean(), "ci_lo": lo, "ci_hi": hi})
