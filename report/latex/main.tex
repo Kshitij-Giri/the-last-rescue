@@ -1,0 +1,693 @@
+\documentclass{article}
+
+% amsmath must come before arxiv.sty: both define \And, and the author block needs the arxiv.sty version
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{arxiv}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{amsfonts}
+\usepackage{nicefrac}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\setlist{nosep,leftmargin=*}
+\graphicspath{{figures/}}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcommand{\Bref}{B_{\mathrm{ref}}}
+\newcommand{\RF}{\mathrm{RF}}
+
+\title{The Last Rescue: Learning to Cooperate Under Resource Scarcity}
+
+\author{
+  Kshitij Suresh Giri\\
+  Indian Institute of Technology Gandhinagar\\
+  Gandhinagar, India\\
+  \texttt{23110177}
+  \And
+  Panjari Maheshkumar Patel\\
+  Indian Institute of Technology Gandhinagar\\
+  Gandhinagar, India\\
+  \texttt{23110236}
+  \AND
+  DV Snehal\\
+  Indian Institute of Technology Gandhinagar\\
+  Gandhinagar, India\\
+  \texttt{23110083}
+  \And
+  Kshitish Madbhavi\\
+  Indian Institute of Technology Gandhinagar\\
+  Gandhinagar, India\\
+  \texttt{24110175}
+}
+
+\date{}
+\renewcommand{\shorttitle}{The Last Rescue}
+\renewcommand{\headeright}{}
+\renewcommand{\undertitle}{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We study how resource scarcity affects the ability of independently learning agents to learn cooperative rescue.
+\emph{The Last Rescue} is a partially observed $10\times10$ grid in which three agents with private, non-refillable
+budgets search for six victims; half are \emph{heavy} and need one agent to RESCUE while a second ASSISTs on the same
+cell in the same step. Scarcity $\rho$ is a fraction of a calibrated just-enough budget ($\Bref=64$, horizon $H=105$),
+giving four levels with 64, 32, 19 and 13 units per agent. Agents learn with independent tabular Q-learning (IQL) and
+are compared with random, greedy and hand-designed cooperative policies and a full-information oracle. All tests were
+fixed before the first learning run; the unit of analysis is the training seed (10 per condition, 350 runs).
+Scarcity lowers the rescue fraction monotonically, from $0.573$ to $0.087$ (Friedman $p=1.4\times10^{-6}$, every seed
+in the same direction), and heavy, cooperation-requiring rescues fall fastest ($0.422\to0.016$). Interventions show
+that coordination learned with teammates matters at every level, but an otherwise identical world with only light
+victims loses \emph{more} rescue-fraction points under scarcity, so the decline is not specific to cooperation. Seven
+additional runs that each change one design choice keep the decline. Results are after 8{,}000 training episodes; no
+run met the stability criterion.
+\end{abstract}
+
+\keywords{Multi-Agent Reinforcement Learning \and Independent Q-Learning \and Search and Rescue \and Resource Scarcity
+\and Cooperation \and Partial Observability}
+
+% =====================================================================================================================
+\section{Introduction}
+% =====================================================================================================================
+Multi-agent search and rescue needs agents to divide the search area, help one another and spend limited resources
+well; uncoordinated agents duplicate search and waste resources~\cite{shoham2008,queralta2020}. Scarcity sharpens this:
+an agent that spends its budget exploring may later be unable to provide the help a teammate needs. Reinforcement
+learning can acquire such behaviour, but independent learners face a non-stationary problem because their teammates
+learn at the same time~\cite{zhang2021,tan1993}. Related work has studied cooperation and competition for resources
+in sequential multi-agent settings~\cite{leibo2017} and learning-based disaster response and search and
+rescue~\cite{nguyen2018,hickling2026}. Our question, unchanged from the proposal, is:
+\begin{center}
+\emph{How does resource scarcity affect the ability of autonomous agents to learn cooperative rescue strategies?}
+\end{center}
+We vary only the budget and keep the environment generator, learning algorithm, reward, training budget and evaluation
+fixed. The proposal review identified three gaps; Table~\ref{tab:review} shows where each is resolved.
+
+\begin{table}[h]
+\centering\small
+\caption{Review points and where they are addressed.}
+\label{tab:review}
+\begin{tabularx}{\linewidth}{@{}p{4.6cm}L@{}}
+\toprule
+Review point & Resolution in this report \\
+\midrule
+R1: budget scope, feasibility at exhaustion, formal cooperation metrics &
+Per-agent private budgets (pooled budget as an ablation); exact termination, dormancy and feasibility rules
+(Sec.~\ref{sec:budget}); five formally defined cooperation metrics with construct-validity checks
+(Sec.~\ref{sec:metrics}). \\
+R2: IQL non-stationarity; attributing performance changes to cooperation &
+Non-stationarity measured directly (policy churn, TD error); six interventions (A1--A6) that remove, mismatch or
+retrain teammates, equalise training steps, and remove the need for cooperation (Sec.~\ref{sec:attr},
+\ref{sec:res-attr}). \\
+R3: calibration of $\rho$ against map size, victim density, costs and horizon &
+Pre-stated calibration rules for $H$, $\Bref$ and the four $\rho$ levels; recalibration on five other configurations
+(Sec.~\ref{sec:calib}). \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\paragraph{Contributions.} (i) A tested environment with exact budget, feasibility and information rules;
+(ii) a calibration procedure that gives $\rho$ the same meaning across map sizes and densities; (iii) a confirmatory
+study with fixed hypotheses (Table~\ref{tab:hyp}); (iv) an attribution design that separates cooperation from other
+effects of scarcity; (v) a public, fully reproducible pipeline in which every number in this report is regenerated and
+checked from code.
+
+% =====================================================================================================================
+\section{Preliminaries}
+% =====================================================================================================================
+\paragraph{Markov games and partial observation.} A finite-horizon Markov game
+\[\mathcal{G}=\langle N,S,(A_i)_{i\in N},P,(R_i)_{i\in N},(O_i)_{i\in N},H\rangle\]
+has agents $N=\{1,\dots,n\}$ that choose actions simultaneously; the joint action $\mathbf{a}_t$ drives $s_{t+1}\sim P(\cdot\mid s_t,\mathbf{a}_t)$ and
+each agent receives $r^i_t$~\cite{shoham2008}. Agent $i$ sees only $o^i_t=O_i(s_t)$.
+
+\paragraph{Independent Q-learning.} Each agent learns its own table with the Q-learning update~\cite{watkins1992,sutton2018}
+\begin{equation}
+Q_i(o_t,a_t)\leftarrow Q_i(o_t,a_t)+\alpha\Big[r^i_t+\gamma(1-d_t)\max_{a'\in\mathcal{M}_i(o_{t+1})}Q_i(o_{t+1},a')-Q_i(o_t,a_t)\Big],
+\end{equation}
+treating teammates as part of the environment~\cite{tan1993}. Because teammates also learn, the transition and reward
+distribution an agent experiences changes over time, so the single-agent convergence guarantee does not hold. A drop in
+performance under scarcity may therefore come from less cooperation, from noisier learning, or from fewer learning
+steps; Section~\ref{sec:attr} separates these.
+
+% =====================================================================================================================
+\section{Problem Formulation}
+% =====================================================================================================================
+\subsection{Environment, state and actions}
+The map is an $L\times L$ grid ($L=10$) with 15\% walls, hazard cells on 10\% of free cells (entering costs 2), a base
+where all agents start, and $V=6$ victims at Chebyshev distance $\ge2$ from the base, of which exactly 3 are heavy.
+The global state is $s_t=(M,V_t,X_t,B_t,t,D_t)$: map, victim status, agent positions, budgets, time and each agent's
+memory of what it has observed. Actions and costs are in Table~\ref{tab:actions}. A heavy victim is rescued only when
+one agent RESCUEs and another ASSISTs on its cell in the same step; two RESCUEs fail and both pay.
+
+\begin{table}[h]
+\centering\small
+\caption{Actions, integer costs and validity (checked on the agent's own observation).}
+\label{tab:actions}
+\begin{tabularx}{\linewidth}{@{}lcL@{}}
+\toprule
+Action & Cost & Valid when \\
+\midrule
+UP, DOWN, LEFT, RIGHT & 1 (2 into hazard) & target is not a wall and the agent can pay \\
+SEARCH & 2 & always (reveals victims within Chebyshev radius 2) \\
+RESCUE & 3 & the agent stands on a victim it sees as waiting \\
+ASSIST & 2 & on a heavy victim with a teammate on the same cell \\
+WAIT & 0 & always \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Budgets, exhaustion and feasibility}\label{sec:budget}
+Each agent owns a private, non-transferable budget $B^i_0=\mathrm{round}(\rho\Bref)$ with $B^i_{t+1}=B^i_t-c(a^i_t)$;
+an action is valid only if $c(a)\le B^i_t$, so budgets never become negative. In the \emph{pooled} ablation the team
+shares $B_{\mathrm{team}}=nB_0$ with rotating payment priority. An episode ends at the first of:
+(1) \emph{all rescued}; (2) \emph{exhausted}: $\max_i B^i_t<c_R$, so no further rescue is possible;
+(3) \emph{horizon} $t=H$. An agent with $B^i_t<1$ is \emph{dormant}: only WAIT is valid. An instance is \emph{feasible}
+at a level if at least one victim can be rescued within the budgets and horizon (exact check on the known map);
+instances infeasible at the hardest level were regenerated before freezing (1.0\% of test maps).
+
+\subsection{Reward and objective}
+\begin{equation}
+R^i_t=\lambda_I\, r^i_{\mathrm{ind},t}+\lambda_T\, r_{\mathrm{team},t}-\lambda_C\, c(a^i_t),\qquad
+\lambda_I=\lambda_T=1,\ \lambda_C=0.02 .
+\end{equation}
+$r_{\mathrm{ind}}$ pays 0.1 for discovering a victim, 1.0 for a light rescue, and 0.5 each to the rescuer and the
+assister of a heavy victim (split among simultaneous actors); $r_{\mathrm{team}}$ pays 1.0 to every agent per rescue by
+anyone. Coefficients are identical at every $\rho$. Each agent maximises
+$J_i=\mathbb{E}[\sum_{t<H}\gamma^t R^i_t]$; the team outcome of interest is the rescue fraction $\RF$ (rescued / $V$).
+
+\subsection{Observation}
+To keep tabular learning tractable, each agent observes a discrete tuple $o=(f_1,\dots,f_5)$ with $3{,}960$ values:
+$f_1$ the nearest victim it believes unrescued (none, here-light, here-heavy, or first step of the cheapest path
+$\times$ near/far); $f_2$ first step towards the nearest never-observed cell; $f_3$ the nearest teammate within radius 3
+(none, same cell, or direction); $f_4$ own budget bucket with thresholds $(c_R,\lceil0.25\Bref\rceil,\lceil0.5\Bref\rceil)
+=(3,16,32)$; $f_5$ the elapsed third of the horizon. Features are computed only from the agent's own memory and current
+view; stale memory (a victim rescued by a teammate out of view) is corrected only when observed.
+
+% =====================================================================================================================
+\section{Methodology}
+% =====================================================================================================================
+\subsection{Environment implementation}
+One step executes: payment, simultaneous moves, RESCUE/ASSIST resolution per cell, observation update, reward, time,
+dormancy and termination. Masks are recomputed from the agent's view and every submitted action is re-validated. The
+environment is deterministic given the actions and runs at about $29\,\mu$s per agent-step. Correctness is covered by
+269 automated tests (rules, masking, budgets, stale information, feasibility, invariants, metrics on scripted episodes,
+learning and statistics). Instances come from frozen, disjoint seed lists: 1{,}000 training, 50 validation (checkpoint
+selection only), 100 test and 100 shifted-test maps (25\% walls, victim density 0.09).
+
+\subsection{Calibrating the budget scale}\label{sec:calib}
+All rules below were written and hashed before the first calibration run, on 200 calibration maps disjoint from all
+other splits.
+\begin{enumerate}
+\item \textbf{Horizon.} With unlimited budget, $T_{90}$ is the 90th percentile of the steps the cooperative baseline
+needs to rescue 90\% of victims ($T_{90}=73$); $H=\lceil T_{90}/0.7\rceil=105$, so time does not bind for a competent team
+(96\% of maps reach 90\% rescues within $H$).
+\item \textbf{Reference budget.} $\Bref$ is the 90th percentile of per-agent consumption of that baseline with unlimited
+budget and horizon $H$: $\Bref=64$ (mean 44.9).
+\item \textbf{Levels.} $\rho$ values on a grid $1.0,0.9,\dots,0.1$ were chosen where the cooperative baseline's $\RF$ is
+nearest 0.70 (Moderate), 0.40 (Scarce) and 0.10--0.15 (Critical), subject to at least 95\% of maps being feasible at
+Critical. $\rho=0.1$ is feasible on only 33\% of maps, so Critical moved to $\rho=0.2$ (99\% feasible).
+\end{enumerate}
+The result is $\rho=1.0/0.5/0.3/0.2$, i.e.\ 64/32/19/13 units per agent (Fig.~\ref{fig:calib}). At Moderate and below
+94--100\% of cooperative-baseline episodes end by exhaustion, so these levels are budget-limited, not time-limited.
+To check that $\rho$ means the same thing on other maps, $H$ and $\Bref$ were recalibrated with the same rules on
+five other configurations ($L\in\{8,12\}$, density $0.04/0.08$, and an all-light world). For $L\ge10$ the cooperative
+$\RF$ at each level differs by at most 0.08 across configurations; on $8\times8$ maps scarcity is harsher, so $\rho$ is
+comparable only for $L\ge10$. An analytic estimate of $\Bref$ (coverage plus travel plus rescue costs) tracks the
+empirical value across configurations (Pearson $r=0.998$) but is about half its size, which is why $\Bref$ is measured
+rather than derived.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.62\linewidth]{fig_cal_main.png}
+\caption{Calibration sweep on 200 calibration maps. Top: rescue fraction of each reference policy against $\rho$; the
+dotted lines mark the selected levels. Bottom: share of feasible maps; Critical cannot go below $\rho=0.2$ without
+violating the 95\% feasibility rule.}
+\label{fig:calib}
+\end{figure}
+
+\subsection{Independent Q-learning}
+Each agent has its own table $Q_i\in\mathbb{R}^{3960\times8}$, initialised to 0, and learns from its own reward
+(Algorithm~\ref{alg:iql}). Action selection is $\epsilon$-greedy over valid actions only, ties are broken at random,
+and the bootstrap maximum is taken over the next valid actions (which the agent knows). All hyperparameters were fixed
+before the experiments and a pilot on validation maps confirmed learnability without changing any of them:
+$\alpha=0.1$, $\gamma=0.98$, $\epsilon$ decays linearly from 1.0 to 0.05 over the first 70\% of 8{,}000 episodes.
+Every 500 episodes the greedy policy is evaluated on the validation maps; the final Q-tables are the primary policy.
+
+\begin{algorithm}[h]
+\caption{IQL training for one run (seed $s$, budget level $\rho$)}
+\label{alg:iql}
+\begin{algorithmic}[1]
+\State $Q_i\gets 0$ for $i=1..n$; training-map order and exploration streams from seed $s$
+\For{episode $e=1..8000$}
+  \State reset on the next training map with $B^i_0=\mathrm{round}(\rho\Bref)$; $\epsilon\gets\epsilon(e)$
+  \While{not terminated}
+    \State each agent $i$: $a^i\gets$ random valid action w.p.\ $\epsilon$, else $\arg\max_{a\in\mathcal{M}_i(o^i)}Q_i(o^i,a)$
+    \State step the environment; observe $R^i$, $o'^i$, mask $\mathcal{M}_i(o'^i)$, done $d$
+    \For{each agent $i$ that was not dormant}
+      \State $Q_i(o^i,a^i)\mathrel{+}=\alpha\,[R^i+\gamma(1-d)\max_{a'\in\mathcal{M}_i(o'^i)}Q_i(o'^i,a')-Q_i(o^i,a^i)]$
+    \EndFor
+  \EndWhile
+  \If{$e \bmod 500 = 0$} evaluate greedily on validation maps; log $\RF$, cooperation metrics, churn, TD error \EndIf
+\EndFor
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Baselines and oracle reference}
+All baselines are decentralised and use the same observations and masks. \textbf{Random} picks a valid action
+uniformly. \textbf{Greedy} walks to the nearest affordable victim it believes unrescued, rescues lights, tries each
+heavy victim once and never ASSISTs; its identical agents tend to move in lockstep, so it represents uncoordinated
+rather than optimally selfish agents. \textbf{Cooperative} divides the map into sectors, waits at a heavy victim for up
+to $2L$ steps, walks to teammates that stay put (a help signal), and uses a fixed role convention (the lowest-index agent
+RESCUEs, the other ASSISTs). The \textbf{oracle} sees the full state and plans centrally by greedy route insertion; on
+300 small instances it matches the exhaustive optimum in 99.0\% of cases. It is a reference for what the budget allows,
+not a learner, and never enters a hypothesis test.
+
+\subsection{Cooperation metrics}\label{sec:metrics}
+Team reward cannot show cooperation, because selfish agents that each rescue light victims also earn it. We therefore
+measure cooperation from the per-step action logs (Table~\ref{tab:metrics}). Ratio metrics are pooled per seed over the
+100 test episodes. Each metric was checked on scripted episodes with known answers and on the baselines before any
+learning (42 of 45 checks passed; the three failures show that PSS largely tracks reward, so it is never used as
+independent evidence of cooperation).
+
+\begin{table}[h]
+\centering\small
+\caption{Cooperation metrics and individual-vs-collective events.}
+\label{tab:metrics}
+\begin{tabularx}{\linewidth}{@{}llL@{}}
+\toprule
+ID & Metric & Definition (cooperative direction) \\
+\midrule
+C1 & Effective assist rate EAR & heavy rescues / ASSIST actions (higher) \\
+C2 & Redundant search RSR, RSR$_{\text{other}}$ & share of SEARCHes whose footprint is $\ge50\%$ already covered (by others for RSR$_{\text{other}}$) (lower) \\
+C3 & Territory division TDI & $1-$ mean pairwise Jaccard overlap of the agents' visited cells (higher) \\
+C4a & Productive spend share PSS & minimal required cost of completed rescues / budget spent (higher) \\
+C4b & Consumption Gini & Gini of the budget each agent spent (lower = balanced) \\
+C5 & Cooperation rate CR & cooperative non-WAIT actions / non-WAIT actions; cooperative = effective RESCUE/ASSIST of a heavy rescue or a converging move of its participants (higher) \\
+E1--E3 & Exp4 events & E1 abandonment of a joint rescue; E2 duplicate light rescue; E3 best agent above and team below the median return \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Attribution design}\label{sec:attr}
+A correlation between scarcity, cooperation and rescues does not show that cooperation is the mechanism. We therefore
+intervene (Table~\ref{tab:attr}). A1 and A2 test whether the specific learned partner matters; A4 whether learning with
+teammates matters; A6 whether the effect is only fewer learning steps (scarce episodes are shorter); A3 whether
+scarcity hurts \emph{more} when cooperation is required; A5 measures non-stationarity directly.
+
+\begin{table}[h]
+\centering\small
+\caption{Attribution analyses (all on the same seeds and test maps).}
+\label{tab:attr}
+\begin{tabularx}{\linewidth}{@{}lL@{}}
+\toprule
+ID & Intervention and what it isolates \\
+\midrule
+A1 (H4) & Mismatched teams: agents of different seeds deployed together; tests reliance on the co-trained partner. \\
+A2 & One agent replaced at test time by a random or WAIT-only agent. \\
+A3 (H5) & An all-light world (same maps, budgets and $H$; no victim needs a partner); difference-in-differences of the scarcity effect. \\
+A4 (H6) & Each agent trained alone, then deployed as a team; tests learning with teammates. \\
+A5 & Policy churn and TD error at checkpoints (non-stationarity). \\
+A6 & Lower levels trained for the same number of environment steps as Abundant (more episodes). \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Experimental protocol and statistics}
+Hypotheses, tests and analysis rules (Table~\ref{tab:hyp}) were fixed and hashed before the first learning run; later
+changes are logged as deviations in the repository. Each condition has 10 training seeds; seed $s$ uses the same
+training-map order, exploration stream and test maps in every condition, so conditions are compared within seed. The
+unit of analysis is the seed (its mean over 100 test maps), never the episode. Across the four levels we use the
+Friedman test~\cite{friedman1937} with Kendall's $W$ and Page's trend test~\cite{page1963}; pairwise comparisons use the
+Wilcoxon signed-rank test~\cite{wilcoxon1945} with the rank-biserial $r_{rb}$; deterministic baselines are compared with
+one-sample tests. Holm's correction~\cite{holm1979} is applied within each hypothesis family ($\alpha=0.05$); intervals
+are 95\% percentile bootstrap CIs over seeds~\cite{efron1979}. With $n=10$ the smallest attainable two-sided Wilcoxon
+$p$ is $\approx0.002$. In total 350 runs were trained (main sweep, A3 worlds, pooled budget, a $12\times12$ configuration,
+solo agents, equal-steps), 4.5 CPU-hours.
+
+\begin{table}[h]
+\centering\small
+\caption{Pre-specified hypotheses (all confirmatory tests paired by seed).}
+\label{tab:hyp}
+\begin{tabularx}{\linewidth}{@{}lL@{}}
+\toprule
+H0 & Gate: IQL rescues more than random at Abundant. \\
+H1 & Rescue fraction changes with $\rho$ (Friedman, Page trend). \\
+H2 & Cooperation metrics C1--C5 change with $\rho$ (Holm across 7 metrics). \\
+H3 & IQL differs from each baseline at each level (Holm across 12). \\
+H4 & Original teams outperform mismatched teams (A1). \\
+H5 & The scarcity effect differs between the heavy-victim and the all-light world (A3). \\
+H6 & Jointly trained teams outperform teams of solo-trained agents (A4). \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Modelling assumptions}
+Each of these could shape the results; Section~\ref{sec:robust} tests the ones that can be varied.
+\begin{itemize}
+\item The static map is known in advance; $f_1$ and $f_2$ give first moves on cheapest paths, so the learner chooses
+among planner directions rather than learning navigation. Only victims must be found.
+\item There is no communication; agents see teammates' positions within radius 3 and nothing else about them.
+\item Roles at a heavy victim are symmetric: two co-located agents see the same observation, so nothing tells them who
+should RESCUE (R2 adds a role bit).
+\item The reward favours light victims for a selfish agent: a solo light rescue pays 2.0 per agent, each heavy role 1.5
+(R3 equalises them). $\lambda_C$ is small, so scarcity acts mainly by ending episodes.
+\item Q-values start at 0 and WAIT is free, which makes waiting a safe default (R4 uses optimistic values); dormant
+agents do not learn (R5 lets them).
+\item The budget feature uses absolute thresholds, so Abundant and Moderate both start in the top bucket and a Critical
+agent sees only buckets 0--1 (R1 uses thresholds relative to its own budget).
+\item $\Bref$ and $\rho$ are calibrated on a hand-designed policy; ``just enough'' refers to that policy.
+\end{itemize}
+
+% =====================================================================================================================
+\section{Results}
+% =====================================================================================================================
+\subsection{Learnability and learning dynamics (H0, A5)}
+IQL learns: at Abundant all 10 seeds rescue more than random ($0.573$ vs $0.063$; one-sided Wilcoxon $W^+=55$,
+$p=9.8\times10^{-4}$). Learning starts late and is still changing at 8{,}000 episodes (Fig.~\ref{fig:learning}): none
+of the 40 main runs meets the pre-stated stability criterion (policy churn $<5\%$ and validation $\RF$ range $<0.02$),
+with final churn of 5--13\% of visited observations. All results are therefore statements about policies after a fixed
+training budget.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.85\linewidth]{fig1_learning_curves.png}
+\caption{Validation learning curves (mean and 95\% CI over 10 seeds). Left: rescue fraction; right: share of heavy
+victims rescued. The dotted line marks the end of $\epsilon$ decay.}
+\label{fig:learning}
+\end{figure}
+
+\subsection{Scarcity and rescue performance (Exp1, H1, H3)}
+Scarcity lowers the rescue fraction strongly and monotonically (Table~\ref{tab:main}, Fig.~\ref{fig:rescue}):
+Friedman $\chi^2(3)=30.0$, $p=1.4\times10^{-6}$, Kendall's $W=1.00$, Page trend $p=3.2\times10^{-14}$; all six pairwise
+differences have every seed in the same direction (Holm $p=0.012$, $r_{rb}=1$). Heavy rescues collapse fastest: the
+share of heavy victims rescued falls 26-fold ($0.422\to0.016$), light victims 4.5-fold ($0.723\to0.159$). Coverage,
+collective return and spending efficiency fall with it; full-mission success (all six rescued) is rare even at
+Abundant (6.3\% of episodes).
+
+\begin{table}[h]
+\centering\small
+\caption{Main sweep on the 100 test maps: IQL mean [95\% CI] over 10 seeds, and baselines on the same maps.}
+\label{tab:main}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+ & Abundant ($b_0$=64) & Moderate (32) & Scarce (19) & Critical (13) \\
+\midrule
+IQL rescue fraction & 0.573 [0.517, 0.627] & 0.344 [0.319, 0.368] & 0.180 [0.166, 0.194] & 0.087 [0.076, 0.098] \\
+\quad heavy victims & 0.422 [0.362, 0.483] & 0.221 [0.194, 0.248] & 0.083 [0.055, 0.107] & 0.016 [0.007, 0.026] \\
+\quad light victims & 0.723 [0.672, 0.770] & 0.467 [0.440, 0.493] & 0.277 [0.254, 0.295] & 0.159 [0.140, 0.174] \\
+Coverage of free cells & 0.779 & 0.591 & 0.425 & 0.327 \\
+Collective return & 11.28 & 7.02 & 3.60 & 1.66 \\
+Rescues per 100 units spent & 2.38 & 2.55 & 2.22 & 1.68 \\
+Episodes ended by exhaustion & 3\% & 34\% & 56\% & 51\% \\
+\midrule
+Random & 0.063 & 0.024 & 0.010 & 0.005 \\
+Greedy & 0.465 & 0.227 & 0.123 & 0.075 \\
+Cooperative (hand-designed) & 0.985 & 0.707 & 0.413 & 0.233 \\
+Oracle (full information) & 1.000 & 0.960 & 0.617 & 0.403 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{fig2_exp1_rescue.png}
+\caption{(a) Rescue fraction by scarcity level; thin lines are individual seeds, error bars 95\% CIs. (b) Share of
+light and heavy victims rescued.}
+\label{fig:rescue}
+\end{figure}
+
+Against the baselines (H3, Holm across 12 tests) IQL beats random at every level and greedy at Abundant, Moderate and
+Scarce (e.g.\ $+0.117$ at Moderate, 10/10 seeds, Holm $p=0.023$); at Critical the advantage over greedy is small and
+not significant ($+0.012$, Holm $p=0.074$). IQL stays far below the cooperative baseline everywhere ($-0.41$ at
+Abundant to $-0.15$ at Critical). The oracle shows that at Scarce and Critical even full information rescues only
+62\% and 40\%: part of the decline is imposed by the budget itself.
+
+\subsection{Scarcity and cooperation (Exp2, H2)}
+The seven cooperation metrics respond differently (Fig.~\ref{fig:coop}). The cooperation rate falls sharply
+($0.180\to0.023$, Friedman Holm $p=1.7\times10^{-4}$) and productive spending falls ($0.087\to0.055$, $p=5.6\times10^{-4}$),
+but both depend on the number of rescues and partly restate H1. Redundant search changes non-monotonically: search
+overlap with others peaks at Scarce ($0.476$ vs $0.216$ at Abundant; Holm $p=0.025$, Page $p=1$). The metrics that do
+not depend on the number of rescues show no significant trend: effective assist rate (Holm $p=0.41$), territory
+division ($p=0.59$) and consumption Gini ($p=0.90$). Learned agents therefore do not become less efficient helpers
+when they do help; they help less often because joint rescues become rarer.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{fig3_exp2_cooperation.png}
+\caption{Cooperation metrics by scarcity level (thin lines: seeds; markers: mean $\pm$ 95\% CI; Friedman $p$ Holm-adjusted
+across the seven metrics). PSS largely tracks reward and is not independent evidence of cooperation.}
+\label{fig:coop}
+\end{figure}
+
+\subsection{Is the effect due to cooperation? (A1--A6, H4--H6)}\label{sec:res-attr}
+\textbf{Learned coordination matters (Fig.~\ref{fig:attr}).} Mismatching teammates from other seeds lowers $\RF$ at
+Abundant, Moderate and Scarce ($+0.134$, $+0.090$, $+0.043$ for original teams; Holm $p\le0.027$), not significantly
+at Critical ($+0.017$, $p=0.084$). Replacing one agent by a WAIT-only agent costs $0.281$ at Abundant but only $0.038$
+at Critical. Teams of agents trained together beat teams of solo-trained agents at every level ($+0.471$ to $+0.081$,
+10/10 seeds, Holm $p=0.008$); solo agents never saw a teammate in training, a confound that R6 below removes. All
+these gaps shrink as scarcity grows: the less budget there is, the less there is for learned coordination to add.
+
+\textbf{It is not only fewer learning steps.} Trained for as many environment steps as Abundant (A6), the lower levels
+keep the decline (Friedman $\chi^2(3)=26.4$, $W=0.88$, Page $p=8\times10^{-10}$); Moderate improves ($+0.078$) while
+Scarce and Critical change little.
+
+\textbf{Scarcity does not hurt more when cooperation is required (H5).} In the all-light world with the same maps and
+budgets (Fig.~\ref{fig:did}) $\RF$ falls from $0.932$ to $0.198$, a larger drop in points than the heavy-victim world
+($0.573\to0.087$). The pre-specified difference-in-differences at Critical is $-0.248$ $[-0.322,-0.171]$, 0/10 seeds
+positive, $p=0.002$: significant, but opposite to a cooperation bottleneck. On a proportional scale the sign reverses
+(a post hoc log-scale DiD is $+0.331$ $[0.113,0.575]$: the heavy world keeps a smaller fraction), and calibrating the
+all-light world on its own budget scale makes the oracle-normalised DiD null ($+0.052$ $[-0.029,0.147]$). We
+therefore make no claim that scarcity is cooperation-specific.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{fig4_attribution.png}
+\caption{Attribution checks (mean $\pm$ 95\% CI over 10 seeds): mismatched teams (A1), one agent replaced (A2), joint
+vs solo training (A4), equal environment steps (A6).}
+\label{fig:attr}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.92\linewidth]{fig5_a3_did.png}
+\caption{A3. (a) Rescue fraction in the heavy-victim and all-light worlds with the same budgets, and the oracle
+reference of each. (b) Difference-in-differences under the pre-specified (raw), secondary (oracle-normalised) and post
+hoc (log) scales.}
+\label{fig:did}
+\end{figure}
+
+\textbf{Association (A8, observational).} Across seeds, more cooperative seeds rescue more within a level (Spearman of
+CR with $\RF$ 0.28--0.95), but in a joint regression with level dummies only PSS keeps a CI excluding zero, and PSS
+tracks reward. This is association, not causation.
+
+\subsection{Individual versus collective interest (Exp4)}
+Abandonment of joint rescues (E1) falls from 3.34 to 0.15 events per episode and duplicate light rescues (E2) from 0.36
+to 0.02, mainly because there are fewer opportunities. The share of conflict episodes (E3) is 15--21\% at Abundant to
+Scarce and 5\% at Critical. The best agent's return and the team return are almost perfectly ranked together
+(Spearman 0.95 at every level): under this reward, individual and collective interest rarely diverge.
+
+\subsection{Generalisation (Exp5)}
+Policies are specialised to their training budget (Table~\ref{tab:transfer}). Abundant-trained policies collapse at
+Critical ($0.010$ vs $0.087$), apparently spending as if budget were plentiful; Moderate- and Scarce-trained policies
+do better at Critical than Critical-trained ones ($0.116$, $0.121$), plausibly because Critical training yields few
+successful episodes. On the shifted test maps (more walls and victims) $\RF$ is lower at every level ($0.429$, $0.256$,
+$0.139$, $0.079$) but the ordering is unchanged. On $12\times12$ maps with their own calibration the decline is the same
+($0.455\to0.068$), and a pooled team budget raises $\RF$ slightly (0.667 to 0.129, against 0.573 to 0.087) with an equally strong trend.
+
+\begin{table}[h]
+\centering\small
+\caption{Cross-level transfer: mean test $\RF$ (10 seeds) of policies trained at one level and tested at another.}
+\label{tab:transfer}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Trained at $\downarrow$ / tested at $\rightarrow$ & Abundant & Moderate & Scarce & Critical \\
+\midrule
+Abundant & \textbf{0.573} & 0.192 & 0.072 & 0.010 \\
+Moderate & 0.161 & \textbf{0.344} & 0.207 & 0.116 \\
+Scarce & 0.059 & 0.169 & \textbf{0.180} & 0.121 \\
+Critical & 0.049 & 0.106 & 0.100 & \textbf{0.087} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Sensitivity to design choices (R1--R7, exploratory)}\label{sec:robust}
+Seven further blocks each change one modelling choice and keep everything else (same seeds, maps and levels;
+Table~\ref{tab:robust}). They were added after the main results, so they are exploratory and their $p$-values
+(paired Wilcoxon against the main block) are unadjusted.
+
+\begin{table}[h]
+\centering\small
+\caption{Test $\RF$ when one design choice is changed (mean of 10 seeds; in brackets the paired difference to the main
+block). Page $p$: trend across the four levels.}
+\label{tab:robust}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+Block & Abundant & Moderate & Scarce & Critical & Page $p$ \\
+\midrule
+Main (reference) & 0.573 & 0.344 & 0.180 & 0.087 & $3\times10^{-14}$ \\
+R1 budget buckets from own $b_0$ & 0.573 (+0.000) & 0.309 ($-$0.035) & 0.124 ($-$0.056) & 0.055 ($-$0.033) & $3\times10^{-14}$ \\
+R2 role bit at shared cell & 0.616 (+0.043) & 0.330 ($-$0.014) & 0.169 ($-$0.011) & 0.095 (+0.008) & $3\times10^{-14}$ \\
+R3 heavy credit 1.0 per role & 0.666 (+0.093) & 0.377 (+0.032) & 0.160 ($-$0.020) & 0.099 (+0.011) & $3\times10^{-14}$ \\
+R4 optimistic $Q_0=2$ & 0.593 (+0.021) & 0.318 ($-$0.026) & 0.140 ($-$0.040) & 0.084 ($-$0.003) & $1\times10^{-12}$ \\
+R5 dormant agents learn & 0.587 (+0.014) & 0.364 (+0.020) & 0.182 (+0.002) & 0.083 ($-$0.005) & $3\times10^{-14}$ \\
+R6 trained with coop.\ partners & 0.046 ($-$0.526) & 0.034 ($-$0.310) & 0.007 ($-$0.173) & 0.018 ($-$0.069) & $6\times10^{-6}$ \\
+R7 24{,}000 episodes & 0.759 (+0.186) & 0.289 ($-$0.055) & 0.176 ($-$0.004) & 0.117 (+0.030) & $1\times10^{-11}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{The scarcity decline survives every change}, so none of these choices produces it. Finer budget buckets (R1)
+make the decline \emph{stronger}: agents that can see their budget fall WAIT in 94\% of steps at Critical (main: 63\%).
+The role bit (R2) raises the effective assist rate at Abundant (0.61 vs 0.45) but not the number of rescues. Equal heavy
+credit (R3) raises heavy rescues at Abundant (0.556 vs 0.422; $\RF$ $+0.093$, $p=0.027$): the reward split shapes how
+often agents attempt heavy victims, not the trend. Optimistic initial values (R4) reduce waiting at Abundant (46\% vs
+57\%) without changing $\RF$; the main policies WAIT in 53--63\% of steps at every level. Updating dormant agents (R5)
+changes nothing. Agents trained next to scripted cooperative teammates (R6) see teammates throughout training, yet fail
+when deployed together ($\RF$ 0.046): they learn to rely on fixed partner conventions, which supports H6 without its
+confound. Three times more training (R7) raises Abundant to 0.759 but Critical only to 0.117, so the gap widens with
+training; still no run meets the stability criterion.
+
+\subsection{Success criteria}
+Table~\ref{tab:success} checks the eight success criteria of the proposal.
+
+\begin{table}[h]
+\centering\small
+\caption{Success criteria from the proposal.}
+\label{tab:success}
+\begin{tabularx}{\linewidth}{@{}lcL@{}}
+\toprule
+Criterion & Met & Evidence \\
+\midrule
+1 Functional environment & Yes & 269 tests; exact step order, budgets, termination, logging; replays in the repository \\
+2 Learning improvement & Yes & H0: 10/10 seeds above random, $p=9.8\times10^{-4}$ \\
+3 Scarcity sensitivity & Yes & H1: Friedman $p=1.4\times10^{-6}$, $W=1.00$ \\
+4 Cooperation measurement & Yes & C1--C5 formally defined and validated (42/45 checks) \\
+5 Baseline comparison & Yes & Random, greedy, cooperative and oracle on the same 100 test maps (H3) \\
+6 Robustness across seeds & Yes & 10 seeds per condition, 95\% CIs; trend holds in every seed and in R1--R7 \\
+7 Generalisation & Yes & Unseen test maps, shifted maps, a $12\times12$ configuration, cross-level transfer \\
+8 Reproducibility & Yes & Public code, configs, seeds, frozen instance lists; every number regenerated and checked by a script \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% =====================================================================================================================
+\section{Discussion}
+% =====================================================================================================================
+\textbf{Answer to the research question.} Scarcity strongly reduces how much independent learners rescue, and it
+reduces cooperation-requiring rescues most. Learned coordination is real (mismatching, removing or separately training
+teammates all hurt), but its contribution shrinks as budgets tighten, because there is less budget left for
+coordination to make use of. Scarcity does not appear to break cooperation specifically: an all-light world suffers at
+least as much in absolute terms, and assist efficiency, territory division and load balance do not change significantly.
+The decline is robust to the budget feature, the role signal, the reward split, initialisation, dormant-agent learning,
+the training partners and three times more training.
+
+\textbf{What we cannot conclude.} We make no claim about converged behaviour (no run was stable), about a
+cooperation-specific bottleneck (H5 depends on the scale), about causation from the cooperation metrics (A8 is
+observational), or about other algorithms, larger teams or communication.
+
+% =====================================================================================================================
+\section{Limitations}
+% =====================================================================================================================
+\begin{itemize}
+\item \textbf{No convergence.} All results are after a fixed training budget; longer training changes absolute levels
+(R7) though not the ordering.
+\item \textbf{Ten seeds.} Large consistent effects are detected; small ones are not, so non-significant results (EAR, TDI,
+Gini, greedy at Critical) are inconclusive rather than evidence of no effect.
+\item \textbf{Metric dependence on performance.} PSS and CR fall partly because rescues fall.
+\item \textbf{Weak selfish baseline.} The greedy agents move in lockstep; beating them does not mean beating selfishness
+in general.
+\item \textbf{Calibration range.} Critical misses its target band because $\rho=0.1$ is mostly infeasible; $\rho$ is
+comparable across configurations only for $L\ge10$.
+\item \textbf{Scope.} One environment family, three agents, a hand-designed observation and no communication; methods with
+centralised training may respond differently to scarcity.
+\end{itemize}
+
+% =====================================================================================================================
+\section{Reproducibility and repository}
+% =====================================================================================================================
+Code, configurations, frozen instance lists, all 350 training runs, raw test episodes and figures are at
+\url{https://github.com/Kshitij-Giri/the-last-rescue}. The README gives the question, the main results with plots,
+setup and every command:
+\begin{itemize}
+\item \texttt{python -m pytest} runs the 269 tests;
+\item \texttt{python scripts/run\_all.py -{}-quick} runs the whole pipeline at reduced scale in minutes;
+\item \texttt{python scripts/run\_all.py -{}-full} reproduces the study (about 2.5 hours on two cores).
+\end{itemize} The
+statistics are produced by one script from the raw test episodes, and \texttt{scripts/verify\_results.py} recomputes the
+confirmatory tests independently and checks every reported number against its source file (278 checks).
+
+% =====================================================================================================================
+\section{Contribution}
+% =====================================================================================================================
+Table~\ref{tab:contrib} lists the tasks assigned in the proposal and whether each was fulfilled. All members also took
+part in integration, debugging, running experiments, interpreting results and proofreading.
+
+\begin{table}[h]
+\centering\small
+\caption{Assigned tasks and their completion.}
+\label{tab:contrib}
+\begin{tabularx}{\linewidth}{@{}p{2.5cm}Lp{1.3cm}@{}}
+\toprule
+Member & Assigned task and delivered work & Fulfilled \\
+\midrule
+Kshitij Suresh Giri & Coordination, problem specification and formulation, integration, experimental design, report
+integration. Delivered the formal specification and pre-specified analysis plan, calibration
+(\texttt{calibration.py}), statistics and verification (\texttt{stats.py}, \texttt{run\_stats.py},
+\texttt{verify\_results.py}), the pipeline runner and the report build. & Yes \\
+Panjari Maheshkumar Patel & Environment, grid-world, map and victim generation, resource dynamics, interfaces,
+visualisation and logging. Delivered \texttt{env.py}, \texttt{mapgen.py}, \texttt{costs.py}, \texttt{observation.py},
+\texttt{replay.py}, the environment test suites, replays and the environment diagrams. & Yes \\
+DV Snehal & Multi-agent formulation, reward and cooperation modelling, baselines, individual--collective analysis,
+interpretation. Delivered \texttt{rewards.py}, the cooperation metrics and their validation, the random, greedy and
+cooperative baselines, the oracle reference, Exp4, the A8 association analysis and the robustness study R1--R7. & Yes \\
+Kshitish Madbhavi & RL implementation, Q-learning pipeline, hyperparameters, learning curves, evaluation and
+ablations. Delivered \texttt{iql.py}, \texttt{train.py}, \texttt{experiments.py}, the pilot, the 350 training runs and
+their evaluation, the ablations A1, A2, A4, A6 and the figures. & Yes \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{thebibliography}{14}
+\bibitem{shoham2008} Y.~Shoham and K.~Leyton-Brown. \emph{Multiagent Systems: Algorithmic, Game-Theoretic, and Logical
+Foundations}. Cambridge University Press, 2008.
+\bibitem{queralta2020} J.~Pe\~na Queralta, J.~Taipalmaa, B.~C. Pullinen, V.~K. Sarker, T.~N. Gia, H.~Tenhunen,
+M.~Gabbouj, J.~Raitoharju, and T.~Westerlund. Collaborative multi-robot search and rescue: Planning, coordination,
+perception, and active vision. \emph{IEEE Access}, 8:191617--191643, 2020.
+\bibitem{zhang2021} K.~Zhang, Z.~Yang, and T.~Ba\c{s}ar. Multi-agent reinforcement learning: A selective overview of
+theories and algorithms. In \emph{Studies in Systems, Decision and Control}, volume 325, pages 321--384. Springer, 2021.
+\bibitem{leibo2017} J.~Z. Leibo, V.~F. Zambaldi, M.~Lanctot, J.~Marecki, and T.~Graepel. Multi-agent reinforcement
+learning in sequential social dilemmas. In \emph{Proc.\ 16th Conference on Autonomous Agents and MultiAgent Systems},
+pages 464--473, 2017.
+\bibitem{nguyen2018} L.~H. Nguyen, Z.~Yang, J.~Zhu, J.~Li, and F.~Jin. Coordinating disaster emergency response with
+heuristic reinforcement learning. \emph{arXiv preprint arXiv:1811.05010}, 2018.
+\bibitem{hickling2026} T.~Hickling, M.~Hogan, A.~Tammam, and N.~Aouf. Deep reinforcement learning based autonomous
+decision-making for cooperative uncrewed aerial vehicles: A search and rescue real world application. \emph{Journal of
+Field Robotics}, 43(7):4382--4401, 2026.
+\bibitem{sutton2018} R.~S. Sutton and A.~G. Barto. \emph{Reinforcement Learning: An Introduction}. MIT Press, 2nd
+edition, 2018.
+\bibitem{watkins1992} C.~J. C.~H. Watkins and P.~Dayan. Q-learning. \emph{Machine Learning}, 8(3--4):279--292, 1992.
+\bibitem{tan1993} M.~Tan. Multi-agent reinforcement learning: Independent vs.\ cooperative agents. In \emph{Proc.\ 10th
+International Conference on Machine Learning}, pages 330--337. Morgan Kaufmann, 1993.
+\bibitem{holm1979} S.~Holm. A simple sequentially rejective multiple test procedure. \emph{Scandinavian Journal of
+Statistics}, 6(2):65--70, 1979.
+\bibitem{friedman1937} M.~Friedman. The use of ranks to avoid the assumption of normality implicit in the analysis of
+variance. \emph{Journal of the American Statistical Association}, 32(200):675--701, 1937.
+\bibitem{page1963} E.~B. Page. Ordered hypotheses for multiple treatments: A significance test for linear ranks.
+\emph{Journal of the American Statistical Association}, 58(301):216--230, 1963.
+\bibitem{wilcoxon1945} F.~Wilcoxon. Individual comparisons by ranking methods. \emph{Biometrics Bulletin}, 1(6):80--83,
+1945.
+\bibitem{efron1979} B.~Efron. Bootstrap methods: Another look at the jackknife. \emph{The Annals of Statistics},
+7(1):1--26, 1979.
+\end{thebibliography}
+
+\end{document}
