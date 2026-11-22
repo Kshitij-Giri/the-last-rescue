@@ -20,6 +20,7 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
+from .baselines import CooperativeController, StaticContext
 from .costs import CostModel
 from .env import RescueEnv
 from .iql import IQLParams, IQLTeam, eval_rngs
@@ -60,6 +61,11 @@ class RunSpec:
     n_agents: int | None = None          # None -> config value; 1 for A4 solo training
     agent_ids: list[int] | None = None   # exploration-stream slots (A4 solo agent k -> [k])
     max_env_steps: int | None = None     # A6: train until this many environment steps (epsilon scheduled by steps)
+    # Robustness blocks only (defaults reproduce the frozen study):
+    env_opts: dict[str, Any] = field(default_factory=dict)   # RescueEnv options (bucket_ref, role_bit)
+    q_init: float = 0.0                  # initial Q-value of every entry
+    update_dormant: bool = False         # also learn from dormant agents' transitions (they still earn r_team)
+    partner: str | None = None           # "cooperative": one learner (agent_ids[0]) trained with scripted teammates
 
 
 def episode_order(seed: int, pool_size: int, episodes: int) -> np.ndarray:
@@ -83,21 +89,35 @@ class EpisodeOrder:
         return self.buf[e]
 
 
-def train_episode(env: RescueEnv, team: IQLTeam, inst: Instance, st: MapStatics, b0: int, eps: float
-                  ) -> dict[str, Any]:
-    """Play and learn one episode. Returns per-episode training statistics."""
+def train_episode(env: RescueEnv, team: IQLTeam, inst: Instance, st: MapStatics, b0: int, eps: float,
+                  update_dormant: bool = False, learner_slot: int | None = None) -> dict[str, Any]:
+    """Play and learn one episode. Returns per-episode training statistics.
+
+    With `learner_slot` set, `team` holds a single learner that plays slot `learner_slot` while every other slot is
+    played by the hand-designed cooperative controller (robustness block for H6)."""
     obs, masks = env.reset(inst, b0, statics=st, record=False)
-    ret = np.zeros(team.n)
+    slots = list(range(env.n)) if learner_slot is None else [learner_slot]
+    partners = {}
+    if learner_slot is not None:
+        ctx = StaticContext.from_env(env)
+        partners = {j: CooperativeController(j, ctx, 0) for j in range(env.n) if j != learner_slot}
+    ret = np.zeros(env.n)
     td_abs, n_upd, heavy = 0.0, 0, 0
     while not env.done:
         dormant = env.dormant.copy()
-        acts = team.act(obs, masks, eps)
+        own = team.act([obs[i] for i in slots], masks[slots], eps)
+        acts = [0] * env.n
+        for k, i in enumerate(slots):
+            acts[i] = own[k]
+        for j, ctrl in partners.items():
+            acts[j] = int(ctrl.act(env.view(j), masks[j]))
         obs2, masks2, R, done, info = env.step(acts)
         ret += R
         heavy += sum(1 for e in info["events"] if e["type"] == "rescue" and e["heavy"])
-        for i in range(team.n):
-            if not dormant[i]:  # a dormant agent had no choice (only WAIT): nothing to learn (spec §2.1)
-                td_abs += abs(team.update(i, obs[i], acts[i], float(R[i]), obs2[i], masks2[i], done))
+        for k, i in enumerate(slots):
+            # A dormant agent had no choice (only WAIT): by default nothing is learned from it (spec §2.1).
+            if update_dormant or not dormant[i]:
+                td_abs += abs(team.update(k, obs[i], acts[i], float(R[i]), obs2[i], masks2[i], done))
                 n_upd += 1
         obs, masks = obs2, masks2
     return {"steps": env.t, "rescued": env.n_rescued, "rescued_heavy": heavy, "V": inst.n_victims,
@@ -105,18 +125,29 @@ def train_episode(env: RescueEnv, team: IQLTeam, inst: Instance, st: MapStatics,
             "mean_abs_td": td_abs / n_upd if n_upd else 0.0, "updates": n_upd}
 
 
-def evaluate_team(env: RescueEnv, team: IQLTeam, pool: InstancePool, b0: int, labels: dict[str, Any] | None = None
-                  ) -> tuple[list[dict[str, Any]], list[set[int]]]:
-    """Greedy (epsilon = 0) evaluation with CRN tie-breaks; returns per-episode metric rows and visited observations."""
+def evaluate_team(env: RescueEnv, team: IQLTeam, pool: InstancePool, b0: int, labels: dict[str, Any] | None = None,
+                  learner_slot: int | None = None) -> tuple[list[dict[str, Any]], list[set[int]]]:
+    """Greedy (epsilon = 0) evaluation with CRN tie-breaks; returns per-episode metric rows and visited observations.
+    With `learner_slot`, the single learner plays that slot next to cooperative controllers (as in its training)."""
     rows, visited = [], [set() for _ in range(team.n)]
+    slots = list(range(env.n)) if learner_slot is None else [learner_slot]
     for k, (inst, st) in enumerate(pool.items):
         obs, masks = env.reset(inst, b0, statics=st, record=True)
         # CRN tie-breaks keyed by the instance seed (hand-written test instances have none: use their list position)
-        rngs = eval_rngs(inst.seed if inst.seed is not None else k, team.n)
+        rngs = eval_rngs(inst.seed if inst.seed is not None else k, env.n)
+        partners = {}
+        if learner_slot is not None:
+            ctx = StaticContext.from_env(env)
+            partners = {j: CooperativeController(j, ctx, 0) for j in range(env.n) if j != learner_slot}
         while not env.done:
-            for i in range(team.n):
-                visited[i].add(int(obs[i]))
-            acts = team.act(obs, masks, 0.0, rngs=rngs)
+            for m, i in enumerate(slots):
+                visited[m].add(int(obs[i]))
+            own = team.act([obs[i] for i in slots], masks[slots], 0.0, rngs=[rngs[i] for i in slots])
+            acts = [0] * env.n
+            for m, i in enumerate(slots):
+                acts[i] = own[m]
+            for j, ctrl in partners.items():
+                acts[j] = int(ctrl.act(env.view(j), masks[j]))
             obs, masks, _, _, _ = env.step(acts)
         rows.append(episode_record(inst, st, env.log, env.costs, env.r_v, **(labels or {})))
     return rows, visited
@@ -172,8 +203,13 @@ def train_run(cfg: dict[str, Any], spec: RunSpec, train_pool: InstancePool, val_
     """Train one IQL team; evaluate on validation at checkpoints; optionally write logs and Q-tables to out_dir."""
     t0 = time.time()
     p = spec.params
-    env = RescueEnv(cfg, horizon=spec.horizon, b_ref=spec.b_ref, budget_mode=spec.budget_mode, n_agents=spec.n_agents)
-    team = IQLTeam(env.n, p, spec.seed, agent_ids=spec.agent_ids)
+    env = RescueEnv(cfg, horizon=spec.horizon, b_ref=spec.b_ref, budget_mode=spec.budget_mode, n_agents=spec.n_agents,
+                    **spec.env_opts)
+    learner_slot = spec.agent_ids[0] if spec.partner == "cooperative" else None
+    if spec.partner not in (None, "cooperative"):
+        raise ValueError(f"unknown partner {spec.partner!r}")
+    team = IQLTeam(env.n if learner_slot is None else 1, p, spec.seed, q_init=spec.q_init,
+                   agent_ids=spec.agent_ids, n_obs=env.n_obs)
     order = EpisodeOrder(spec.seed, len(train_pool))
     budget = spec.max_env_steps
     eps_of = (lambda e: p.epsilon(e)) if budget is None else (lambda e: p.epsilon_by_steps(total_steps, budget))
@@ -185,7 +221,8 @@ def train_run(cfg: dict[str, Any], spec: RunSpec, train_pool: InstancePool, val_
 
     def checkpoint(episode: int) -> None:
         nonlocal prev_greedy, best, final_eval_rows
-        rows, visited = evaluate_team(env, team, val_pool, spec.b0, {"run": spec.name, "checkpoint": episode})
+        rows, visited = evaluate_team(env, team, val_pool, spec.b0, {"run": spec.name, "checkpoint": episode},
+                                      learner_slot)
         s = summarize_eval(rows)
         g = team.greedy_actions()
         recent = ep_rows[-spec.checkpoint_every:]
@@ -204,7 +241,7 @@ def train_run(cfg: dict[str, Any], spec: RunSpec, train_pool: InstancePool, val_
     while (e < p.episodes) if budget is None else (total_steps < budget):
         inst, st = train_pool[int(order[e])]
         eps = eps_of(e)
-        r = train_episode(env, team, inst, st, spec.b0, eps)
+        r = train_episode(env, team, inst, st, spec.b0, eps, spec.update_dormant, learner_slot)
         total_steps += r["steps"]
         ep_rows.append({"episode": e + 1, "instance_seed": inst.seed, "epsilon": eps, **r})
         e += 1

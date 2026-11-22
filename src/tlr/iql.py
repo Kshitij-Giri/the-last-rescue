@@ -70,10 +70,10 @@ class IQLTeam:
     """n independent Q-tables plus their own exploration RNGs."""
 
     def __init__(self, n_agents: int, params: IQLParams, seed: int, q_init: float = 0.0,
-                 agent_ids: list[int] | None = None) -> None:
+                 agent_ids: list[int] | None = None, n_obs: int = N_OBS) -> None:
         self.n = n_agents
         self.p = params
-        self.Q = np.full((n_agents, N_OBS, N_ACTIONS), q_init, dtype=np.float64)
+        self.Q = np.full((n_agents, n_obs, N_ACTIONS), q_init, dtype=np.float64)
         # One exploration stream per agent SLOT, derived from the training seed only (identical across conditions).
         # `agent_ids` maps local agents to team slots; a solo-trained agent for slot k (A4) uses agent_ids = [k] and so
         # gets exactly the stream joint agent k gets. Default: slots 0..n-1 (unchanged Phase 4 behaviour).

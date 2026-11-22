@@ -195,7 +195,7 @@
 [PASS] V3 H4 p and Holm(4)
 [PASS] V3 H6 p and Holm(4)
 [PASS] V3 H5 DiD and p
-[PASS] V4 run_stats.py reproduces every output byte-identically - 18/18 files identical
+[PASS] V4 run_stats.py reproduces every output - 9/18 byte-identical, 18/18 numerically equal
 [PASS] V5 claim CAL1 - stated 105, source 105
 [PASS] V5 claim CAL2 - stated 64, source 64
 [PASS] V5 claim CAL3 - stated 13, source 13
@@ -262,15 +262,15 @@
 [PASS] V5 claim POOL1 - stated 0.061, source 0.0611666666666666
 [PASS] V5 claim POOL2 - stated 0.042, source 0.0419999999999999
 [PASS] V5 claim X4b - stated 0.052, source 0.052
-[PASS] V5 claim X4c - stated 3.337, source 3.337
+[PASS] V5 claim X4c - stated 3.337, source 3.3369999999999997
 [PASS] V5 claim X4d - stated 0.152, source 0.152
 [PASS] V5 claim A3h - stated -0.339, source -0.3387294139509281
 [PASS] V5 claim E1g - stated 0.723, source 0.7230000000000001
 [PASS] V5 claim E1h - stated 0.159, source 0.1586666666666666
 [PASS] V5 claim SEN2 - stated 0.647, source 0.647
-[PASS] V7 report numbers: every registered value equals its source file - 579/579
-[PASS] V7 report numbers: displayed text = formatted source value - 579/579
-[PASS] V7 report numbers: every displayed value appears in report.docx - 579/579
+[PASS] V7 report numbers: every registered value equals its source file - 661/661
+[PASS] V7 report numbers: displayed text = formatted source value - 661/661
+[PASS] V7 report numbers: every displayed value appears in report.docx - 661/661
 [PASS] V7 report figures: every figure file exists and is embedded - 14 figures, 14 embedded images
 [PASS] V7 report: every table and figure caption is present
 [PASS] V7 report length within 25-40 pages (PDF rendering) - 34 pages

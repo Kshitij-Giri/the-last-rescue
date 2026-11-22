@@ -1,4 +1,4 @@
-/home/claude/the_last_rescue/scripts/phase5_summary.py:55: PerformanceWarning: dropping on a non-lexsorted multi-index without a level parameter may impact performance.
+scripts/phase5_summary.py:55: PerformanceWarning: dropping on a non-lexsorted multi-index without a level parameter may impact performance.
   return df.assign(_o=df[col].map({l: i for i, l in enumerate(LEVELS)})).sort_values("_o").drop(columns="_o")
 # Phase 5 results summary (descriptive; formal analysis is Phase 6)
 

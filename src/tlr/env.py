@@ -24,7 +24,7 @@ import numpy as np
 
 from .costs import Action, CostModel, N_ACTIONS
 from .mapgen import Instance, MapStatics, compute_statics
-from .observation import (AgentView, budget_thresholds, compute_mask, encode, features,
+from .observation import (N_OBS, AgentView, budget_thresholds, compute_mask, encode, features,
                           nearest_known_victim)
 from .rewards import RewardComponents, RewardModel, combine
 
@@ -70,7 +70,7 @@ class RescueEnv:
     """Multi-agent search-and-rescue grid world with integer resource budgets."""
 
     def __init__(self, cfg: dict[str, Any], horizon: int, b_ref: int, budget_mode: str | None = None,
-                 n_agents: int | None = None) -> None:
+                 n_agents: int | None = None, bucket_ref: str = "b_ref", role_bit: bool = False) -> None:
         e = cfg["env"]
         self.cfg = cfg
         self.n = int(n_agents if n_agents is not None else e["n_agents"])
@@ -88,6 +88,15 @@ class RescueEnv:
         self.costs = CostModel.from_config(cfg)
         self.rewards = RewardModel.from_config(cfg)
         self.thresholds = budget_thresholds(self.b_ref, self.costs.c_rescue)
+        # Robustness options (exploratory blocks only; defaults reproduce the frozen study exactly):
+        # bucket_ref="b0" sets the f4 thresholds from the agent's own initial budget instead of B_ref;
+        # role_bit=True appends one bit to the observation: 1 iff a teammate shares the cell and this agent has the
+        # lowest id there (the same convention the cooperative baseline uses to split RESCUE and ASSIST).
+        if bucket_ref not in ("b_ref", "b0"):
+            raise ValueError(f"unknown bucket_ref {bucket_ref!r}")
+        self.bucket_ref = bucket_ref
+        self.role_bit = bool(role_bit)
+        self.n_obs = N_OBS * (2 if self.role_bit else 1)
         self.done = True
 
     # ------------------------------------------------------------------------------------------------------------
@@ -108,6 +117,8 @@ class RescueEnv:
         L = instance.L
         V = instance.n_victims
         self.b0 = int(b0)
+        if self.bucket_ref == "b0":
+            self.thresholds = budget_thresholds(self.b0, self.costs.c_rescue)
         self.pos = np.array(start_positions if start_positions is not None else [instance.base] * self.n,
                             dtype=np.int64)
         if len(self.pos) != self.n or not all(self.st.free[p] for p in self.pos):
@@ -370,7 +381,12 @@ class RescueEnv:
         targets = np.full(self.n, -1, dtype=np.int64)
         for i in range(self.n):
             v = self.view(i)
-            obs.append(encode(features(v, self.st, self.thresholds, self.near_steps)))
+            o = encode(features(v, self.st, self.thresholds, self.near_steps))
+            if self.role_bit:
+                here = [j for j, cell in v.teammates if cell == v.pos]
+                if here and min(here) > i:
+                    o += N_OBS
+            obs.append(o)
             masks[i] = compute_mask(v, self.st, self.costs)
             if self.log is not None:
                 tgt = nearest_known_victim(v, self.st)

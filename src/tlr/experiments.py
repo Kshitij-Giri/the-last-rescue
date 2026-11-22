@@ -182,9 +182,11 @@ def cooperative_factory() -> ActorFactory:
 
 
 def evaluate_actors(cfg: dict[str, Any], pool: InstancePool, H: int, B_ref: int, b0: int, mode: str,
-                    factory: ActorFactory, labels: dict[str, Any]) -> list[dict[str, Any]]:
-    """Run one greedy episode per instance with the actors from `factory`; return per-episode metric rows."""
-    env = RescueEnv(cfg, horizon=H, b_ref=B_ref, budget_mode=mode)
+                    factory: ActorFactory, labels: dict[str, Any], env_opts: dict[str, Any] | None = None,
+                    action_shares: bool = False) -> list[dict[str, Any]]:
+    """Run one greedy episode per instance with the actors from `factory`; return per-episode metric rows.
+    `action_shares` adds the share of each effective action type (robustness analysis)."""
+    env = RescueEnv(cfg, horizon=H, b_ref=B_ref, budget_mode=mode, **(env_opts or {}))
     rows = []
     for k, (inst, st) in enumerate(pool.items):
         obs, masks = env.reset(inst, b0, statics=st, record=True)
@@ -192,7 +194,12 @@ def evaluate_actors(cfg: dict[str, Any], pool: InstancePool, H: int, B_ref: int,
         while not env.done:
             acts = [a.act(obs[i], masks[i], env.view(i) if a.needs_view else None) for i, a in enumerate(actors)]
             obs, masks, _, _, _ = env.step(acts)
-        rows.append(episode_record(inst, st, env.log, env.costs, env.r_v, **labels))
+        row = episode_record(inst, st, env.log, env.costs, env.r_v, **labels)
+        if action_shares:
+            acts = np.concatenate(env.log.effective_actions)
+            for a in Action:
+                row[f"share_{a.name.lower()}"] = float(np.mean(acts == a))
+        rows.append(row)
     return rows
 
 
@@ -214,8 +221,55 @@ def run_dir(block: str, level: str, seed: int, slot: int | None = None) -> Path:
 
 
 def load_q(block: str, level: str, seed: int, which: str = "final") -> list[np.ndarray]:
-    """Per-slot Q-tables of a trained team (solo block: three single-agent runs combined)."""
-    if block == "solo":
-        return [np.load(run_dir(block, level, seed, k) / f"q_{which}.npz")["Q"][0] for k in range(3)]
-    Q = np.load(run_dir(block, level, seed) / f"q_{which}.npz")["Q"]
+    """Per-slot Q-tables of a trained team (solo-type blocks: three single-agent runs combined)."""
+    rd = robust_run_dir if block in ROBUST_BLOCKS else run_dir
+    if block == "solo" or (block in ROBUST_BLOCKS and ROBUST_BLOCKS[block].per_slot):
+        return [np.load(rd(block, level, seed, k) / f"q_{which}.npz")["Q"][0] for k in range(3)]
+    Q = np.load(rd(block, level, seed) / f"q_{which}.npz")["Q"]
     return [Q[i] for i in range(Q.shape[0])]
+
+
+# ----------------------------------------------------------------------------------------------------------------
+# Robustness blocks (added after the main study; exploratory, see docs/deviations_log.md R1-R7).
+# Each changes ONE design choice of the main block and is trained on the same seeds, pools and levels.
+# ----------------------------------------------------------------------------------------------------------------
+
+@dataclass(frozen=True)
+class RobustBlock:
+    name: str
+    question: str
+    env_opts: tuple[tuple[str, Any], ...] = ()
+    reward: tuple[tuple[str, float], ...] = ()
+    q_init: float = 0.0
+    update_dormant: bool = False
+    partner: str | None = None
+    episodes: int = 8000
+
+    @property
+    def per_slot(self) -> bool:
+        return self.partner is not None
+
+
+ROBUST_BLOCKS = {b.name: b for b in [
+    RobustBlock("relbudget", "f4 budget buckets relative to the agent's own b0 instead of B_ref",
+                env_opts=(("bucket_ref", "b0"),)),
+    RobustBlock("role", "one extra observation bit breaking the RESCUE/ASSIST symmetry (lowest id on the cell)",
+                env_opts=(("role_bit", True),)),
+    RobustBlock("heavycredit", "individual credit 1.0 for each heavy-rescue role (equal to a light rescue)",
+                reward=(("heavy_rescuer", 1.0), ("heavy_assister", 1.0))),
+    RobustBlock("optinit", "optimistic initial Q-values (2.0 = reward of one own rescue)", q_init=2.0),
+    RobustBlock("dormupd", "dormant agents' transitions also used for updates", update_dormant=True),
+    RobustBlock("partner", "each agent trained next to two cooperative-baseline teammates, deployed together",
+                partner="cooperative"),
+    RobustBlock("long", "three times the training episodes (24,000)", episodes=24000),
+]}
+
+
+def robust_run_dir(block: str, level: str, seed: int, slot: int | None = None) -> Path:
+    tail = f"seed_{seed}" + (f"_slot{slot}" if slot is not None else "")
+    return ROOT / "results" / "robustness" / "runs" / block / level / tail
+
+
+def robust_cfg(block: RobustBlock) -> dict[str, Any]:
+    cfg = world_cfg("main")
+    return deep_update(cfg, {"reward": dict(block.reward)}) if block.reward else cfg

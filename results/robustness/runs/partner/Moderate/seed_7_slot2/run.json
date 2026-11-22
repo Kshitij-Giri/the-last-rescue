@@ -1,0 +1,63 @@
+{
+ "spec": {
+  "name": "partner_Moderate_s7_slot2",
+  "seed": 7,
+  "b0": 32,
+  "horizon": 105,
+  "b_ref": 64,
+  "budget_mode": "per_agent",
+  "params": {
+   "alpha": 0.1,
+   "gamma": 0.98,
+   "eps_start": 1.0,
+   "eps_end": 0.05,
+   "eps_decay_fraction": 0.7,
+   "episodes": 8000
+  },
+  "checkpoint_every": 500,
+  "n_agents": null,
+  "agent_ids": [
+   2
+  ],
+  "max_env_steps": null,
+  "env_opts": {},
+  "q_init": 0.0,
+  "update_dormant": false,
+  "partner": "cooperative"
+ },
+ "seconds": 82.1,
+ "total_env_steps": 427688,
+ "final": {
+  "episode": 8000.0,
+  "env_steps": 427688.0,
+  "epsilon": 0.05,
+  "churn": 0.2656826568265683,
+  "train_mean_abs_td": 0.16364044590026863,
+  "train_rf": 0.4686666666666666,
+  "rf": 0.48666666666666664,
+  "ms": 0.0,
+  "rescued_heavy_share": 0.28,
+  "rescued_light_share": 0.6933333333333334,
+  "collective_return": 10.308399999999999,
+  "ear": 1.0,
+  "assist_actions": 42.0,
+  "rsr": 0.5364583333333334,
+  "rsr_other": 0.359375,
+  "tdi": 0.7676379986085209,
+  "gini_consumption": 0.030182552202000737,
+  "pss": 0.11399868967023367,
+  "cr": 0.1606864274570983,
+  "e1_abandonment": 0.02,
+  "e2_duplicate": 0.32,
+  "failed_rescue": 0.02,
+  "steps": 58.78,
+  "exhausted": 0.76,
+  "horizon": 0.24,
+  "coverage": 0.7727058823529411
+ },
+ "best_val_episode": 7000,
+ "best_val_rf": 0.48999999999999994,
+ "last_churn": 0.2656826568265683,
+ "last3_rf_range": 0.029999999999999916,
+ "stable": false
+}

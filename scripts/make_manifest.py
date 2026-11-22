@@ -8,6 +8,7 @@ from __future__ import annotations
 import hashlib
 import json
 import platform
+import subprocess
 from datetime import datetime, timezone
 from importlib import metadata
 from pathlib import Path
@@ -16,16 +17,18 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def main() -> None:
+    # Files of the repository only (tracked or not ignored): skips .git, virtual environments, node_modules, caches.
+    listed = subprocess.run(["git", "ls-files", "--cached", "--others", "--exclude-standard"], cwd=ROOT,
+                            capture_output=True, text=True, check=True).stdout.splitlines()
     files = {}
-    for p in sorted(ROOT.rglob("*")):
-        rel = p.relative_to(ROOT)
-        if p.is_file() and "__pycache__" not in rel.parts and rel.parts[0] != ".pytest_cache" \
-                and str(rel) not in ("results/manifest.json", "docs/zip_integrity.txt"):
-            files[str(rel)] = hashlib.sha256(p.read_bytes()).hexdigest()
+    for rel in sorted(listed):
+        p = ROOT / rel
+        if p.is_file() and rel != "results/manifest.json":
+            files[rel] = hashlib.sha256(p.read_bytes()).hexdigest()
     man = {"created_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
            "python": platform.python_version(),
            "packages": {p: metadata.version(p) for p in ("numpy", "scipy", "pandas", "matplotlib", "PyYAML", "pytest",
-                                                         "python-docx")},
+                                                         "python-docx", "tabulate")},
            "preregistration": {"file": "docs/preregistration.md", "frozen": "2026-11-12",
                                "sha256": files.get("docs/preregistration.md")},
            "confirmatory_training_seeds": list(range(10)), "pilot_seeds": [1000, 1001, 1002, 1003, 1004],

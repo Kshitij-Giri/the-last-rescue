@@ -7,7 +7,8 @@ Checks
   V3 confirmatory tests: recomputed directly with scipy (not tlr.stats) plus an independent Holm implementation;
      compared with h1_h2_omnibus.csv, h1_h2_pairwise.csv, h3_vs_baselines.csv, h4_A1_mismatch.csv, h6_A4_solo.csv, and
      results.json (H0, H5).
-  V4 reproducibility: scripts/run_stats.py is re-run into a scratch directory; every output file must be byte-identical.
+  V4 reproducibility: scripts/run_stats.py is re-run into a scratch directory; every output file must be byte-identical
+     or, where floating-point summation order differs between platforms, numerically equal (relative tolerance 1e-5).
   V5 claims ledger: every entry of docs/claims.yaml is checked against its source; docs/claims_ledger.md is written.
   V6 provenance: training-run count and the Phase 5 manifest hashes of raw evaluation files.
 Usage: python scripts/verify_results.py      (log: results/logs/verify_results.txt)
@@ -76,6 +77,42 @@ def snap(d):
 def close(a, b, tol=1e-12) -> bool:
     a, b = np.asarray(a, float), np.asarray(b, float)
     return a.shape == b.shape and bool(np.all((np.isnan(a) & np.isnan(b)) | (np.abs(a - b) <= tol)))
+
+
+def _leaves(x, path=""):
+    if isinstance(x, dict):
+        for k, v in x.items():
+            yield from _leaves(v, f"{path}.{k}")
+    elif isinstance(x, list):
+        for i, v in enumerate(x):
+            yield from _leaves(v, f"{path}[{i}]")
+    else:
+        yield path, x
+
+
+def _same_value(a, b) -> bool:
+    if isinstance(a, (int, float)) and isinstance(b, (int, float)) and not isinstance(a, bool):
+        return bool(np.isclose(a, b, rtol=1e-5, atol=1e-12, equal_nan=True))
+    return a == b
+
+
+def numerically_equal(f1: Path, f2: Path) -> bool:
+    """Same structure and text; numbers equal within a relative tolerance of 1e-5."""
+    if not f2.exists():
+        return False
+    if f1.suffix == ".json":
+        a, b = list(_leaves(json.loads(f1.read_text()))), list(_leaves(json.loads(f2.read_text())))
+        return len(a) == len(b) and all(pa == pb and _same_value(va, vb) for (pa, va), (pb, vb) in zip(a, b))
+    a, b = pd.read_csv(f1), pd.read_csv(f2)
+    if list(a.columns) != list(b.columns) or a.shape != b.shape:
+        return False
+    for c in a.columns:
+        if pd.api.types.is_numeric_dtype(a[c]) and pd.api.types.is_numeric_dtype(b[c]):
+            if not np.allclose(a[c].astype(float), b[c].astype(float), rtol=1e-5, atol=1e-12, equal_nan=True):
+                return False
+        elif not a[c].fillna("").astype(str).equals(b[c].fillna("").astype(str)):
+            return False
+    return True
 
 
 def main() -> None:
@@ -160,8 +197,9 @@ def main() -> None:
                        capture_output=True)
         names = sorted(p.name for p in ST.glob("*") if p.suffix in (".csv", ".json"))
         same = [n for n in names if filecmp.cmp(ST / n, Path(tmp) / n, shallow=False)]
-        check("V4 run_stats.py reproduces every output byte-identically", len(same) == len(names),
-              f"{len(same)}/{len(names)} files identical")
+        equal = [n for n in names if n in same or numerically_equal(ST / n, Path(tmp) / n)]
+        check("V4 run_stats.py reproduces every output", len(equal) == len(names),
+              f"{len(same)}/{len(names)} byte-identical, {len(equal)}/{len(names)} numerically equal")
 
     claims = yaml.safe_load((ROOT / "docs" / "claims.yaml").read_text())
     rows = []
