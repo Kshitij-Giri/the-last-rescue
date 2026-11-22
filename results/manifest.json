@@ -1,5 +1,5 @@
 {
- "created_utc": "2026-11-22T09:39:21Z",
+ "created_utc": "2026-11-22T11:21:31Z",
  "python": "3.13.18",
  "packages": {
   "numpy": "2.5.3",
@@ -162,7 +162,7 @@
   "results/eval/transfer/main__Critical.csv": "0f9fe1e1c345fcb64975683a1db9cdf49f54e53f1a4f151b21aa83de88e6031a",
   "results/eval/transfer/main__Moderate.csv": "ef12d172ee5b935f1916716d0bd7cf0934570e19b43b8bd52c42b32bf33e933c",
   "results/eval/transfer/main__Scarce.csv": "bb7c622f00daeffe4ee4bfbd2510fd5dd4bb66470a1c0efd2adc6add6c3daaea",
-  "results/figures/fig0a_environment.png": "f282550d2e4b9210368af9e6b32bf12eee23576383b85c8c22012aa5df86bcd7",
+  "results/figures/fig0a_environment.png": "9de337b4758742eafc51ad8ff349d4ee7adee8dfd0b3a5a570e73fc0d4751e72",
   "results/figures/fig0b_step_pipeline.png": "0d9a8fc0eb36eb70259e878d4d09a8c27e9e859c45788791474b770f0a02de54",
   "results/figures/fig1_learning_curves.png": "78130349baadd076d248037f9af026657dfcfb5571159be9d002446cc3a3c60e",
   "results/figures/fig2_exp1_rescue.png": "827396769d5a9a76ebc98c10b656959c3f6abed7a036b2fade32b5162dd0403e",
@@ -3975,7 +3975,7 @@
   "scripts/make_phase2_replays.py": "16b8590278981b9de17b9692e6ccb05353e2a753160ee963d49ca9b35b0075cd",
   "scripts/make_phase5_manifest.py": "ab3cc445a60e24baf372b7141c044f266351f6df8ccca370a8b7003373110c97",
   "scripts/make_replays.py": "b8de70bc8e75a3ed9e49511e0b85bb35102e039871f748c13b8d3b3dccf5db70",
-  "scripts/make_report_diagrams.py": "2a52cb8937463d2593bfa7a1c51b9e5caf665558c3f85a647db2aaedeeac1986",
+  "scripts/make_report_diagrams.py": "248a32cdfa669c46e568b32460460626b086beb7a25b3b86fd23c9586802926a",
   "scripts/make_sample_replays.py": "6b7aa8381e2c568fae945919796b66287cf7d322b729f72817235364e482e355",
   "scripts/make_tables.py": "bd46aac083e8ce820042717bb491f12cc7bcb5dd09c5c0f29c0c9beb4fbeaf73",
   "scripts/phase5_summary.py": "566bad59be3fb98e0b5d3df693c75b93dcadc2d08b0b0aa1cd3c90c9aab97008",

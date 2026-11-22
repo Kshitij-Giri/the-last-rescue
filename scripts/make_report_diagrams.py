@@ -32,7 +32,7 @@ def environment() -> None:
     seed = json.loads((ROOT / "results" / "calibration" / "instance_sets.json").read_text())["main"]["test"]["seeds"][0]
     inst = generate_instance(load_config(), seed)
     L = inst.L
-    fig, ax = plt.subplots(figsize=(6.6, 6.2))
+    fig, ax = plt.subplots(figsize=(6.0, 7.0))
     for k in range(L * L):
         r, c = divmod(k, L)
         g = inst.grid[k]
@@ -68,9 +68,9 @@ def environment() -> None:
              Line2D([], [], marker="s", color="w", markerfacecolor="#eb6834", markeredgecolor=INK, markersize=10,
                     label="HEAVY victim (RESCUE + ASSIST, same step)")]
     h, lab = ax.get_legend_handles_labels()
-    ax.legend(handles=extra + h, loc="upper left", bbox_to_anchor=(1.01, 1.0), frameon=False, fontsize=8)
-    ax.set_title(f"Example instance (frozen test instance 0, seed {seed}): 10 x 10 grid, 6 victims (3 heavy)",
-                 fontsize=9, loc="left")
+    # legend below the grid so the map itself sits in the centre of the figure
+    ax.legend(handles=extra + h, loc="upper center", bbox_to_anchor=(0.5, -0.02), ncol=2, frameon=False, fontsize=9,
+              columnspacing=1.6)
     fig.tight_layout()
     fig.savefig(FIG / "fig0a_environment.png", dpi=170, bbox_inches="tight")
     plt.close(fig)
