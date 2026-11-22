@@ -1,4 +1,4 @@
-# Machine-checked claims ledger. Every number reported in the Phase 3-6 summaries (and later the report) is listed here
+# Machine-checked claims ledger. Every key number in the calibration, pilot, results and statistics summaries is listed here
 # with its source; scripts/verify_results.py checks each value against the file (|value - source| <= tol) and writes
 # docs/claims_ledger.md. Locators: json (dot path), csv (row filter + column), yaml (dot path), runs (count query).
 # family: CAL = calibration, PIL = pilot, CONF = confirmatory, SEC = secondary, EXP = exploratory, POSTHOC.

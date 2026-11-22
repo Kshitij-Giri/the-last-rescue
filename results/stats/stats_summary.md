@@ -1,4 +1,4 @@
-# Phase 6 statistics summary
+# Statistics summary
 
 Unit = training seed (n = 10 per condition unless stated). Values: mean [95% percentile bootstrap CI, 10,000 resamples of seeds]. Paired tests across conditions (seeds matched). Holm corrections within the preregistered families. All 10 seeds analysed; unstable runs included. Performance is after 8,000 training episodes, not converged. The oracle is a full-information reference, never a learner. Families: CONFIRMATORY (preregistered H0-H6), SECONDARY (preregistered, reported without inference or as robustness), EXPLORATORY (unadjusted p), POST HOC (added after seeing results; deviations C4/C5).
 

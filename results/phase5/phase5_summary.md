@@ -1,6 +1,6 @@
-# Phase 5 results summary (descriptive; formal analysis is Phase 6)
+# Main experiment results (descriptive; statistical tests are in results/stats/)
 
-All values are on the frozen **test** instances (100 per condition; shifted test where stated), after **8,000 training episodes** (not converged; Phase 4). Unit = training seed (0-9): per seed, mean over test episodes, ratio metrics pooled. All runs are included, stable or not. The oracle is a full-information centralized reference, never a learner.
+All values are on the frozen **test** instances (100 per condition; shifted test where stated), after **8,000 training episodes** (not converged). Unit = training seed (0-9): per seed, mean over test episodes, ratio metrics pooled. All runs are included, stable or not. The oracle is a full-information centralized reference, never a learner.
 
 ## Training runs and stability (A5)
 
@@ -304,7 +304,7 @@ IQL RF per seed: 0.502, 0.595, 0.580, 0.653, 0.722, 0.405, 0.510, 0.653, 0.508, 
 |      8 |      0.433 |     0.827 | -0.393 |
 |      9 |      0.490 |     0.722 | -0.232 |
 
-Mean DiD = -0.248 (seeds with DiD > 0: 0/10). Test and CI: Phase 6.
+Mean DiD = -0.248 (seeds with DiD > 0: 0/10). Tests and CIs: results/stats/.
 
 ## Exp5 — generalization: same-distribution test vs shifted test (wall 0.25, density 0.09)
 

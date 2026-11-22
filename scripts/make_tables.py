@@ -1,4 +1,4 @@
-"""Phase 6 tables (results/tables/*.md, *.csv) and the statistics summary (results/stats/stats_summary.md), built only
+"""Result tables (results/tables/*.md, *.csv) and the statistics summary (results/stats/stats_summary.md), built only
 from results/stats outputs. Every table states its family: CONFIRMATORY / SECONDARY / EXPLORATORY / POST HOC.
 Usage: python scripts/make_tables.py
 """
@@ -56,7 +56,7 @@ def main() -> None:
     E4 = pd.read_csv(ST / "exp4_individual_collective.csv")
     TR = pd.read_csv(ST / "transfer_matrix.csv")
     SB = pd.read_csv(ST / "baselines_test.csv")
-    out = ["# Phase 6 statistics summary", "",
+    out = ["# Statistics summary", "",
            "Unit = training seed (n = 10 per condition unless stated). Values: mean [95% percentile bootstrap CI, 10,000 "
            "resamples of seeds]. Paired tests across conditions (seeds matched). Holm corrections within the "
            "preregistered families. All 10 seeds analysed; unstable runs included. Performance is after 8,000 "

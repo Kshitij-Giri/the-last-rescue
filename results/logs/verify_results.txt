@@ -269,6 +269,6 @@
 [PASS] V5 claim E1h - stated 0.159, source 0.1586666666666666
 [PASS] V5 claim SEN2 - stated 0.647, source 0.647
 [PASS] V6 training runs - 350
-[PASS] V6 raw evaluation CSVs unchanged since the Phase 5 manifest - 67/67
+[PASS] V6 raw evaluation CSVs unchanged since the experiment manifest - 67/67
 
 272 checks passed, 0 failed

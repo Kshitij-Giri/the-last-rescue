@@ -1,4 +1,4 @@
-# Phase 4 Learnability Pilot — Report
+# Learnability pilot
 
 Protocol: `docs/pilot_protocol.md`, hashed before the first pilot run (`results/pilot/protocol_hash.txt`,
 sha256 `51a4bdc5…`, 2026-11-11T19:35:13Z) and unchanged afterwards (re-hashed after the run: identical).
@@ -16,7 +16,7 @@ experimental results.**
 | Other variants | only if P0 fails | **not run** (P1–P5 unused) |
 | Episode count | double only if mean validation RF rises > 0.02 from 75% to 100% of training | rise = **0.018** → keep **8,000** (borderline; see §5) |
 
-**Net result: no permitted parameter was changed.** Phase 5 uses α = 0.1, γ = 0.98, ε 1.0 → 0.05 over the first 70% of
+**Net result: no permitted parameter was changed.** The main study uses α = 0.1, γ = 0.98, ε 1.0 → 0.05 over the first 70% of
 8,000 episodes, and the observation of spec §1.7, exactly as frozen.
 
 ## 2. Seed-level results at the final checkpoint (validation, greedy policy, 50 instances each)
@@ -57,7 +57,7 @@ hand-designed policy:
   and first exceeds the greedy baseline (0.47) between episodes 5,500 and 6,000 in every seed — i.e. shortly after ε reaches
   its floor (episode 5,600). The heavy-victim share follows the same pattern: joint rescues become frequent only once
   exploration noise is low, plausibly because a random action by either partner breaks a same-step RESCUE + ASSIST.
-- Seed-to-seed spread at the end is large (RF 0.50–0.72), so seed-level reporting (10 seeds in Phase 5) is necessary.
+- Seed-to-seed spread at the end is large (RF 0.50–0.72), so seed-level reporting (10 seeds in the main study) is necessary.
 - **Stability: 0 of 5 runs meet the preregistered criterion** (churn < 5% and RF range < 0.02 over the last three
   checkpoints). Final churn is 8.5–18%; validation RF moves by 0.05–0.21 across the last three checkpoints; mean |TD error|
   is still increasing at 8,000 episodes. With a constant α, a 5% ε floor and co-learning teammates this is not surprising:
@@ -66,29 +66,29 @@ hand-designed policy:
 
 ## 5. Failures, limitations and open points
 
-1. **Stability criterion is not met by any pilot run.** If this holds in Phase 5, the preregistered sensitivity "repeat the
+1. **Stability criterion is not met by any pilot run.** If this holds in the main study, the preregistered sensitivity "repeat the
    main result on stable runs only" will have no runs. The preregistration (§6) says unstable runs are not excluded; the
    plan stays as frozen and this will be reported as a result. The best-on-validation checkpoint (preregistered sensitivity)
    becomes more informative because final-checkpoint RF fluctuates by up to ±0.1.
 2. **Episode count is borderline.** The last-quarter rise (0.018) is just below the 0.02 trigger, and TD error is still
    rising, so longer training might raise performance. The pre-stated rule says keep 8,000; changing it now would be a
-   data-dependent deviation, so it is not done. Learned performance in Phase 5 should be read as "after 8,000 episodes",
+   data-dependent deviation, so it is not done. Learned performance in the main study should be read as "after 8,000 episodes",
    not as converged.
 3. **Time-limited at Abundant.** Learned teams mostly end at the horizon with ~20% of the team budget unspent, whereas H was
    calibrated on the cooperative baseline. At Abundant the learned teams are therefore partly time-limited; termination
    shares per ρ (preregistered) will show whether scarcity turns this into budget limitation at lower ρ.
-4. **Pilot evaluated only Abundant.** Whether learning works at lower ρ is unknown until Phase 5 (deliberately not piloted,
+4. **Pilot evaluated only Abundant.** Whether learning works at lower ρ is unknown until the main study (deliberately not piloted,
    so that no setting was tuned on the scarcity conditions).
 5. The pilot gate used validation instances and 5 pilot seeds; the confirmatory H0-gate (test set, seeds 0–9) is part of
-   Phase 5.
+   the main study.
 
 ## 6. Compute (measured)
 
 One 8,000-episode run at Abundant: 96.6–101.1 s, ≈ 711,000 environment steps (≈ 140 µs per step including 17 validation
-checkpoints) on one core here; building the training and validation pools takes about 22 s once per worker process.
-Phase 5 estimate (≈ 230 training runs; scarcer levels have shorter episodes, so ≤ 100 s per main-configuration run, the
+checkpoints) on one core; building the training and validation pools takes about 22 s once per worker process.
+Main-study estimate (≈ 230 training runs; scarcer levels have shorter episodes, so ≤ 100 s per main-configuration run, the
 alternate 12×12 configuration slower): about 4.5–6.5 CPU-hours → about 1.2–1.7 h on a 4-core laptop and 2.5–3.5 h on this
-2-core environment. Phase 5 will therefore run in resumable chunks.
+2-core machine. The main study will therefore run in resumable chunks.
 
 ## 7. Commands
 

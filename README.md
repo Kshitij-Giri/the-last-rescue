@@ -70,11 +70,6 @@ Robustness to seven design choices (rescue fraction, mean of 10 seeds; full tabl
 | R6 trained with cooperative partners | 0.046 | 0.034 | 0.007 | 0.018 |
 | R7 24,000 episodes | 0.759 | 0.289 | 0.176 | 0.117 |
 
-Robustness of these findings to seven design choices (budget feature, role symmetry, reward split, initial Q-values,
-dormant-agent updates, training partners, training length) is in
-[`results/robustness/summary.md`](results/robustness/summary.md); each assumption it tests is listed in
-[`ASSUMPTIONS_AND_LIMITATIONS.md`](ASSUMPTIONS_AND_LIMITATIONS.md).
-
 ## Setup
 
 ```bash

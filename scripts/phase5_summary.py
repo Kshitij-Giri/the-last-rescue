@@ -1,7 +1,7 @@
-"""Phase 5 summary: seed-level values, condition means, the preregistered H0-gate, and A1-A8 completion status.
+"""Main-experiment summary: seed-level values, condition means, the preregistered H0-gate, and A1-A8 completion status.
 
-Descriptive only, apart from the H0-gate (preregistration §5.2), which Phase 5 is required to run. All confirmatory and
-secondary tests (Friedman, Page's L, Wilcoxon families with Holm, bootstrap CIs, A8 mediation) are Phase 6.
+Descriptive only, apart from the H0-gate (preregistration §5.2), which is run here. All confirmatory and
+secondary tests (Friedman, Page's L, Wilcoxon families with Holm, bootstrap CIs, A8 mediation) are in run_stats.py.
 Seed-level values follow preregistration §3: per seed, mean over the 100 test episodes; ratio metrics pooled.
 
 Usage: python scripts/phase5_summary.py
@@ -57,9 +57,9 @@ def lvl_order(df: pd.DataFrame, col: str = "level") -> pd.DataFrame:
 
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
-    md = ["# Phase 5 results summary (descriptive; formal analysis is Phase 6)", "",
+    md = ["# Main experiment results (descriptive; statistical tests are in results/stats/)", "",
           "All values are on the frozen **test** instances (100 per condition; shifted test where stated), after "
-          "**8,000 training episodes** (not converged; Phase 4). Unit = training seed (0-9): per seed, mean over test "
+          "**8,000 training episodes** (not converged). Unit = training seed (0-9): per seed, mean over test "
           "episodes, ratio metrics pooled. All runs are included, stable or not. The oracle is a full-information "
           "centralized reference, never a learner.", ""]
 
@@ -220,7 +220,7 @@ def main() -> None:
                 md += ["## A3 — difference-in-differences per seed (RF, Abundant minus Critical; primary)", "",
                        fmt(D, ["seed", "drop_p05", "drop_p0", "DiD"]), "",
                        f"Mean DiD = {D.DiD.mean():.3f} (seeds with DiD > 0: {int((D.DiD > 0).sum())}/10). "
-                       "Test and CI: Phase 6.", ""]
+                       "Tests and CIs: results/stats/.", ""]
 
     # ---------------- Exp5
     SH = load("shifted")
