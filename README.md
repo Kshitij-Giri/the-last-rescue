@@ -140,7 +140,7 @@ All members took part in integration, debugging, running experiments and interpr
 |---|---|---|
 | Kshitij Suresh Giri | problem formulation, calibration, statistics, integration | `calibration.py`, `stats.py`, `run_stats.py`, `verify_results.py`, `run_all.py` |
 | Panjari Maheshkumar Patel | environment, maps, resources, logging | `env.py`, `mapgen.py`, `costs.py`, `observation.py`, `replay.py` |
-| DV Snehal | rewards, cooperation metrics, baselines, oracle, individual vs collective analysis | `rewards.py`, `cooperation_metrics.py`, `metrics.py`, `baselines.py`, `oracle.py` |
+| DV Snehal | rewards, cooperation metrics, baselines, oracle, individual vs collective analysis, robustness experiments R1-R7 | `rewards.py`, `cooperation_metrics.py`, `metrics.py`, `baselines.py`, `oracle.py`, `run_robustness.py` |
 | Kshitish Madbhavi | Q-learning, training pipeline, experiments, ablations, figures | `iql.py`, `train.py`, `experiments.py`, `run_experiments.py`, `make_figures.py` |
 
 ## Glossary
