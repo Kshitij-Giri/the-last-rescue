@@ -264,7 +264,7 @@ D28 Final report (Phase 7)
 - The verifier's own check count is not printed in the report (it would be self-referential); the report points to
   results/logs/verify_results.txt instead.
 
-D29 Phase 8: quick mode, reference verification, module owners
+D29 Phase 8: quick mode and reference checks
 - `scripts/run_all.py --quick` runs every stage of the pipeline at reduced scale: tests; main-sweep IQL training with
   4 levels x 3 seeds x 3,000 episodes on the first 200 training maps; evaluation of learned teams, baselines and the
   oracle reference on the first 30 test maps; H0 and H1 statistics; a figure and a summary. It writes only to
@@ -272,7 +272,5 @@ D29 Phase 8: quick mode, reference verification, module owners
   signal (at 1,500 episodes greedy RF is still about 0.04, as in the full runs' own checkpoints); measured 2 min 55 s on
   2 cores. Its numbers are a pipeline check, never study results. `--full` runs the full study commands in order
   (resumable, so on the delivered repository it skips completed runs).
-- References [8]-[14] were checked against their original publication records (docs/references_verification.md);
-  issue numbers, proceedings details and DOIs were added; no reference remains marked "verify". [10]-[14] are now cited
-  where the methods are described (report Section 8.3).
-- docs/module_owners.md: owner per module following the proposal roles.
+- References [8]-[14] were checked against their original publication records; issue numbers, proceedings details and
+  DOIs were added. [10]-[14] are cited where the statistical methods are described.

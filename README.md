@@ -132,17 +132,16 @@ python scripts/make_manifest.py             # results/manifest.json (SHA-256 of 
 - `tests/`: 269 tests (rules, masking, budgets, stale information, feasibility, invariants, baselines, oracle, metrics on
   scripted episodes, IQL, experiments, statistics, robustness options, quick run).
 - `docs/`: design specification, preregistration, pilot protocol, design decisions, deviations log, claims checked by
-  the verifier, module owners.
+  the verifier.
 - `results/`: calibration, pilot, 350 main-study training runs, raw test episodes, statistics, tables, figures,
   replays, logs, `robustness/` (R1-R7), `manifest.json`.
 - `results_quick/`: output of the last `--quick` run (pipeline check, not study results).
 
-## Who did what
+## Contributions
 
-Each member owns the modules listed below and defends them in the viva (details in
-[`docs/module_owners.md`](docs/module_owners.md)).
+All members took part in integration, debugging, running experiments and interpreting results.
 
-| Member | Role | Main code |
+| Member | Work | Main code |
 |---|---|---|
 | Kshitij Suresh Giri | problem formulation, calibration, statistics, integration | `calibration.py`, `stats.py`, `run_stats.py`, `verify_results.py`, `run_all.py` |
 | Panjari Maheshkumar Patel | environment, maps, resources, logging | `env.py`, `mapgen.py`, `costs.py`, `observation.py`, `replay.py` |
