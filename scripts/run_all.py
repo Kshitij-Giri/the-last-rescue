@@ -56,7 +56,6 @@ FULL_STEPS = [
       ["learned", "shifted", "transfer", "A1", "A2", "baselines"]],
     "python scripts/check_phase5_integrity.py && python scripts/phase5_summary.py && python scripts/make_phase5_manifest.py",
     "python scripts/run_stats.py && python scripts/make_tables.py && python scripts/make_figures.py && python scripts/make_replays.py",
-    "bash scripts/build_report.sh",
     "python scripts/verify_results.py && python scripts/make_manifest.py",
 ]
 

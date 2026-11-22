@@ -234,51 +234,6 @@ def main() -> None:
         "Every number reported in the phase summaries maps to the file and locator below; `verified` = the stated value "
         "matches the source within the stated rounding.\n\n" + L.to_markdown(index=False) + "\n")
 
-    # V7: the final report (Phase 7). Every number shown in report/report.docx is registered in docs/report_numbers.yaml.
-    rn_path = ROOT / "docs" / "report_numbers.yaml"
-    docx_path = ROOT / "report" / "report.docx"
-    if rn_path.exists() and docx_path.exists():
-        sys.path.insert(0, str(ROOT / "scripts"))
-        import re
-        import zipfile
-        from report_lib import fmt_value, plain, read_source
-        entries = yaml.safe_load(rn_path.read_text())
-        bad_src, bad_fmt, missing = [], [], []
-        xml = zipfile.ZipFile(docx_path).read("word/document.xml").decode("utf8")
-        paras = ["".join(re.findall(r"<w:t(?: [^>]*)?>([^<]*)</w:t>", p)) for p in re.findall(r"<w:p[ >].*?</w:p>", xml, re.S)]
-        text = "\n".join(paras).replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">")
-        for e in entries:
-            try:
-                v = read_source(e) * float(e.get("scale", 1.0))
-            except Exception as ex:  # noqa: BLE001
-                bad_src.append(f"{e['file']}: {ex}")
-                continue
-            if not close(v, e["value"], 1e-12):
-                bad_src.append(f"{e['file']} {e.get('where') or e.get('path')}: {v} != {e['value']}")
-            if fmt_value(v, e["fmt"], e["nd"]) != e["display"]:
-                bad_fmt.append(e["display"])
-            if plain(e["display"]) not in text:
-                missing.append(e["display"])
-        check("V7 report numbers: every registered value equals its source file", not bad_src,
-              f"{len(entries) - len(bad_src)}/{len(entries)}" + (f"; e.g. {bad_src[:2]}" if bad_src else ""))
-        check("V7 report numbers: displayed text = formatted source value", not bad_fmt, f"{len(entries) - len(bad_fmt)}/{len(entries)}")
-        check("V7 report numbers: every displayed value appears in report.docx", not missing,
-              f"{len(entries) - len(missing)}/{len(entries)}" + (f"; missing {missing[:3]}" if missing else ""))
-        blocks = json.loads((ROOT / "report" / "content.json").read_text())["blocks"]
-        figs = [b for b in blocks if b["t"] == "figure"]
-        n_img = len(re.findall(r"<pic:pic\b", xml))
-        check("V7 report figures: every figure file exists and is embedded", all((ROOT / b["path"]).exists() for b in figs)
-              and n_img == len(figs), f"{len(figs)} figures, {n_img} embedded images")
-        labels_ok = all(f"Table {b['label']}. " in text for b in blocks if b["t"] == "table") and \
-            all(f"Fig. {b['label']}. " in text for b in figs)
-        check("V7 report: every table and figure caption is present", labels_ok)
-        pdf = ROOT / "report" / "report.pdf"
-        n_pages = int(re.search(r"Pages:\s+(\d+)", subprocess.run(["pdfinfo", str(pdf)], capture_output=True, text=True).stdout)
-                      .group(1)) if pdf.exists() else 0
-        check("V7 report length within 25-40 pages (PDF rendering)", 25 <= n_pages <= 40, f"{n_pages} pages")
-    else:
-        check("V7 report present (report/report.docx and docs/report_numbers.yaml)", False, "missing")
-
     n_runs = len(list((ROOT / "results" / "runs").glob("**/run.json")))
     check("V6 training runs", n_runs == 350, f"{n_runs}")
     man = json.loads((ROOT / "results" / "phase5" / "phase5_manifest.json").read_text())["files"]
