@@ -150,7 +150,7 @@ def main() -> None:
     ax.axis("off")
     ax.text(0, 0.9, "Thin lines: individual seeds.\nMarkers: mean ± 95% bootstrap CI.\n\n"
                     "Holm across the 7 H2 metrics.\n\n* C4a tracks collective return almost\n"
-                    "monotonically (D21, D22) and is not\nindependent evidence of cooperation.\n\n"
+                    "monotonically and is not\nindependent evidence of cooperation.\n\n"
                     "C1: seeds without any ASSIST are\nexcluded (complete blocks, n = 8).", fontsize=8, va="top",
             color=INK)
     fig.suptitle("Fig. 3  Exp2 / H2: cooperation metrics by scarcity (main, test). The cooperation rate falls sharply; "
@@ -328,7 +328,7 @@ def main() -> None:
     ax.set_xlim(-0.07, 0.17)
     style(ax, "b) A8 regression coefficients (ASSOCIATION, not causation)")
     fig.suptitle("Fig. 8  A8 (observational): with scarcity level held fixed, seeds with higher C5 cooperation rate and C4a "
-                 "rescue more in one-metric models;\nin the joint model only C4a (which tracks reward, D22) has a CI "
+                 "rescue more in one-metric models;\nin the joint model only C4a (which tracks reward) has a CI "
                  "excluding zero (CR and C4a are collinear, VIF about 8).", fontsize=9, x=0.01, ha="left")
     save(fig, "fig8_a8_association.png")
 
