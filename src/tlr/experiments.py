@@ -1,4 +1,4 @@
-"""Phase 5 experiment definitions: training blocks, instance pools, and evaluators (preregistration v1.0 §2, §3, §5;
+"""Experiment definitions: training blocks, instance pools, and evaluators (preregistration v1.0 §2, §3, §5;
 spec §5 A1-A6, Exp1-Exp5).
 
 Training blocks (seeds 0-9, all four rho levels unless noted):

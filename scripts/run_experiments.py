@@ -1,4 +1,4 @@
-"""Phase 5 orchestrator: resumable training and evaluation (preregistration v1.0; docs/phase0_design_spec.md §5).
+"""Experiment runner: resumable training and evaluation (preregistration v1.0; docs/phase0_design_spec.md §5).
 
 Every training run writes results/runs/<block>/<level>/seed_<s>[_slot<k>]/run.json LAST, so a run with run.json is
 complete and is skipped on re-invocation. Every evaluation part writes one CSV (results/eval/<kind>/<part>.csv) and is

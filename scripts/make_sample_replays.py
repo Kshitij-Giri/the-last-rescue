@@ -1,4 +1,4 @@
-"""Phase 1 replay evidence: ASCII replays of rule-relevant episodes (spec deliverable "replay evidence").
+"""Environment replay evidence: ASCII replays of rule-relevant episodes.
 
 Produces in results/replays/:
   phase1_random_episode.txt          random valid actions on test instance 0 (placeholder b0=25, H=60: NOT calibrated)

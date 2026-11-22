@@ -1,4 +1,4 @@
-"""Record SHA-256 hashes of everything frozen at the end of Phase 3 (preregistration §11).
+"""Record SHA-256 hashes of everything frozen at the end of calibration (preregistration §11).
 
 Output: results/calibration/freeze_manifest.json. Re-run to compare: any hash change after the freeze must correspond to
 a logged post-freeze deviation in docs/deviations_log.md.

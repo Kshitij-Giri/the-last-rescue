@@ -1,6 +1,6 @@
-"""SHA-256 manifest of every Phase 5 artefact (runs, Q-tables, logs, evaluation CSVs) plus software and seeds.
+"""SHA-256 manifest of every main-experiment artefact (runs, Q-tables, logs, evaluation CSVs) plus software and seeds.
 
-Output: results/phase5/phase5_manifest.json. Phase 6 merges this into results/manifest.json.
+Output: results/phase5/phase5_manifest.json. make_manifest.py links it from results/manifest.json.
 Usage: python scripts/make_phase5_manifest.py
 """
 

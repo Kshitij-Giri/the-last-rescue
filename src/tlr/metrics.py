@@ -2,7 +2,7 @@
 
 Implements: spec §3 "Performance metrics" and the E3 conflict definition, plus spec §1.3a diagnostics
 (stale corrections, stale travel). Everything is recomputed from the EpisodeLog and the instance, never from
-environment internals, so verify_results.py (Phase 6) can recompute any table from raw logs.
+environment internals, so verify_results.py can recompute any table from raw logs.
 """
 
 from __future__ import annotations

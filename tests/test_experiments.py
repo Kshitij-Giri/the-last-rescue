@@ -1,4 +1,4 @@
-"""Phase 5 machinery: solo exploration streams, step-budget training, mixed-team evaluator consistency,
+"""Experiment machinery: solo exploration streams, step-budget training, mixed-team evaluator consistency,
 A1 permutations, A2 ablation, block settings."""
 
 import numpy as np

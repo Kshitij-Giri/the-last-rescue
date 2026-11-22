@@ -1,4 +1,4 @@
-"""Phase 4 learnability pilot (docs/pilot_protocol.md). Validation instances only; test sets are never loaded.
+"""Learnability pilot (docs/pilot_protocol.md). Validation instances only; test sets are never loaded.
 
 Usage:
   python scripts/run_pilot.py --baselines                       # baselines on validation at Abundant

@@ -7,6 +7,6 @@ for c in "$@"; do
   echo "=== $(date -u +%Y-%m-%dT%H:%M:%SZ) START python3 scripts/run_experiments.py $c" >> "$LOG"
   start=$(date +%s)
   python3 scripts/run_experiments.py $c >> "$LOG" 2>&1
-  rc=$?   # captured immediately (the Phase 5 run logged the status of an echo sub-expression instead; see deviations C2)
+  rc=$?   # captured immediately (an earlier version logged the status of an echo sub-expression instead; see deviations C2)
   echo "=== $(date -u +%Y-%m-%dT%H:%M:%SZ) END ($(( $(date +%s) - start )) s, exit $rc) $c" >> "$LOG"
 done

@@ -1,4 +1,4 @@
-"""Phase 5 integrity check: every preregistered run and evaluation part exists and is well-formed.
+"""Main-experiment integrity check: every preregistered run and evaluation part exists and is well-formed.
 
 Checks: all runs have run.json, q_final.npz, q_bestval.npz, train_log.csv, checkpoints.csv; equal-episode runs have exactly
 8,000 episodes with the frozen hyperparameters; A6 runs used >= the main Abundant step count of the same seed (and stopped

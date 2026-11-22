@@ -1,7 +1,7 @@
-"""Measure environment speed (replaces the Phase 0 assumed cost in the compute estimate; spec §7).
+"""Measure environment speed (replaces the assumed step cost in the compute estimate; spec §7).
 
 Times only env.step() (payment, moves, resolution, observation update, features and masks for all agents);
-the random policy's own time is excluded. Budgets/horizon here are placeholders (calibration is Phase 3).
+the random policy's own time is excluded. Budgets/horizon here are placeholders (set before calibration).
 Usage: python scripts/bench_env.py [--instances 20] [--episodes-per-instance 5]
 """
 

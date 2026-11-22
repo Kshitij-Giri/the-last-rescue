@@ -1,8 +1,8 @@
-"""Phase 6 figures from saved results only (results/stats, results/runs). Re-runnable; no computation of new statistics
+"""Figures from saved results only (results/stats, results/runs). Re-runnable; no computation of new statistics
 beyond means and the preregistered bootstrap CIs (tlr.stats).
 
 Conventions: rho levels always ordered Abundant -> Critical; ordinal blue ramp for levels (validated); categorical palette
-for methods (validated in Phase 3); error bars / bands = 95% percentile bootstrap CI over the 10 seeds; thin lines =
+for methods (checked for colour-vision accessibility); error bars / bands = 95% percentile bootstrap CI over the 10 seeds; thin lines =
 individual seeds (paired across levels); the oracle is drawn as a separate, labelled reference, never as a learner.
 Outputs: results/figures/fig*.png
 Usage: python scripts/make_figures.py
@@ -150,7 +150,7 @@ def main() -> None:
     ax.axis("off")
     ax.text(0, 0.9, "Thin lines: individual seeds.\nMarkers: mean ± 95% bootstrap CI.\n\n"
                     "Holm across the 7 H2 metrics.\n\n* C4a tracks collective return almost\n"
-                    "monotonically (Phase 2, D22) and is not\nindependent evidence of cooperation.\n\n"
+                    "monotonically (D21, D22) and is not\nindependent evidence of cooperation.\n\n"
                     "C1: seeds without any ASSIST are\nexcluded (complete blocks, n = 8).", fontsize=8, va="top",
             color=INK)
     fig.suptitle("Fig. 3  Exp2 / H2: cooperation metrics by scarcity (main, test). The cooperation rate falls sharply; "

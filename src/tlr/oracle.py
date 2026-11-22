@@ -8,7 +8,7 @@ IMPORTANT - what the oracle is and is not:
 - It is NOT proven optimal. Exact optimisation is a multi-agent orienteering problem. The planner is a greedy
   insertion heuristic, so it is an ACHIEVABLE reference (a lower bound on the true optimum). Two checks bracket it:
   `upper_bound` (provable, loose) and `exhaustive_plan_count` (exact optimum over the same macro-plan space, feasible
-  only for tiny instances; used in tests and the Phase 2 validation report).
+  only for tiny instances; used in tests and the metric validation report).
 
 Macro-plan model shared by the greedy and the exhaustive planner: each agent serves a sequence of victims, travelling
 along cheapest paths (precomputed tables); for a heavy victim the rescuer and assister both travel there, the earlier

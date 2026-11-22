@@ -1,4 +1,4 @@
-"""Phase 6 statistical analysis (preregistration v1.0 §5; design_decisions D26). Reads ONLY raw episode CSVs in
+"""Statistical analysis (preregistration v1.0 §5; design_decisions D26). Reads ONLY raw episode CSVs in
 results/eval/; writes results/stats/*.csv, *.json and stats_summary.md.
 
 Families:
@@ -233,7 +233,7 @@ def main() -> None:
     bv = matrix(SL, "main", "rf", "bestval")
     sens["bestval_friedman"] = friedman(bv)
     sens["bestval_page"] = page_two_sided(bv)
-    runs = pd.read_csv(ROOT / "results" / "phase5" / "training_runs.csv")  # built from run.json files (Phase 5)
+    runs = pd.read_csv(ROOT / "results" / "phase5" / "training_runs.csv")  # built from run.json files
     sens["stable_runs_total"] = int(runs.stable.sum())
     sens["runs_total"] = int(len(runs))
     sens["stable_by_block_level"] = runs.groupby(["block", "level"]).stable.sum().astype(int).reset_index().to_dict("records")

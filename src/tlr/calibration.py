@@ -1,4 +1,4 @@
-"""Calibration of the horizon H, the reference budget B_ref and the scarcity levels rho (spec §4, review point 3).
+"""Calibration of the horizon H, the reference budget B_ref and the scarcity levels rho (spec §4).
 
 Procedure (all parameters and selection rules in config/calibration.yaml, hashed before any run):
   Step 1  H     = ceil(T90 / slack), T90 = 90th percentile over calibration instances of the step at which the cooperative

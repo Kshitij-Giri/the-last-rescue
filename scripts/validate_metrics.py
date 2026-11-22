@@ -1,6 +1,6 @@
-"""Phase 2 construct-validity check for the cooperation metrics (spec §3 "Construct validity plan").
+"""Construct-validity check for the cooperation metrics (spec §3 "Construct validity plan").
 
-NOT AN EXPERIMENTAL RESULT. Budgets and horizon here are uncalibrated placeholders (calibration is Phase 3), and no
+NOT AN EXPERIMENTAL RESULT. Budgets and horizon here are uncalibrated placeholders (set before calibration), and no
 learned policy is involved. The purpose is only to check that the metrics behave as intended on policies whose
 behaviour we know by design:
 
@@ -70,7 +70,7 @@ def main() -> None:
     out.mkdir(parents=True, exist_ok=True)
     df.to_csv(out / "metric_validation_episodes.csv", index=False)
 
-    lines = ["# Phase 2 metric construct-validity check", "",
+    lines = ["# Metric construct-validity check", "",
              "**Not an experimental result.** Uncalibrated placeholder budgets (b0) and horizon H = "
              f"{PLACEHOLDER_H}; {args.instances} validation instances; deterministic baselines; ratio metrics pooled "
              "over episodes (sum of numerators / sum of denominators). The oracle is a full-information centralized "

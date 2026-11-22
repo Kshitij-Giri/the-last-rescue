@@ -38,7 +38,7 @@ TERMINATION_REASONS = ("all_rescued", "exhausted", "horizon")
 
 @dataclass
 class EpisodeLog:
-    """Per-step record of an episode, used by metrics (Phase 2), replays and verification.
+    """Per-step record of an episode, used by metrics, replays and verification.
 
     All per-step lists have one entry per executed step. `positions` has one more entry (the state after the last step).
     Budgets: shape (n,) per entry in per-agent mode; a single-element array (the pool) in pooled mode.

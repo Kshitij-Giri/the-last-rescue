@@ -1,9 +1,9 @@
-"""Frozen Phase 3 artefacts are consistent and reproducible (preregistration §3, §8, §11).
+"""Frozen calibration artefacts are consistent and reproducible (preregistration §3, §8, §11).
 
 - config/calibrated.yaml and config/default.yaml agree with results/calibration/calibration_summary.json;
 - every frozen instance list regenerates byte-identically from its seeds (SHA-256 match) and is feasible at Critical;
 - selecting levels again from the saved curves gives the frozen levels.
-Skipped if Phase 3 outputs are absent (e.g. a fresh checkout before calibration has been run).
+Skipped if calibration outputs are absent (e.g. a fresh checkout before calibration has been run).
 """
 
 import hashlib
@@ -21,7 +21,7 @@ from tlr.utils import deep_update, initial_budget, load_config
 ROOT = Path(__file__).resolve().parents[1]
 SUMMARY = ROOT / "results" / "calibration" / "calibration_summary.json"
 SETS = ROOT / "results" / "calibration" / "instance_sets.json"
-pytestmark = pytest.mark.skipif(not SUMMARY.exists() or not SETS.exists(), reason="Phase 3 outputs not present")
+pytestmark = pytest.mark.skipif(not SUMMARY.exists() or not SETS.exists(), reason="calibration outputs not present")
 
 
 def test_calibrated_config_matches_summary():

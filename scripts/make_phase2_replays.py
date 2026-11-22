@@ -1,4 +1,4 @@
-"""Phase 2 replay evidence: baseline behaviour on validation instance 0 (uncalibrated placeholder b0=40, H=200).
+"""Replay evidence: baseline behaviour on validation instance 0 (uncalibrated placeholder b0=40, H=200).
 
   results/replays/phase2_cooperative.txt  cooperative baseline: sector exploration, waiting, joint heavy rescue
   results/replays/phase2_greedy.txt       greedy baseline: identical agents in lockstep, redundant simultaneous

@@ -76,7 +76,7 @@ class IQLTeam:
         self.Q = np.full((n_agents, n_obs, N_ACTIONS), q_init, dtype=np.float64)
         # One exploration stream per agent SLOT, derived from the training seed only (identical across conditions).
         # `agent_ids` maps local agents to team slots; a solo-trained agent for slot k (A4) uses agent_ids = [k] and so
-        # gets exactly the stream joint agent k gets. Default: slots 0..n-1 (unchanged Phase 4 behaviour).
+        # gets exactly the stream joint agent k gets. Default: slots 0..n-1 (the default behaviour).
         ids = list(range(n_agents)) if agent_ids is None else list(agent_ids)
         self.rngs = [np.random.default_rng(np.random.SeedSequence([int(seed), k, 0xE7])) for k in ids]
 

@@ -1,4 +1,4 @@
-"""Shared pytest fixtures and helpers for hand-written scenarios (spec §1; Phase 1 test plan)."""
+"""Shared pytest fixtures and helpers for hand-written scenarios (spec §1)."""
 
 from __future__ import annotations
 
@@ -38,7 +38,7 @@ def scenario(cfg: dict, rows: Sequence[str], starts: Sequence[tuple[int, int]] |
 
 
 def random_valid_actions(masks: np.ndarray, rng: np.random.Generator) -> list[int]:
-    """Uniformly random valid action per agent (test helper; the real random baseline arrives in Phase 2)."""
+    """Uniformly random valid action per agent (test helper; the random baseline is in baselines.py)."""
     return [int(rng.choice(np.flatnonzero(m))) for m in masks]
 
 

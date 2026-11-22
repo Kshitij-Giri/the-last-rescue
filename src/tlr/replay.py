@@ -1,4 +1,4 @@
-"""ASCII replays of recorded episodes (proof that the rules behave as specified; spec deliverable "replay evidence").
+"""ASCII replays of recorded episodes (they show that the rules behave as specified).
 
 Legend (printed in every replay):
   #  wall        ~  hazard      .  free        B  base

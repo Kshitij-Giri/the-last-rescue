@@ -1,6 +1,6 @@
 """Episode runner shared by baselines, the oracle and (later) learned policies.
 
-Implements the evaluation loop of spec §2 / preregistration §3. Phase 2 provides `run_episode`; condition-level
+Implements the evaluation loop of spec §2 / preregistration §3. This module provides `run_episode`; condition-level
 evaluation over instance sets is added in later phases.
 
 Information discipline: decentralized policies receive only a `StaticContext` (a-priori knowledge) and, each step,

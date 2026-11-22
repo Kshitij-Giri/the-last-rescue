@@ -1,6 +1,6 @@
 scripts/run_stats.py:86: RuntimeWarning: Mean of empty slice
   "n": int(np.sum(~np.isnan(v))), "mean": np.nanmean(v), "ci_lo": lo, "ci_hi": hi,
-/usr/local/lib/python3.13/site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
+site-packages/numpy/lib/_nanfunctions_impl.py:1997: RuntimeWarning: Degrees of freedom <= 0 for slice.
   var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
 scripts/run_stats.py:87: RuntimeWarning: All-NaN slice encountered
   "sd": np.nanstd(v, ddof=1), "min": np.nanmin(v), "max": np.nanmax(v)})

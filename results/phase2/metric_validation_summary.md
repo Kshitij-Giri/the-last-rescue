@@ -1,4 +1,4 @@
-# Phase 2 metric construct-validity check
+# Metric construct-validity check
 
 **Not an experimental result.** Uncalibrated placeholder budgets (b0) and horizon H = 200; 50 validation instances; deterministic baselines; ratio metrics pooled over episodes (sum of numerators / sum of denominators). The oracle is a full-information centralized REFERENCE, shown for context only.
 

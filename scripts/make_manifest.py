@@ -1,5 +1,5 @@
-"""results/manifest.json: SHA-256 of every code, config, doc and result file (preregistration deliverable), with
-software versions and seeds. Combines the Phase 3 freeze manifest, Phase 5 manifest and current files.
+"""results/manifest.json: SHA-256 of every code, config, doc and result file, with
+software versions and seeds. Combines the calibration freeze manifest, the main-experiment manifest and current files.
 Usage: python scripts/make_manifest.py
 """
 
